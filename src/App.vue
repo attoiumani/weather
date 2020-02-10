@@ -2,7 +2,7 @@
   <v-app>
     <div>
       <div class="text-center" id="nav">
-        <router-link to="/logo">logo</router-link>|
+        <router-link to="/logo">logoo</router-link>|
         <router-link to="/wether">Wether</router-link>|
         <router-link to="/">Home</router-link>|
         <router-link to="/About">about</router-link>
