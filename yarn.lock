@@ -991,7 +991,7 @@
   dependencies:
     "@vue/cli-shared-utils" "^4.2.2"
 
-"@vue/cli-plugin-vuex@^4.2.2":
+"@vue/cli-plugin-vuex@^4.2.2", "@vue/cli-plugin-vuex@~4.2.0":
   version "4.2.2"
   resolved "https://registry.npm.taobao.org/@vue/cli-plugin-vuex/download/@vue/cli-plugin-vuex-4.2.2.tgz?cache=0&sync_timestamp=1581075316812&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40vue%2Fcli-plugin-vuex%2Fdownload%2F%40vue%2Fcli-plugin-vuex-4.2.2.tgz#f504b554e7edde945342e3c42cffad80ffa41933"
   integrity sha1-9QS1VOft3pRTQuPELP+tgP+kGTM=
@@ -8052,6 +8052,11 @@ vuetify@^2.2.11:
   version "2.2.11"
   resolved "https://registry.npm.taobao.org/vuetify/download/vuetify-2.2.11.tgz#40133761842c556070c5dc749ee32cb9df9ffe7f"
   integrity sha1-QBM3YYQsVWBwxdx0nuMsud+f/n8=
+
+vuex@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.npm.taobao.org/vuex/download/vuex-3.1.2.tgz?cache=0&sync_timestamp=1573400838843&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuex%2Fdownload%2Fvuex-3.1.2.tgz#a2863f4005aa73f2587e55c3fadf3f01f69c7d4d"
+  integrity sha1-ooY/QAWqc/JYflXD+t8/AfacfU0=
 
 watchpack@^1.6.0:
   version "1.6.0"
