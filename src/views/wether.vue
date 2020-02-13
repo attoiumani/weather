@@ -11,6 +11,9 @@
       <br>
       <div>最低温度</div>
       {{dataOutputMinTemp}}
+      <br>
+      <div>天気</div>
+      {{dataOutputCondition}}
     </div>
   </v-app>
 </template>
@@ -30,6 +33,9 @@ export default {
   },
   dataOutputMinTemp() {
    return this.$store.getters.getStateDataSetMinTemp
+  },
+  dataOutputCondition() {
+   return this.$store.getters.getStateDataSetCondition
   }
  },
   created() {
