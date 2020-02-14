@@ -12,7 +12,7 @@
     </v-navigation-drawer>
 
 
-    <v-app-bar color="primary" dark app collapse-on-scroll>
+    <v-app-bar color="primary" dark app>
       <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Title</v-toolbar-title>
       <v-spacer></v-spacer>
