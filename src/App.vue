@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div>
-      <Header/>
+      <Header />
       <div class="text-center" id="nav">
         <router-link to="/logo">logoo</router-link>|
         <router-link to="/wether">Wether</router-link>|
@@ -9,11 +9,11 @@
         <router-link to="/About">about</router-link>
       </div>
       <v-content>
-        <v-container> 
-          <router-view/>
+        <v-container>
+          <router-view />
         </v-container>
       </v-content>
-      <Footer/>
+      <Footer />
     </div>
   </v-app>
 </template>
@@ -23,10 +23,10 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export default {
-  components:{
+  components: {
     Header,
     Footer
-    }
+  }
 };
 </script>
 
