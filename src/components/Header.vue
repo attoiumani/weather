@@ -1,5 +1,6 @@
 <template>
-    <v-toolbar color=indigo>
+  <v-app>
+    <v-app-bar color="primary" dark app>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>Title</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -12,5 +13,6 @@
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
+  </v-app>
 </template>
