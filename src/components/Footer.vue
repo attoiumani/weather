@@ -1,9 +1,9 @@
 <template>
-  <v-card height="150">
-    <v-footer absolute class="font-weight-medium" color="indigo">
+  <v-app>
+    <v-footer absolute color="indigo">
       <v-col class="text-center" cols="12">
-        {{new Date().getFullYear()}} — <strong>Vuetify</strong>
+        {{new Date().getFullYear()}} — <strong>Vue-Vuerouter-Vuex-axios-Vuetify</strong>
       </v-col>
     </v-footer>
-  </v-card>
+  </v-app>
 </template>
