@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer v-model="drawer" clipped app>
       <v-list>
         <v-list-tile v-for="item in items" :key="item.title" :to="item.to">
           <v-list-tile-action>
@@ -12,9 +12,8 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-
-    <v-app-bar color="primary" dark app>
-      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+    <v-app-bar color="primary" dark clipped-left app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Title</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
@@ -30,19 +29,17 @@
   </v-app>
 </template>
 
-
 <script>
 export default {
   name: "App",
-  data(){
+  data() {
     return {
       drawer: null,
       items: [
-          { title: 'Home', to: '/', icon: 'mdi-stack-overflow' },
-          { title: 'wether', to: '/wether', icon: 'mdi-vuetify' },
-          { title: 'logo', to: '/logo', icon: 'mdi-github-face' },
-          { title: 'About', to: '/About', icon: 'mdi-pac-man' }
-     ]
+        { title: "Home", to: "/", icon: "mdi-stack-overflow" },
+        { title: "wether", to: "/wether", icon: "mdi-vuetify" },
+        { title: "logo", to: "/logo", icon: "mdi-github-face" }
+      ]
     };
   }
 };
