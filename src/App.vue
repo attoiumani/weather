@@ -8,7 +8,11 @@
         <router-link to="/">Home</router-link>|
         <router-link to="/About">about</router-link>
       </div>
+      <v-content>
+        <v-container> 
       <router-view/>
+      </v-container>
+      </v-content>
       <Footer/>
     </div>
   </v-app>
