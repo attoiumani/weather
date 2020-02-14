@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <div>
+      <Header/>
       <div class="text-center" id="nav">
         <router-link to="/logo">logoo</router-link>|
         <router-link to="/wether">Wether</router-link>|
@@ -11,6 +12,16 @@
     </div>
   </v-app>
 </template>
+
+<script>
+import Header from "./components/Header";
+
+export default {
+  components:{
+    Header
+    }
+};
+</script>
 
 
 <style lang="scss">
@@ -35,3 +46,6 @@
   }
 }
 </style>
+
+
+
