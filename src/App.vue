@@ -10,8 +10,8 @@
       </div>
       <v-content>
         <v-container> 
-      <router-view/>
-      </v-container>
+          <router-view/>
+        </v-container>
       </v-content>
       <Footer/>
     </div>
