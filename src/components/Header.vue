@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" clipped app>
       <v-list>
-        <v-list-tile v-for="item in items" :key="item.title" :to="item.to">
+        <v-list-tile v-for="item in items" :key="item.title" :to="item.path">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -34,11 +34,11 @@ export default {
   name: "App",
   data() {
     return {
-      drawer: null,
+      drawer: false,
       items: [
-        { title: "Home", to: "/", icon: "mdi-stack-overflow" },
-        { title: "wether", to: "/wether", icon: "mdi-vuetify" },
-        { title: "logo", to: "/logo", icon: "mdi-github-face" }
+        { title: "Home", path: "/", icon: "mdi-stack-overflow" },
+        { title: "wether", path: "/wether", icon: "mdi-vuetify" },
+        { title: "logo", path: "/logo", icon: "mdi-github-face" }
       ]
     };
   }
