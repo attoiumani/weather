@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="text-center">
+    <!--<div class="text-center">
       <div v-show="dataOutputLoading">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
@@ -15,18 +15,16 @@
       {{dataOutputMinTemp}}
       <div>天気</div>
       {{dataOutputCondition}}
-    </div>
-
-
-    <item-component v-for="(result, index) in results" :key="index">
+    </div>-->
+    <div v-for="(result, index) in results" :key="index">
     <div>{{result.text}}</div>
-    <div v-show="dataOutputLoading">
+    <div v-if="dataOutputLoading">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
-    <div v-show="!dataOutputLoading">
+    <div v-if="!dataOutputLoading">
     {{result.title}}
     </div>
-  </item-component>
+  </div>
 
   </v-app>
 </template>
@@ -36,9 +34,8 @@
 export default {
    data() {
      return {
-       drawer: false,
        results: [
-         { title:this.$store.state.dataSetName, text: "場所"},
+         { title:this.$store.getters.getStateDataSetName, text: "場所"},
          { title:this.$store.getters.getStateDataSetTemp, text: "現在の温度"},
          { title:this.$store.getters.getStateDataSetMaxTemp, text: "最高温度"},
          { title:this.$store.getters.getStateDataSetMinTemp, text: "最低温度"},
@@ -66,5 +63,8 @@ export default {
   return this.$store.getters.getStateDataSetLoading
  }
  },
+ created:function() {
+ this.$store.dispatch('commitDataSet')
+},
 };
 </script>
