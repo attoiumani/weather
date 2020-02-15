@@ -20,12 +20,31 @@
       <div>天気</div>
       {{dataOutputCondition}}
     </div>
+
+
+    <item-component v-for="(result, index) in results" :key="index"
+    v-bind:id="result.title"
+    v-bind:name="result.text">
+    <div>{{result.title}}</div>
+    {{result.text}}
+  </item-component>
+
   </v-app>
 </template>
 
 
 <script>
 export default {
+   data() {
+     return {
+       drawer: false,
+       results: [
+         { title:"dataOutputName", text: "場所"},
+         { title:"dataOutputTemp", text: "現在の温度"},
+         { title:"dataOutputMaxTemp", text: "最高温度"}
+       ]
+     };
+   },
  computed: {
   dataOutputName() {
    return this.$store.getters.getStateDataSetName
@@ -46,8 +65,5 @@ export default {
   return this.$store.getters.getStateDataSetLoading
  }
  },
-  created() {
-  this.$store.dispatch('commitDataSet')
- }
 };
 </script>
