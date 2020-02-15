@@ -25,8 +25,8 @@
     <item-component v-for="(result, index) in results" :key="index"
     v-bind:id="result.title"
     v-bind:name="result.text">
-    <div>{{result.title}}</div>
-    {{result.text}}
+    <div>{{result.text}}</div>
+    {{result.title}}
   </item-component>
 
   </v-app>
