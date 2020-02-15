@@ -1,7 +1,12 @@
 <template>
   <v-app>
     <div class="text-center">
+      <div v-show="dataOutputLoading">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      </div>
+      <div v-show="!dataOutputLoading">
       {{dataOutputName}}
+      </div>
       <br>
       <div>現在の温度</div>
       {{dataOutputTemp}}
@@ -36,7 +41,10 @@ export default {
   },
   dataOutputCondition() {
    return this.$store.getters.getStateDataSetCondition
-  }
+ },
+ dataOutputLoading() {
+  return this.$store.getters.getStateDataSetLoading
+ }
  },
   created() {
   this.$store.dispatch('commitDataSet')
