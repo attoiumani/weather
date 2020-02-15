@@ -27,9 +27,6 @@ export default {
     Header,
     Footer
   },
-  created:function() {
-  this.$store.dispatch('commitDataSet')
-},
 };
 </script>
 
