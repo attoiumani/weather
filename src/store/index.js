@@ -55,5 +55,5 @@ export default new Vuex.Store({
     getStateDataSetMinTemp: (state) => state.dataSetMinTemp,
     getStateDataSetCondition: (state) => state.dataSetCondition,
     getStateDataSetLoading: (state) => state.dataSetLoading,
-   }
+  },
 })
