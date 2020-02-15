@@ -10,7 +10,8 @@ export default new Vuex.Store({
     dataSetTemp: Number,
     dataSetMaxTemp: Number,
     dataSetMinTemp: Number,
-    dataSetCondition: String
+    dataSetCondition: String,
+    dataSetLoading: Boolean
   },
   mutations: {
     mutateDataSetName(state, payload) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     mutateDataSetCondition(state, payload) {
       state.dataSetCondition = payload;
+    },
+    mutateDataSetLoading(state, payload) {
+      state.dataSetLoading = payload;
     }
   },
   actions: {
@@ -40,6 +44,7 @@ export default new Vuex.Store({
       store.commit('mutateDataSetMaxTemp', response.data.main.temp_max)
       store.commit('mutateDataSetMinTemp', response.data.main.temp_min)
       store.commit('mutateDataSetCondition', response.data.weather[0].main)
+      store.commit('mutateDataSetLoading', false)
     })
    }
   },
@@ -49,5 +54,6 @@ export default new Vuex.Store({
     getStateDataSetMaxTemp: (state) => state.dataSetMaxTemp,
     getStateDataSetMinTemp: (state) => state.dataSetMinTemp,
     getStateDataSetCondition: (state) => state.dataSetCondition,
+    getStateDataSetLoading: (state) => state.dataSetLoading,
    }
 })
