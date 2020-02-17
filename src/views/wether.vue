@@ -27,8 +27,6 @@
     </v-card-actions>
   </v-card>
 
-
-
     <!--<div v-for="(result, index) in results" :key="index">
     <div>{{result.text}}</div>
     <div v-if="dataOutputLoading">
