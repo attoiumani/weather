@@ -69,7 +69,7 @@ export default {
     }
   },
   created: function() {
-    this.$store.dispatch("commitDataSet");
+    this.$store.dispatch("commitDataSet","Tokyo");
   }
 };
 </script>
