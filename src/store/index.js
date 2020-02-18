@@ -35,8 +35,12 @@ export default new Vuex.Store({
   },
   actions: {
     commitDataSet(store) {
+      let selectedCity = "Tokyo";
+      let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+      let getParam = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
+      getUrl = getUrl + selectedCity + getParam;
     return axios.get(
-      "https://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0"
+      getUrl
     )
     .then(response => {
       store.commit('mutateDataSetName', response.data.name)
