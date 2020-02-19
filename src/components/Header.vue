@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+<div>
     <v-navigation-drawer v-model="drawer" expand-on-hover clipped app>
       <v-list-item>
         <v-list-item-content>
@@ -23,11 +23,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+
     <v-app-bar color="primary" dark clipped-left collapse-on-scroll app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Title</v-toolbar-title>
     </v-app-bar>
-  </v-app>
+</div>
 </template>
 
 <script>
