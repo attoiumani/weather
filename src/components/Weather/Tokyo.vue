@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-auto" max-width="400">
-      <v-img class="white--text align-end" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+      <v-img class="white--text align-end" :src="image_src">
         <v-card-title>{{dataOutputName}}</v-card-title>
       </v-img>
       <v-card-subtitle class="pb-0 text--primary">
@@ -25,6 +25,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+    image_src: require("../../assets/tokyo.png"),
+  }
+},
   computed: {
     dataOutputName() {
       return this.$store.getters.getStateDataSetName;
