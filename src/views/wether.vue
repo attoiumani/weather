@@ -7,8 +7,8 @@
 
 
 <script>
-import TokyoW from "../components/TokyoW";
-import OsakaW from "../components/OsakaW";
+import TokyoW from "../components/Weather/TokyoW";
+import OsakaW from "../components/Weather/OsakaW";
 
 export default {
   components:{
