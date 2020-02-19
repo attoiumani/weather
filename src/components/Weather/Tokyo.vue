@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-auto" max-width="400">
-      <v-img class="white--text align-end" :src="image_src">
+      <v-img class="white--text align-end" height="300px" :src="image_src">
         <v-card-title>{{dataOutputName}}</v-card-title>
       </v-img>
       <v-card-subtitle class="pb-0 text--primary">
