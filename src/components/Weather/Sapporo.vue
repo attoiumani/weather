@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-auto" max-width="400">
-      <v-img class="white--text align-end" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+      <v-img class="white--text align-end" height="300px" :src="image_src">
         <v-card-title>{{city}}</v-card-title>
       </v-img>
       <v-card-subtitle class="pb-0 text--primary">
@@ -30,6 +30,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+    image_src: require("../../assets/sapporo.png") ,
     city: null,
     temp: null,
     maxtemp: null,
