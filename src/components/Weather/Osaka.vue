@@ -1,6 +1,6 @@
 <template>
     <v-card class="mx-auto" max-width="400">
-      <v-img class="white--text align-end" src="https://media.gettyimages.com/photos/dotonbori-canal-osaka-japan-picture-id805105514?s=2048x2048">
+      <v-img class="white--text align-end" :src="image_src">
         <v-card-title>{{city}}</v-card-title>
       </v-img>
       <v-card-subtitle class="pb-0 text--primary">
@@ -30,6 +30,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+    image_src: require("../../assets/osaka.png") ,
     city: null,
     temp: null,
     maxtemp: null,
