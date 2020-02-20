@@ -14,6 +14,7 @@
         <div>Today's high temperature {{dataOutputMaxTemp}}℃</div>
         <div>Lowest Temperature {{dataOutputMinTemp}}℃</div>
         <div>The current weather {{dataOutputCondition}}</div>
+        <img v-bind:src="dataOutputicon">
       </v-card-text>
       <v-card-actions>
         <v-btn color="orange" text>Share</v-btn>
@@ -48,6 +49,9 @@ export default {
     },
     dataOutputLoading() {
       return this.$store.getters.getStateDataSetLoading;
+    },
+    dataOutputicon() {
+      return this.$store.getters.getStateDataSeticon;
     }
   },
   created: function() {
