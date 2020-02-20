@@ -1,15 +1,15 @@
 <template>
     <v-row>
-      <v-col cols="12" sm="12" md="4" lg="4" xl="4">
+      <v-col cols="12" sm="12" md="6" lg="4" xl="4">
         <Tokyo/>
       </v-col>
-      <v-col cols="12" sm="12" md="4" lg="4" xl="4">
+      <v-col cols="12" sm="12" md="6" lg="4" xl="4">
         <Osaka/>
       </v-col>
-      <v-col cols="12" sm="12" md="4" lg="4" xl="4">
+      <v-col cols="12" sm="12" md="6" lg="4" xl="4">
         <Fukuoka/>
       </v-col>
-      <v-col cols="12" sm="12" md="4" lg="4" xl="4">
+      <v-col cols="12" sm="12" md="6" lg="4" xl="4">
         <Sapporo/>
       </v-col>
     </v-row>
