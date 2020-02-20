@@ -38,8 +38,8 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: "Home", path: "/", icon: "mdi-stack-overflow" },
-        { title: "wether", path: "/wether", icon: "mdi-vuetify" },
+        { title: "Home", path: "/", icon: "mdi-home-variant" },
+        { title: "wether", path: "/wether", icon: "mdi-weather-pouring" },
         { title: "logo", path: "/logo", icon: "mdi-github-face" },
         { title: "About", path: "/About", icon: "mdi-github-face" },
       ]
