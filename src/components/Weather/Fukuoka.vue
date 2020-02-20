@@ -14,6 +14,7 @@
         <div>Today's high temperature {{maxtemp}}℃</div>
         <div>Lowest Temperature {{mintemp}}℃</div>
         <div>The current weather {{condition.main }}</div>
+        <img v-bind:src="icon">
       </v-card-text>
       <v-card-actions>
         <v-btn color="orange" text>Share</v-btn>
@@ -49,6 +50,7 @@ export default {
       this.maxtemp = response.data.main.temp_max
       this.mintemp = response.data.main.temp_min
       this.condition = response.data.weather[0]
+            this.icon = "https://openweathermap.org/img/w/" + response.data.weather[0].icon + ".png"
       this.loading = false;
     }.bind(this))
   },
