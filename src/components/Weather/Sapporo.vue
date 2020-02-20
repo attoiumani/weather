@@ -4,20 +4,18 @@
       <v-card-title>{{city}}</v-card-title>
     </v-img>
     <v-card-subtitle class="pb-0 text--primary">
-      Now
+      <img v-bind:src="icon" />
       <div v-show="loading">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
-      <div v-show="!dataOutputLoading">{{temp}}℃</div>
+      <div v-show="!dataOutputLoading">{{temp}}℃</div> 
     </v-card-subtitle>
     <v-card-text>
       <div>Today's high temperature {{maxtemp}}℃</div>
       <div>Lowest Temperature {{mintemp}}℃</div>
       <div>The current weather {{condition.main }}</div>
-      <img v-bind:src="icon" />
     </v-card-text>
-
-    <v-card-actions>
+    <v-card-actions class="pt-0">
       <v-spacer></v-spacer>
       <v-btn icon @click="show = !show">
         <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
@@ -25,8 +23,9 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-
-      <v-btn text>Share</v-btn>
+         <v-btn text>Share
+          <v-icon color="blue">mdi-twitter</v-icon>
+        </v-btn>
       </div>
     </v-expand-transition>
   </v-card>
