@@ -11,7 +11,8 @@ export default new Vuex.Store({
     dataSetMaxTemp: Number,
     dataSetMinTemp: Number,
     dataSetCondition: String,
-    dataSetLoading: Boolean
+    dataSetLoading: Boolean,
+    dataSeticon:null
   },
   mutations: {
     mutateDataSetName(state, payload) {
@@ -31,7 +32,10 @@ export default new Vuex.Store({
     },
     mutateDataSetLoading(state, payload) {
       state.dataSetLoading = payload;
-    }
+    },
+    mutateDataSetConditionicon(state, payload) {
+      state.dataSeticon = payload;
+    },
   },
   actions: {
     commitDataSet(store,place) {
@@ -48,6 +52,7 @@ export default new Vuex.Store({
       store.commit('mutateDataSetMaxTemp', response.data.main.temp_max)
       store.commit('mutateDataSetMinTemp', response.data.main.temp_min)
       store.commit('mutateDataSetCondition', response.data.weather[0].main)
+      store.commit('mutateDataSetConditionicon', "https://openweathermap.org/img/w/" + response.data.weather[0].icon + ".png")
       store.commit('mutateDataSetLoading', false)
     })
    }
@@ -59,5 +64,6 @@ export default new Vuex.Store({
     getStateDataSetMinTemp: (state) => state.dataSetMinTemp,
     getStateDataSetCondition: (state) => state.dataSetCondition,
     getStateDataSetLoading: (state) => state.dataSetLoading,
+    getStateDataSeticon: (state) => state.dataSeticon,
   },
 })
