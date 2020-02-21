@@ -38,7 +38,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      show: false,
       image_src: require("../../assets/sapporo.png"),
       city: null,
       temp: null,
@@ -47,7 +46,8 @@ export default {
       condition: {
         main: null
       },
-      loading: true
+      loading: true,
+      show: false,
     };
   },
   mounted: function() {
