@@ -1,27 +1,36 @@
 <template>
-    <v-card class="mx-auto" max-width="400">
-      <v-img class="white--text align-end" height="300px" :src="image_src">
-        <v-card-title>{{city}}</v-card-title>
-      </v-img>
-      <v-card-subtitle class="pb-0 text--primary">
-        Now
-        <div v-show="loading">
-          <v-progress-circular indeterminate color="primary"></v-progress-circular>
-        </div>
-        <div v-show="!dataOutputLoading">{{temp}}℃</div>
-      </v-card-subtitle>
-      <v-card-text>
-        <div>Today's high temperature {{maxtemp}}℃</div>
-        <div>Lowest Temperature {{mintemp}}℃</div>
-        <div>The current weather {{condition.main }}</div>
-        <img v-bind:src="icon">
-      </v-card-text>
-      <v-card-actions>
-        <v-btn color="orange" text>Share</v-btn>
-        <v-btn color="orange" text>Explore</v-btn>
-      </v-card-actions>
-    </v-card>
+  <v-card class="mx-auto" max-width="400">
+    <v-img class="white--text align-end" height="300px" :src="image_src">
+      <v-card-title>{{city}}</v-card-title>
+    </v-img>
+    <v-card-subtitle class="pb-0 text--primary">
+      <img v-bind:src="icon" />
+      <div v-show="loading">
+        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      </div>
+      <div v-show="!dataOutputLoading">{{temp}}℃</div> 
+    </v-card-subtitle>
+    <v-card-text>
+      <div>Today's high temperature {{maxtemp}}℃</div>
+      <div>Lowest Temperature {{mintemp}}℃</div>
+      <div>The current weather {{condition.main }}</div>
+    </v-card-text>
+    <v-card-actions class="pt-0">
+      <v-spacer></v-spacer>
+      <v-btn icon @click="show = !show">
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+    <v-expand-transition>
+      <div v-show="show">
+         <v-btn text>Share
+          <v-icon color="blue">mdi-twitter</v-icon>
+        </v-btn>
+      </div>
+    </v-expand-transition>
+  </v-card>
 </template>
+
 
 
 <script>
@@ -39,7 +48,8 @@ export default {
     condition: {
       main: null
     },
-    loading: true
+    loading: true,
+    show: false,
     }
   },
   mounted: function(){
