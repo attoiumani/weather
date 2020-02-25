@@ -8,7 +8,7 @@
       <div v-show="loading">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
-      <div v-show="!dataOutputLoading">{{temp}}℃</div> 
+      <div v-show="!dataOutputLoading">{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
       <div>Today's high temperature {{maxtemp}}℃</div>
@@ -23,7 +23,8 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-         <v-btn text>Share
+        <v-btn @click="twitterShare" text>
+          Share
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
       </div>
@@ -47,10 +48,10 @@ export default {
         main: null
       },
       loading: true,
-      show: false,
+      show: false
     };
   },
-  mounted: function() {
+  created: function() {
     axios
       .get(
         "https://api.openweathermap.org/data/2.5/weather?q=Sapporo,jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0"
@@ -69,6 +70,14 @@ export default {
           this.loading = false;
         }.bind(this)
       );
+  },
+  methods: {
+    twitterShare() {
+      var shareURL =
+        "https://twitter.com/intent/tweet?text=" +this.city + this.temp +"%20%23今の温度";
+      //シェア用の画面へ移行
+      location.href = shareURL;
+    }
   }
 };
 </script>
