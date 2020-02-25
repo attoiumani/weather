@@ -13,7 +13,7 @@
     <v-card-text>
       <div>Today's high temperature {{dataOutputMaxTemp}}℃</div>
       <div>Lowest Temperature {{dataOutputMinTemp}}℃</div>
-      <div>The current weather {{dataOutputCondition.main }}</div>
+      <div>The current weather {{dataOutputCondition}}</div>
     </v-card-text>
     <v-card-actions class="pt-0">
       <v-spacer></v-spacer>
