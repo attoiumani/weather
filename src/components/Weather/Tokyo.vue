@@ -64,7 +64,7 @@ export default {
       return this.$store.getters.getStateDataSeticon;
     }
   },
-  created: function() {
+  mounted: function() {
     this.$store.dispatch("commitDataSet","Tokyo");
   }
   };
