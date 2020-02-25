@@ -51,7 +51,7 @@ export default {
       show: false
     };
   },
-  created: function() {
+  mounted: function() {
     axios
       .get(
         "https://api.openweathermap.org/data/2.5/weather?q=Sapporo,jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0"
