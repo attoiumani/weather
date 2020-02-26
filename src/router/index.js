@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import logo from "../views/logo.vue";
+import singup from "../views/singup.vue";
 import wether from "../views/wether.vue";
 import home from "../views/home.vue";
 import About from "../views/About.vue";
@@ -19,9 +19,9 @@ const routes = [
     component: wether
   },
   {
-    path: "/logo",
-    name: "logo",
-    component: logo
+    path: "/singup",
+    name: "singup",
+    component: singup
   },
   {
     path: "/About",
@@ -31,7 +31,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: "history",
 });
 
 export default router;
