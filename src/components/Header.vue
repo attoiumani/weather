@@ -1,14 +1,10 @@
 <template>
-<div>
+  <div>
     <v-navigation-drawer v-model="drawer" expand-on-hover clipped app>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title">
-            Application
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            subtext
-          </v-list-item-subtitle>
+          <v-list-item-title class="title">Application</v-list-item-title>
+          <v-list-item-subtitle>subtext</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-divider></v-divider>
@@ -27,8 +23,12 @@
     <v-app-bar color="primary" dark clipped-left collapse-on-scroll app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Title</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn text to="/signin">Button</v-btn>
+      </v-toolbar-items>
     </v-app-bar>
-</div>
+  </div>
 </template>
 
 <script>
@@ -41,7 +41,11 @@ export default {
         { title: "Home", path: "/", icon: "mdi-home-variant" },
         { title: "wether", path: "/wether", icon: "mdi-weather-pouring" },
         { title: "About", path: "/About", icon: "mdi-github-face" },
-        { title: "Sign Up", path: "/singup", icon: "mdi-lock-open-variant-outline" },
+        {
+          title: "Sign Up",
+          path: "/singup",
+          icon: "mdi-lock-open-variant-outline"
+        }
       ]
     };
   }
