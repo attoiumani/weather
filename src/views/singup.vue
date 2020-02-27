@@ -13,6 +13,8 @@
                 label="Email"
                 id="email"
                 type="email"
+                placeholder="Username"
+                v-model="username"
                 required></v-text-field>
             </v-flex>
             <v-flex>
@@ -21,19 +23,12 @@
                 label="Password"
                 id="password"
                 type="password"
+                placeholder="Password"
+                v-model="password"
                 required></v-text-field>
             </v-flex>
-            <v-flex>
-              <v-text-field
-                name="confirmPassword"
-                label="Confirm Password"
-                id="confirmPassword"
-                type="password"
-                required
-                ></v-text-field>
-            </v-flex>
             <v-flex class="text-xs-center" mt-5>
-              <v-btn color="primary" type="submit">Sign Up</v-btn>
+              <v-btn color="primary" type="submit" @click="signUp">Sign Up</v-btn>
             </v-flex>
           </v-layout>
         </form>
@@ -41,3 +36,29 @@
     </v-layout>
   </v-container>
 </template>
+
+
+<script>
+import firebase from 'firebase'
+
+export default {
+  name: 'Signup',
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    signUp: function () {
+      firebase.auth().createUserWithEmailAndPassword(this.username, this.password)
+        .then(user => {
+          alert('Create account: ', user.email)
+        })
+        .catch(error => {
+          alert(error.message)
+        })
+    }
+  }
+}
+</script>
