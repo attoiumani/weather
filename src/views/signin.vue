@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
-        <h1>Sign Up</h1>
+        <h1>Sign in</h1>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
         <form>
@@ -38,7 +38,7 @@
 </template>
 
 
-<!--<script>
+<script>
 import firebase from 'firebase'
 
 export default {
@@ -51,8 +51,8 @@ export default {
   },
   methods: {
     signIn: function () {
-      firebase.auth().signInWithEmailAndPassword(this.username, this.password).then(
-        user => {
+      firebase.auth().signInWithEmailAndPassword(this.username, this.password)
+      .then( user => {user
           alert('Success!')
           this.$router.push('/')
         },
@@ -63,4 +63,5 @@ export default {
     }
   }
 }
-</script>-->
+
+</script>
