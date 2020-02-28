@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import singup from "../views/singup.vue";
+import signup from "../views/signup.vue";
 import signin from "../views/signin.vue";
-import wether from "../views/wether.vue";
+import weather from "../views/weather.vue";
 import home from "../views/home.vue";
 import About from "../views/About.vue";
 
@@ -17,14 +17,14 @@ const routes = [
     component: home
   },
   {
-    path: "/wether",
-    name: "wether",
-    component: wether
+    path: "/weather",
+    name: "weather",
+    component: weather
   },
   {
-    path: "/singup",
-    name: "singup",
-    component: singup
+    path: "/signup",
+    name: "signup",
+    component: signup
   },
   {
     path: "/About",
