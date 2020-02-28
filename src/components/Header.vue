@@ -26,12 +26,15 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text to="/signin">Login</v-btn>
+        <v-btn @click="signOut">Sign out</v-btn>
       </v-toolbar-items>
     </v-app-bar>
   </div>
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: "App",
   data() {
@@ -41,13 +44,17 @@ export default {
         { title: "Home", path: "/", icon: "mdi-home-variant" },
         { title: "weather", path: "/weather", icon: "mdi-weather-pouring" },
         { title: "About", path: "/About", icon: "mdi-github-face" },
-        {
-          title: "Sign Up",
-          path: "/signup",
-          icon: "mdi-lock-open-variant-outline"
-        }
+        {title: "Sign Up", path: "/signup", icon: "mdi-lock-open-variant-outline"},
+        { title: "only", path: "/only", icon: "mdi-github-face" },
       ]
     };
+  },
+    methods: {
+    signOut: function () {
+      firebase.auth().signOut().then(() => {
+        this.$router.push('/')
+      })
+    }
   }
 };
 </script>
