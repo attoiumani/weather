@@ -5,6 +5,8 @@ import signin from "../views/signin.vue";
 import weather from "../views/weather.vue";
 import home from "../views/home.vue";
 import About from "../views/About.vue";
+import only from "../views/only.vue";
+import firebase from 'firebase'
 
 
 
@@ -35,7 +37,13 @@ const routes = [
     path: "/signin",
     name: "signin",
     component: signin
-  }
+  },
+  {
+    path: '/only',
+    name: 'only',
+    component: only,
+    meta: { requiresAuth: true }
+  },
 ];
 
 const router = new VueRouter({
@@ -44,6 +52,23 @@ const router = new VueRouter({
   //base: process.env.BASE_URL
 });
 
-
+router.beforeEach((to, from, next) => {
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  let currentUser = firebase.auth().currentUser
+  if (requiresAuth) {
+    // このルートはログインされているかどうか認証が必要です。
+    // もしされていないならば、ログインページにリダイレクトします。
+    if (!currentUser) {
+      next({
+        path: '/signin',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // next() を常に呼び出すようにしてください!
+  }
+})
 
 export default router;
