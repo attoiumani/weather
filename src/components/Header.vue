@@ -25,7 +25,7 @@
       <v-toolbar-title>Title</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text to="/signin">Button</v-btn>
+        <v-btn text to="/signin">Login</v-btn>
       </v-toolbar-items>
     </v-app-bar>
   </div>
@@ -39,11 +39,11 @@ export default {
       drawer: false,
       items: [
         { title: "Home", path: "/", icon: "mdi-home-variant" },
-        { title: "wether", path: "/wether", icon: "mdi-weather-pouring" },
+        { title: "weather", path: "/weather", icon: "mdi-weather-pouring" },
         { title: "About", path: "/About", icon: "mdi-github-face" },
         {
           title: "Sign Up",
-          path: "/singup",
+          path: "/signup",
           icon: "mdi-lock-open-variant-outline"
         }
       ]
