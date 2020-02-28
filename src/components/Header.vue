@@ -26,7 +26,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text to="/signin">Login</v-btn>
-        <v-btn @click="signOut">Sign out</v-btn>
+        <v-btn @click="signOut" text>Sign out</v-btn>
       </v-toolbar-items>
     </v-app-bar>
   </div>
