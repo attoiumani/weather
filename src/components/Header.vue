@@ -45,7 +45,7 @@ export default {
         { title: "weather", path: "/weather", icon: "mdi-weather-pouring" },
         { title: "About", path: "/About", icon: "mdi-github-face" },
         {title: "Sign Up", path: "/signup", icon: "mdi-lock-open-variant-outline"},
-        { title: "only", path: "/only", icon: "mdi-github-face" },
+        { title: "only", path: "/only", icon: "mdi-account-lock" },
       ]
     };
   },
