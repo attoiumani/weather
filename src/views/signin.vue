@@ -1,4 +1,18 @@
 <template>
+  <div class="signin">
+    <h2>Sign in</h2>
+    <input type="text" placeholder="Username" v-model="username">
+    <input type="password" placeholder="Password" v-model="password">
+    <button @click="signIn">Signin</button>
+    <p>You don't have an account? 
+      <router-link to="/signup">create account now!!</router-link>
+    </p>
+  </div>
+</template>
+
+
+
+<!--<template>
   <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
@@ -35,7 +49,8 @@
       </v-flex>
     </v-layout>
   </v-container>
-</template>
+</template>-->
+
 
 
 <script>
@@ -51,9 +66,9 @@ export default {
   },
   methods: {
     signIn: function () {
-      firebase.auth().signInWithEmailAndPassword(this.username, this.password)
-      .then( user => {user
-          alert('Create account: ', user.email)
+      firebase.auth().signInWithEmailAndPassword(this.username, this.password).then(
+        user => {
+          alert('ログインに成功しました: ', user.email)
           this.$router.push('/')
         },
         err => {
@@ -63,5 +78,4 @@ export default {
     }
   }
 }
-
 </script>
