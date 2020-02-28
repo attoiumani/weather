@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <div class="signin">
     <h2>Sign in</h2>
     <input type="text" placeholder="Username" v-model="username">
@@ -8,11 +8,11 @@
       <router-link to="/signup">create account now!!</router-link>
     </p>
   </div>
-</template>
+</template>-->
 
 
 
-<!--<template>
+<template>
   <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center" mt-5>
@@ -42,14 +42,14 @@
                 required></v-text-field>
             </v-flex>
             <v-flex class="text-xs-center" mt-5>
-              <v-btn color="primary" type="submit" @click="signIn">Sign Up</v-btn>
+              <v-btn @click="signIn" color="primary">Sign Up</v-btn>
             </v-flex>
           </v-layout>
         </form>
       </v-flex>
     </v-layout>
   </v-container>
-</template>-->
+</template>
 
 
 
