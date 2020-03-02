@@ -23,7 +23,7 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-         <v-btn text>Share
+         <v-btn @click="twitterShare" text>Share
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
       </div>
@@ -66,6 +66,14 @@ export default {
   },
   mounted: function() {
     this.$store.dispatch("commitDataSet","Tokyo");
+  },
+    methods: {
+    twitterShare() {
+      var shareURL =
+        "https://twitter.com/intent/tweet?text=" +this.dataOutputName + this.dataOutputTemp +"%20%23今の温度";
+      //シェア用の画面へ移行
+      location.href = shareURL;
+    }
   }
   };
 </script>
