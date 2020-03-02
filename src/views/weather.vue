@@ -4,7 +4,7 @@
         <Tokyo/>
       </v-col>
       <v-col cols="12" sm="12" md="6" lg="4" xl="4">
-        <Osaka/>
+        <weather :place="place"/>
       </v-col>
       <v-col cols="12" sm="12" md="6" lg="4" xl="4">
         <Fukuoka/>
@@ -18,16 +18,21 @@
 
 <script>
 import Tokyo from "../components/Weather/Tokyo";
-import Osaka from "../components/Weather/Osaka";
 import Fukuoka from "../components/Weather/Fukuoka";
 import Sapporo from "../components/Weather/Sapporo";
+import weather from "../components/Weather/weather";
 
 export default {
+  data: function(){
+      return {
+          place: "osaka"
+      }
+  },
   components: {
     Tokyo,
-    Osaka,
     Fukuoka,
-    Sapporo
+    Sapporo,
+    weather
   }
-};
+  }
 </script>
