@@ -8,7 +8,7 @@
       <div v-show="loading">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
-      <div v-show="!dataOutputLoading">{{temp}}℃</div> 
+      <div v-show="!dataOutputLoading">{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
       <div>Today's high temperature {{maxtemp}}℃</div>
@@ -23,7 +23,8 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-         <v-btn text>Share
+        <v-btn @click="twitterShare" text>
+          Share
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
       </div>
@@ -32,37 +33,51 @@
 </template>
 
 
-
 <script>
 import axios from "axios";
-
 
 export default {
   data() {
     return {
-    image_src: require("../../assets/fukuoka.png") ,
-    city: null,
-    temp: null,
-    maxtemp: null,
-    mintemp: null,
-    condition: {
-      main: null
-    },
-    loading: true,
-    show: false,
+      image_src: require("../../assets/fukuoka.png"),
+      city: null,
+      temp: null,
+      maxtemp: null,
+      mintemp: null,
+      condition: {
+        main: null
+      },
+      loading: true,
+      show: false
+    };
+  },
+  mounted: function() {
+    axios
+      .get(
+        'https://api.openweathermap.org/data/2.5/weather?q=Fukuoka,jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0'
+      )
+      .then(
+        function(response) {
+          this.city = response.data.name;
+          this.temp = response.data.main.temp;
+          this.maxtemp = response.data.main.temp_max;
+          this.mintemp = response.data.main.temp_min;
+          this.condition = response.data.weather[0];
+          this.icon =
+            "https://openweathermap.org/img/w/" +
+            response.data.weather[0].icon +
+            ".png";
+          this.loading = false;
+        }.bind(this)
+      );
+  },
+  methods: {
+    twitterShare() {
+      var shareURL =
+        "https://twitter.com/intent/tweet?text=" +this.city + this.temp +"%20%23今の温度";
+      //シェア用の画面へ移行
+      location.href = shareURL;
     }
-  },
-  mounted: function(){
-    axios.get('https://api.openweathermap.org/data/2.5/weather?q=Fukuoka,jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0')
-    .then(function(response){
-      this.city = response.data.name
-      this.temp = response.data.main.temp
-      this.maxtemp = response.data.main.temp_max
-      this.mintemp = response.data.main.temp_min
-      this.condition = response.data.weather[0]
-            this.icon = "https://openweathermap.org/img/w/" + response.data.weather[0].icon + ".png"
-      this.loading = false;
-    }.bind(this))
-  },
-  };
+  }
+};
 </script>
