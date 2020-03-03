@@ -3,7 +3,7 @@
     <v-footer color="primary" dark>
       <v-col class="text-center">
         {{new Date().getFullYear()}} —
-        <strong>Vue-Vuerouter-Vuex-axios-Vuetify</strong>
+        <strong>Vue-Vuetify</strong>
       </v-col>
     </v-footer>
   </div>
