@@ -37,7 +37,7 @@
 export default {
   data() {
     return {
-    image_src: require("../../assets/tokyo.png"),
+    image_src: require("../../assets/images/tokyo.png"),
     show: false,
   }
 },
@@ -64,7 +64,7 @@ export default {
       return this.$store.getters.getStateDataSeticon;
     }
   },
-  mounted: function() {
+  created: function() {
     this.$store.dispatch("commitDataSet","Tokyo");
   },
     methods: {
