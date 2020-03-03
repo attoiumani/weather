@@ -10,6 +10,9 @@
       <Tokyo />
     </v-col>
     <v-col cols="12" sm="12" md="6" lg="4" xl="4">
+      <weather place="kanazawa" />
+    </v-col>
+    <v-col cols="12" sm="12" md="6" lg="4" xl="4">
       <weather place="osaka" />
     </v-col>
     <v-col cols="12" sm="12" md="6" lg="4" xl="4">
