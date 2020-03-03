@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>ログインに成功してる状態だとは入れます</h1>
+    <h1>this page is menmbers only</h1>
   </div>
 </template>
