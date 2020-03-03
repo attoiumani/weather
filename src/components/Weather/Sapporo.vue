@@ -39,7 +39,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      image_src: require("../../assets/sapporo.png"),
+      image_src: require("../../assets/images/sapporo.png"),
       city: null,
       temp: null,
       maxtemp: null,
@@ -51,7 +51,7 @@ export default {
       show: false
     };
   },
-  mounted: function() {
+  created: function() {
     axios
       .get(
         "https://api.openweathermap.org/data/2.5/weather?q=Sapporo,jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0"
