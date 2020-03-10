@@ -43,7 +43,7 @@ export default {
       items: [
         { title: "Home", path: "/", icon: "mdi-home-variant" },
         { title: "weather", path: "/weather", icon: "mdi-weather-pouring" },
-        { title: "About", path: "/About", icon: "mdi-github-face" },
+        { title: "About", path: "/About", icon: "mdi-ab-testing" },
         {title: "Sign Up", path: "/signup", icon: "mdi-lock-open-variant-outline"},
         { title: "only", path: "/only", icon: "mdi-account-lock" },
       ]
