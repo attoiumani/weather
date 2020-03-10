@@ -23,9 +23,9 @@
 
 
 <script>
-import Tokyo from "../components/Weather/Tokyo"; //Tokyo and Spporo is Special
-import Sapporo from "../components/Weather/Sapporo";
-import weather from "../components/weather";
+import Tokyo from "@/components/Weather/Tokyo"; //Tokyo and Spporo is Special
+import Sapporo from "@/components/Weather/Sapporo";
+import weather from "@/components/weather";
 
 export default {
   components: {
