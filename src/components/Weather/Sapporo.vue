@@ -39,7 +39,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      image_src: require("../../assets/images/sapporo.png"),
+      image_src: require("@/assets/images/sapporo.png"),
       city: null,
       temp: null,
       maxtemp: null,
