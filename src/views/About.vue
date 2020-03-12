@@ -8,7 +8,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      tag: null
+      tag: String
     };
   },
 
