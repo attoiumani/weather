@@ -30,7 +30,7 @@
         <v-btn @click="sendItem" text>
           firestoreに送信する
           <v-icon color="orange">mdi-firebase</v-icon>
-          </v-btn>
+        </v-btn>
       </div>
     </v-expand-transition>
   </v-card>
@@ -39,7 +39,7 @@
 
 <script>
 import axios from "axios";
-import firebase from 'firebase'
+import firebase from "firebase";
 
 export default {
   data() {
@@ -77,34 +77,41 @@ export default {
       );
   },
   methods: {
-    twitterShare() {
+    twitterShare() {  //twitter share
       var shareURL =
-        "https://twitter.com/intent/tweet?text=" +this.city + this.temp +"%20%23今の温度";
+        "https://twitter.com/intent/tweet?text=" +
+        this.city +
+        this.temp +
+        "%20%23今の温度";
       //シェア用の画面へ移行
       location.href = shareURL;
     },
-       sendItem(){
-     const colref = firebase.firestore().collection("weather"); // "weather"という名前のコレクションへの参照を作成
-     
-     // 保存用JSONデータを作成
-     const saveData = {
+    sendItem() {  //firebase firestore
+      const saveData = {
         city: this.city,
         temp: this.temp,
         maxtemp: this.maxtemp,
-        mintemp: this.mintemp,
-     };
-     
-     // addの引数に保存したいデータを渡す
-     colref.doc(saveData).set(sapporo).then(function(docRef) {
+        mintemp: this.mintemp
+      };
+      firebase
+        .firestore()
+        .collection("weather")
+        .doc("sapporo")
+        .set({
+          city: saveData.city,
+          temp: saveData.temp,
+          maxtemp: saveData.maxtemp,
+          mintemp: saveData.mintemp
+        })
+        .then(function(docRef) {
           // 正常にデータ保存できた時の処理
           console.log("Document written with ID: ", docRef.id);
-      }).catch(function(error) {
+        })
+        .catch(function(error) {
           // エラー発生時の処理
           console.error("Error adding document: ", error);
-      });
-
-      this.showMessage = true;
-   },
+        });
+    }
   }
 };
 </script>
