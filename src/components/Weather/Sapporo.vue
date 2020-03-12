@@ -95,7 +95,7 @@ export default {
      };
      
      // addの引数に保存したいデータを渡す
-     colref.add(saveData).then(function(docRef) {
+     colref.doc(saveData).set(sapporo).then(function(docRef) {
           // 正常にデータ保存できた時の処理
           console.log("Document written with ID: ", docRef.id);
       }).catch(function(error) {
