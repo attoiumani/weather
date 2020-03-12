@@ -94,8 +94,8 @@ export default {
       };
       firebase
         .firestore()
-        .collection("weather")
-        .doc("sapporo")
+        .collection("sapporo")
+        .doc("data")
         .set({
           temp: saveData.temp,
           maxtemp: saveData.maxtemp,
