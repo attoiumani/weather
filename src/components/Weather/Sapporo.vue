@@ -88,7 +88,6 @@ export default {
     },
     sendItem() {  //firebase firestore
       const saveData = {
-        city: this.city,
         temp: this.temp,
         maxtemp: this.maxtemp,
         mintemp: this.mintemp
@@ -98,7 +97,6 @@ export default {
         .collection("weather")
         .doc("sapporo")
         .set({
-          city: saveData.city,
           temp: saveData.temp,
           maxtemp: saveData.maxtemp,
           mintemp: saveData.mintemp
