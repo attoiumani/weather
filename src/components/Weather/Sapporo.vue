@@ -27,6 +27,10 @@
           Share
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
+        <v-btn @click="sendItem" text>
+          firestoreに送信する
+          <v-icon color="orange">mdi-firebase</v-icon>
+          </v-btn>
       </div>
     </v-expand-transition>
   </v-card>
@@ -35,6 +39,7 @@
 
 <script>
 import axios from "axios";
+import firebase from 'firebase'
 
 export default {
   data() {
@@ -77,7 +82,29 @@ export default {
         "https://twitter.com/intent/tweet?text=" +this.city + this.temp +"%20%23今の温度";
       //シェア用の画面へ移行
       location.href = shareURL;
-    }
+    },
+       sendItem(){
+     const colref = firebase.firestore().collection("weather"); // "weather"という名前のコレクションへの参照を作成
+     
+     // 保存用JSONデータを作成
+     const saveData = {
+        city: this.city,
+        temp: this.temp,
+        maxtemp: this.maxtemp,
+        mintemp: this.mintemp,
+     };
+     
+     // addの引数に保存したいデータを渡す
+     colref.add(saveData).then(function(docRef) {
+          // 正常にデータ保存できた時の処理
+          console.log("Document written with ID: ", docRef.id);
+      }).catch(function(error) {
+          // エラー発生時の処理
+          console.error("Error adding document: ", error);
+      });
+
+      this.showMessage = true;
+   },
   }
 };
 </script>
