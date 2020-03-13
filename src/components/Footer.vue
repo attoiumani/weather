@@ -3,7 +3,7 @@
     <v-footer color="primary" dark>
       <v-col class="text-center">
         {{YMT}} —
-        <strong>Vue-Vuetify</strong>
+        <strong>Vuetify</strong>
       </v-col>
     </v-footer>
   </div>
