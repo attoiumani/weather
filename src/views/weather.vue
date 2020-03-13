@@ -23,7 +23,7 @@
 
 
 <script>
-import Tokyo from "@/components/Weather/Tokyo"; //Tokyo and Spporo is Special
+import Tokyo from "@/components/Weather/Tokyo"; //Tokyo and Spporo is Special!!
 import Sapporo from "@/components/Weather/Sapporo";
 import weather from "@/components/weather";
 
