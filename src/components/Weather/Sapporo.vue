@@ -53,7 +53,8 @@ export default {
         main: null
       },
       loading: true,
-      show: false
+      show: false,
+      today: null
     };
   },
   created: function() {
@@ -75,9 +76,15 @@ export default {
           this.loading = false;
         }.bind(this)
       );
+    let now = new Date();
+    let Year = now.getFullYear();
+    let Month = now.getMonth() + 1;
+    let Today = now.getDate();
+    this.YMT = Year + "/" + Month + "/" + Today;
   },
   methods: {
-    twitterShare() {  //twitter share
+    twitterShare() {
+      //twitter share
       var shareURL =
         "https://twitter.com/intent/tweet?text=" +
         this.city +
@@ -86,7 +93,8 @@ export default {
       //シェア用の画面へ移行
       location.href = shareURL;
     },
-    sendItem() {  //firebase firestore
+    sendItem() {
+      //firebase firestore
       const saveData = {
         temp: this.temp,
         maxtemp: this.maxtemp,
@@ -95,7 +103,7 @@ export default {
       firebase
         .firestore()
         .collection("sapporo")
-        .doc("data")
+        .doc(this.YMT)
         .set({
           temp: saveData.temp,
           maxtemp: saveData.maxtemp,
