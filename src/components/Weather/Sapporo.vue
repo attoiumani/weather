@@ -52,7 +52,7 @@ export default {
       condition: {
         main: null
       },
-      loading: true,
+      loading: false,
       show: false,
       YMT: null
     };
@@ -73,7 +73,7 @@ export default {
             "https://openweathermap.org/img/w/" +
             response.data.weather[0].icon +
             ".png";
-          this.loading = false;
+          this.loading = true;
         }.bind(this)
       );
     let now = new Date();
