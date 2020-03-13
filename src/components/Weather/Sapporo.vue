@@ -54,7 +54,7 @@ export default {
       },
       loading: true,
       show: false,
-      today: null
+      YMT: null
     };
   },
   created: function() {
