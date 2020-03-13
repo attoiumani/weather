@@ -53,11 +53,19 @@ export default {
         main: null
       },
       loading: true,
-      show: false
+      show: false,
+      YMT: null
     };
   },
   created: function() {
     axios;
+    let now = new Date();
+    let Year = now.getFullYear();
+    let Month = now.getMonth() + 1;
+    let Today = now.getDate();
+    this.YMT = Year + "/" + Month + "/" + Today;
+
+    
     let selectedCity = this.place; //props
     let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
     let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
@@ -96,8 +104,8 @@ export default {
       };
       firebase
         .firestore()
-        .collection(this.place)  //props
-        .doc("data")
+        .collection(this.place) //props
+        .doc(this.YMT)  //YearMonthToday
         .set({
           temp: saveData.temp,
           maxtemp: saveData.maxtemp,
