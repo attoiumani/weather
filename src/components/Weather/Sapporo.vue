@@ -8,7 +8,7 @@
       <div v-show="loading">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
-      <div v-show="!dataOutputLoading">{{temp}}℃</div>
+      <div v-show="!loading">{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
       <div>Today's high temperature {{maxtemp}}℃</div>
@@ -52,7 +52,7 @@ export default {
       condition: {
         main: null
       },
-      loading: false,
+      loading: true,
       show: false,
       YMT: null
     };
@@ -73,7 +73,7 @@ export default {
             "https://openweathermap.org/img/w/" +
             response.data.weather[0].icon +
             ".png";
-          this.loading = true;
+          this.loading = false;
         }.bind(this)
       );
     let now = new Date();
