@@ -8,7 +8,7 @@
       <div v-show="loading">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
-      <div v-show="!dataOutputLoading">{{temp}}℃</div>
+      <div v-show="!loading">{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
       <div>Today's high temperature {{maxtemp}}℃</div>
