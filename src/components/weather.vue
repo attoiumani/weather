@@ -27,6 +27,10 @@
           Share
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
+        <v-btn @click="sendItem" text>
+          firestoreに送信する
+          <v-icon color="orange">mdi-firebase</v-icon>
+        </v-btn>
       </div>
     </v-expand-transition>
   </v-card>
@@ -35,6 +39,7 @@
 
 <script>
 import axios from "axios";
+import firebase from "firebase";
 
 export default {
   data() {
@@ -55,8 +60,8 @@ export default {
     axios;
     let selectedCity = this.place; //props
     let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-    let getParam = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
-    getUrl = getUrl + selectedCity + getParam;
+    let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
+    getUrl = getUrl + selectedCity + getKey;
     return axios.get(getUrl).then(
       function(response) {
         this.city = response.data.name;
@@ -81,6 +86,31 @@ export default {
         "%20%23今の温度";
       //シェア用の画面へ移行
       location.href = shareURL;
+    },
+    sendItem() {
+      //firebase firestore
+      const saveData = {
+        temp: this.temp,
+        maxtemp: this.maxtemp,
+        mintemp: this.mintemp
+      };
+      firebase
+        .firestore()
+        .collection(this.place)  //props
+        .doc("data")
+        .set({
+          temp: saveData.temp,
+          maxtemp: saveData.maxtemp,
+          mintemp: saveData.mintemp
+        })
+        .then(function(docRef) {
+          // 正常にデータ保存できた時の処理
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          // エラー発生時の処理
+          console.error("Error adding document: ", error);
+        });
     }
   },
   props: ["place"]
