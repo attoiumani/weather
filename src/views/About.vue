@@ -26,6 +26,7 @@ export default {
         headers: {
           "content-type": "application/json; charset=utf-8",
           "cache-control": "max-age=60",
+          "Access-Control-Allow-Origin" : "http://localhost:8080",
           Authorization: `Bearer ${token}`
         }
       })
