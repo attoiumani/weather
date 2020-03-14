@@ -21,7 +21,8 @@ export default {
     let docRef = collection.doc("aaa");
     docRef
       .get()
-      .then(function(doc) {
+      .then(
+        function(doc) {
         if (doc.exists) {
           console.log(doc.data().temp);
         } else {
