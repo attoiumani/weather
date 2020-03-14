@@ -32,13 +32,6 @@ export default {
       .catch(function(error) {
         console.log("Error getting document:", error);
       });
-
-
-              firebase.firestore().collection("sapporo").get().then(snapshot => {
-          snapshot.forEach(doc => {
-            this.allData.push(doc.data().temp)
-          })
-        })
   },
 
   methods: {},
