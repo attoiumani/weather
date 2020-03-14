@@ -1,5 +1,5 @@
 <template>
-  <div>{{ allData }}</div>
+  <div>{{ output }}</div>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       db: null,
-      allData: null
+      output: ""
     };
   },
   created: function() {
@@ -17,14 +17,15 @@ export default {
 
     this.db = firebase.firestore();
     // 直前に保存したデータを1件取得してくる
+    let self = this;
     let collection = this.db.collection("sapporo");
     let docRef = collection.doc("aaa");
+
     docRef
       .get()
-      .then(
-        function(doc) {
+      .then(function(doc) {
         if (doc.exists) {
-          console.log(doc.data().temp);
+          self.output = doc.data().temp;
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
