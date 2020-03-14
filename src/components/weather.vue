@@ -28,7 +28,7 @@
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
         <v-btn @click="sendItem" text>
-          firestoreに送信する
+          firestore
           <v-icon color="orange">mdi-firebase</v-icon>
         </v-btn>
       </div>
