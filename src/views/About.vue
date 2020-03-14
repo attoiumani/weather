@@ -9,15 +9,13 @@ export default {
   data() {
     return {
       db: null,
-      output: ""
+      output: null
     };
   },
   created: function() {
-    // この先にあるthenでthisの参照が切れるのでselfに退避させておく
+    let self = this;
 
     this.db = firebase.firestore();
-    // 直前に保存したデータを1件取得してくる
-    let self = this;
     let collection = this.db.collection("sapporo");
     let docRef = collection.doc("aaa");
 
