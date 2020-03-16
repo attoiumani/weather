@@ -16,8 +16,8 @@ export default {
     let self = this;
 
     this.db = firebase.firestore();
-    let collection = this.db.collection("sapporo");
-    let docRef = collection.doc("aaa");
+    let collection = this.db.collection("kanazawa");
+    let docRef = collection.doc("2020316");
 
     docRef
       .get()
