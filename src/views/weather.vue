@@ -23,13 +23,11 @@
 
 
 <script>
-import Tokyo from "@/components/Weather/Tokyo"; //Tokyo and Spporo is Special!!
-import Sapporo from "@/components/Weather/Sapporo";
+import Sapporo from "@/components/Weather/Sapporo";// Spporo is Special!!
 import weather from "@/components/weather";
 
 export default {
   components: {
-    Tokyo,
     Sapporo,
     weather
   }
