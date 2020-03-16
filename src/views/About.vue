@@ -33,8 +33,5 @@ export default {
         console.log("Error getting document:", error);
       });
   },
-
-  methods: {},
-  computed: {}
 };
 </script>
