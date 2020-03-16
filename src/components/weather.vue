@@ -65,7 +65,6 @@ export default {
     let Today = now.getDate();
     this.YMT = Year + "" + Month + "" + Today;
 
-    
     let selectedCity = this.place; //props
     let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
     let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
