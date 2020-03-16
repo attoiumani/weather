@@ -23,7 +23,7 @@
 
 
 <script>
-import Sapporo from "@/components/Weather/Sapporo";// Spporo is Special!!
+import Sapporo from "@/components/Weather/Sapporo";// Spporo components is Special!!
 import weather from "@/components/weather";
 
 export default {
