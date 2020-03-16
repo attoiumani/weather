@@ -1,3 +1,5 @@
+<!--testコンポーネント-->
+
 <template>
   <v-card class="mx-auto" max-width="400">
     <v-img class="white--text align-end" height="300px" :src="image_src">
