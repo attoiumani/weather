@@ -22,7 +22,7 @@ export default {
     let Year = now.getFullYear();
     let Month = now.getMonth()+1;
     let Today = now.getDate();
-    this.YMT = Year+""+Month+""+Today;
+    this.YMT = Year+"/"+Month+"/"+Today;
   }
 };
 </script>
