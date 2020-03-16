@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      today: null
+      YMT: null
     };
   },
   created: function() {
