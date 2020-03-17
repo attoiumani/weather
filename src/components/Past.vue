@@ -8,16 +8,33 @@ import firebase from "firebase";
 export default {
   data() {
     return {
-      db: null,
-      output: null
+      output: [],
+      YMT: null
     };
   },
   created: function() {
-    let self = this;
+    let now = new Date();
+    let Year = now.getFullYear();
+    let Month = now.getMonth() + 1;
+    let Today = now.getDate();
+    let Past = now.getDate() - 7;
+    this.YMT = Year + "" + Month + "" + Today;
+    this.OWB = Year + "" + Month + "" + Past;
 
-    this.db = firebase.firestore();
-    let collection = this.db.collection("kanazawa");
-    let docRef = collection.doc("2020316");
+    firebase
+      .firestore()
+      .collection("kanazawa")
+      .where("YMT", "=>", this.QWB)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.output.push(doc.data().temp);
+        });
+      });
+  }
+};
+
+
 
     docRef
       .get()
@@ -32,6 +49,6 @@ export default {
       .catch(function(error) {
         console.log("Error getting document:", error);
       });
-  },
+  }
 };
 </script>
