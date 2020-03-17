@@ -95,20 +95,14 @@ export default {
       location.href = shareURL;
     },
     sendItem() {
-      //firebase firestore
-      const saveData = {
-        temp: this.temp,
-        maxtemp: this.maxtemp,
-        mintemp: this.mintemp
-      };
       firebase
         .firestore()
         .collection(this.place) //props
         .doc(this.YMT)  //YearMonthToday
         .set({
-          temp: saveData.temp,
-          maxtemp: saveData.maxtemp,
-          mintemp: saveData.mintemp
+          temp: this.temp,
+          maxtemp: this.maxtemp,
+          mintemp: this.mintemp
         })
         .then(function(docRef) {
           // 正常にデータ保存できた時の処理
