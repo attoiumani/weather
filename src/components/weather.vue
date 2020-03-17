@@ -102,7 +102,8 @@ export default {
         .set({
           temp: this.temp,
           maxtemp: this.maxtemp,
-          mintemp: this.mintemp
+          mintemp: this.mintemp,
+          YMT: this.YMT
         })
         .then(function(docRef) {
           // 正常にデータ保存できた時の処理
