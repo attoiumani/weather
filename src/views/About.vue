@@ -26,7 +26,7 @@ export default {
 
     this.db = firebase.firestore();
     let collection = this.db.collection("kanazawa");
-    let docRef = collection.where("YMT", "==", this.YMT);
+    let docRef = collection.where("YMT", ">=", this.YMT);
 
     docRef
       .get()
