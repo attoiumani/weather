@@ -1,40 +1,31 @@
 <template>
-  <div>{{ output }}</div>
+  <div>
+    {{ allData }}
+  </div>
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from 'firebase'
 
 export default {
   data() {
     return {
-      db: null,
-      output: null,
-      YMT: null
-    };
+      allData: [],
+    }
   },
-  created: function() {
-    let self = this;
-
+  created() {
     let now = new Date();
     let Year = now.getFullYear();
     let Month = now.getMonth() + 1;
     let Today = now.getDate();
-    let Past = now.getDate() - 7;
     this.YMT = Year + "" + Month + "" + Today;
-    this.OWB = Year + "" + Month + "" + Past;
+        firebase.firestore().collection('kanazawa').where("YMT", "<", this.YMT).get().then(snapshot => {
+          snapshot.forEach(doc => {
+            this.allData.push(doc.data().temp)
+          })
+        })
 
-    this.db = firebase.firestore();
-    let collection = this.db.collection("kanazawa");
-    let docRef = collection.where("YMT", "<", this.YMT);
+  },
+}
 
-    docRef
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          self.output = doc.data().temp;
-        });
-      });
-  }
-};
 </script>
