@@ -54,7 +54,7 @@ export default {
       },
       loading: true,
       show: false,
-      YMT: null
+      Timestamp: null
     };
   },
   created: function() {
@@ -63,7 +63,7 @@ export default {
     let Year = now.getFullYear();
     let Month = now.getMonth() + 1;
     let Today = now.getDate();
-    this.YMT = Year + "" + Month + "" + Today;
+    this.Timestamp = Year + "" + Month + "" + Today;
 
     let selectedCity = this.place; //props
     let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
@@ -103,7 +103,7 @@ export default {
           temp: this.temp,
           maxtemp: this.maxtemp,
           mintemp: this.mintemp,
-          YMT: this.YMT
+          Timestamp: this.Timestamp
         })
         .then(function(docRef) {
           // 正常にデータ保存できた時の処理
