@@ -14,19 +14,11 @@ export default {
     }
   },
   created() {
-
-
-        firebase.firestore().collection('kanazawa').get().then(snapshot => {
+        firebase.firestore().collection('kanazawa').where("YMT", "==", "1").get().then(snapshot => {
           snapshot.forEach(doc => {
             this.allData.push(doc.data().temp)
           })
         })
-
-  },
-  methods: {
-
-  },
-  computed: {
 
   },
 }
