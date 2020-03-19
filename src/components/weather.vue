@@ -98,7 +98,7 @@ export default {
       firebase
         .firestore()
         .collection(this.place) //props
-        .doc(this.YMT)  //YearMonthToday
+        .doc(this.Timestamp)  //YearMonthToday
         .set({
           temp: this.temp,
           maxtemp: this.maxtemp,
