@@ -1,33 +1,52 @@
 <template>
-  <div>{{ allData }}</div>
+  <div>
+
+    <div class="top">
+      <div>
+
+      </div>
+      <!---- ↓ data,labelを追加 ---->
+      <graph-card name="ユーザー数 推移" :data="getUserData" :label="getLabelList"></graph-card>
+      <graph-card name="プレビュー数 推移" :data="getPreviewData" :label="getLabelList"></graph-card>
+      <list-card name="データ一覧"></list-card>
+    </div>
+  </div>
 </template>
-
 <script>
-import firebase from "firebase";
 
+import GraphCard from "@/components/GraphCard";
 export default {
-  data() {
-    return {
-      allData: []
-    };
+  components: {
+    GraphCard,
   },
-  created() {
-    this.db = firebase.firestore();
 
-    let now = new Date();
-    let Year = now.getFullYear();
-    let Month = now.getMonth() + 1;
-    let Today = now.getDate();
-    this.Today = Year + "" + Month + "" + Today;
-    this.db
-      .collection("kanazawa")
-      .where("Timestamp", "<", this.Today)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          this.allData.push(doc.data().temp);
-        });
+  computed: {
+    getUserData() {
+      // TODO: fix getting from server data
+      return [...Array(30)].map(
+        () => 300 + Math.floor(Math.random() * Math.floor(500 - 300))
+      );
+    },
+    getLabelList() {
+      const date = new Date();
+      date.setDate(0);
+      return [...Array(30)].map(() => {
+        date.setDate(date.getDate() + 1);
+        return date.toLocaleDateString();
       });
+    },
+    getPreviewData() {
+      // TODO: fix getting from server data
+      return [...Array(30)].map(
+        () => 300 + Math.floor(Math.random() * Math.floor(500 - 300))
+      );
+    }
   }
+
 };
 </script>
+<style scoped lang="scss">
+.top {
+  padding: 66px 0 0 200px;
+}
+</style>
