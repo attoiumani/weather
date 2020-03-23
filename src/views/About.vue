@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-sparkline
     :value="value"
     :gradient="gradient"
@@ -12,6 +13,8 @@
     :auto-line-width="autoLineWidth"
     auto-draw
   ></v-sparkline>
+   <div>{{ value }}</div>
+</div>
 </template>
 
 
