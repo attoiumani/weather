@@ -58,7 +58,7 @@ export default {
     this.Today = Year + "" + Month + "" + Today;
     this.db
       .collection("kanazawa")
-      .where("Timestamp", "<", this.Today)
+      .where("Timestamp", "<=", this.Today)
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
