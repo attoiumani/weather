@@ -1,20 +1,20 @@
 <template>
-<div>
-  <v-sparkline
-    :value="value"
-    :gradient="gradient"
-    :smooth="radius || false"
-    :padding="padding"
-    :line-width="width"
-    :stroke-linecap="lineCap"
-    :gradient-direction="gradientDirection"
-    :fill="fill"
-    :type="type"
-    :auto-line-width="autoLineWidth"
-    auto-draw
-  ></v-sparkline>
-   <div>{{ value }}</div>
-</div>
+  <div>
+    <v-sparkline
+      :value="value"
+      :gradient="gradient"
+      :smooth="radius || false"
+      :padding="padding"
+      :line-width="width"
+      :stroke-linecap="lineCap"
+      :gradient-direction="gradientDirection"
+      :fill="fill"
+      :type="type"
+      :auto-line-width="autoLineWidth"
+      auto-draw
+    ></v-sparkline>
+    <div>{{ value }}</div>
+  </div>
 </template>
 
 
@@ -48,7 +48,7 @@ export default {
       autoLineWidth: false
     };
   },
-    created() {
+  created() {
     this.db = firebase.firestore();
 
     let now = new Date();
@@ -58,7 +58,7 @@ export default {
     this.Today = Year + "" + Month + "" + Today;
     this.db
       .collection("kanazawa")
-      .where("Timestamp", "<=", this.Today)
+      .where("Timestamp", "<=", this.Today)  //今日までのtempを取得
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
