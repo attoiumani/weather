@@ -49,7 +49,7 @@ export default {
       fill: false,
       type: "trend",
       autoLineWidth: false,
-      labelSize: 4,
+      labelSize: 2,
     };
   },
   created() {
