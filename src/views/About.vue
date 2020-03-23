@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-sparkline
+      :labels="labels"
       :value="value"
       :gradient="gradient"
       :smooth="radius || false"
@@ -12,6 +13,7 @@
       :type="type"
       :auto-line-width="autoLineWidth"
       auto-draw
+      :label-size="labelSize"
     ></v-sparkline>
     <div>{{ value }}</div>
   </div>
@@ -41,11 +43,13 @@ export default {
       lineCap: "round",
       gradient: gradients[5],
       value: [],
+      labels: [],
       gradientDirection: "top",
       gradients,
       fill: false,
       type: "trend",
-      autoLineWidth: false
+      autoLineWidth: false,
+      labelSize: 4,
     };
   },
   created() {
@@ -58,11 +62,12 @@ export default {
     this.Today = Year + "" + Month + "" + Today;
     this.db
       .collection("kanazawa")
-      .where("Timestamp", "<=", this.Today)  //今日までのtempを取得
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.value.push(doc.data().temp);
+          this.labels.push(doc.data().Timestamp);
         });
       });
   }
