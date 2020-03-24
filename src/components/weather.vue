@@ -84,12 +84,21 @@ export default {
       }.bind(this)
     );
   },
-  mounted:function(){
-    setInterval(function() {
+  methods: {
+    twitterShare() {
+      var shareURL =
+        "https://twitter.com/intent/tweet?text=" +
+        this.city +
+        this.temp +
+        "%20%23今の温度";
+      //シェア用の画面へ移行
+      location.href = shareURL;
+    },
+    sendItem() {
       firebase
         .firestore()
         .collection(this.place) //props
-        .doc(this.Timestamp) //tody
+        .doc(this.Timestamp)  //tody
         .set({
           temp: this.temp,
           maxtemp: this.maxtemp,
@@ -104,18 +113,7 @@ export default {
           // エラー発生時の処理
           console.error("Error adding document: ", error);
         });
-    }, 10000);
-  },
-  methods: {
-    twitterShare() {
-      var shareURL =
-        "https://twitter.com/intent/tweet?text=" +
-        this.city +
-        this.temp +
-        "%20%23今の温度";
-      //シェア用の画面へ移行
-      location.href = shareURL;
-    },
+    }
   },
   props: ["place"]
 };
