@@ -1,3 +1,5 @@
+//about
+
 <template>
   <div>
     <h1>棒グラフと線グラフ</h1>
