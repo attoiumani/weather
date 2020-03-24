@@ -94,11 +94,12 @@ export default {
       //シェア用の画面へ移行
       location.href = shareURL;
     },
-    sendItem() {
+   database() {
+     setInterval(function() {
       firebase
         .firestore()
         .collection(this.place) //props
-        .doc(this.Timestamp)  //tody
+        .doc(this.Timestamp) //tody
         .set({
           temp: this.temp,
           maxtemp: this.maxtemp,
@@ -113,7 +114,8 @@ export default {
           // エラー発生時の処理
           console.error("Error adding document: ", error);
         });
-    }
+    }, 1000);
+   }
   },
   props: ["place"]
 };
