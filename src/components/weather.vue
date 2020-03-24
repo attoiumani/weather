@@ -83,6 +83,8 @@ export default {
         this.loading = false;
       }.bind(this)
     );
+  },
+  mounted:function(){
     setInterval(function() {
       firebase
         .firestore()
