@@ -1,3 +1,5 @@
+//about
+
 <template>
   <div>
     <v-sparkline
