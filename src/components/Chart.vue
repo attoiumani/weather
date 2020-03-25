@@ -26,7 +26,6 @@ export default {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Month"
               }
             }
           ],
