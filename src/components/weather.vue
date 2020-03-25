@@ -94,27 +94,25 @@ export default {
       //シェア用の画面へ移行
       location.href = shareURL;
     },
-    daabase() {
-      setInterval(function() {
-        firebase
-          .firestore()
-          .collection(this.place) //props
-          .doc(this.Timestamp) //tody
-          .set({
-            temp: this.temp,
-            maxtemp: this.maxtemp,
-            mintemp: this.mintemp,
-            Timestamp: this.Timestamp
-          })
-          .then(function(docRef) {
-            // 正常にデータ保存できた時の処理
-            console.log("Document written with ID: ", docRef.id);
-          })
-          .catch(function(error) {
-            // エラー発生時の処理
-            console.error("Error adding document: ", error);
-          });
-      }, 10000);
+    sendItem() {
+      firebase
+        .firestore()
+        .collection(this.place) //props
+        .doc(this.Timestamp)  //tody
+        .set({
+          temp: this.temp,
+          maxtemp: this.maxtemp,
+          mintemp: this.mintemp,
+          Timestamp: this.Timestamp
+        })
+        .then(function(docRef) {
+          // 正常にデータ保存できた時の処理
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          // エラー発生時の処理
+          console.error("Error adding document: ", error);
+        });
     }
   },
   props: ["place"]
