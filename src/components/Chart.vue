@@ -55,7 +55,7 @@ export default {
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          this.data.datasets[0].push( { data: [] } );
+          this.datasets[0].data.push(doc.data().temp);
           this.labels.push(doc.data().Timestamp);
         });
       });
