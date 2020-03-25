@@ -1,4 +1,4 @@
-//weather
+定期的にメソッド動かしたかった
 
 <template>
   <v-card class="mx-auto" max-width="400">
