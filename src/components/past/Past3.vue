@@ -1,4 +1,5 @@
-//about
+//vuetify チャートへの妥協
+
 
 <template>
   <div>
