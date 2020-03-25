@@ -85,18 +85,7 @@ export default {
         this.loading = false;
       }.bind(this)
     );
-  },
-  methods: {
-    twitterShare() {
-      var shareURL =
-        "https://twitter.com/intent/tweet?text=" +
-        this.city +
-        this.temp +
-        "%20%23今の温度";
-      //シェア用の画面へ移行
-      location.href = shareURL;
-    },
-    daabase() {
+ 
       setInterval(function() {
         firebase
           .firestore()
@@ -116,8 +105,20 @@ export default {
             // エラー発生時の処理
             console.error("Error adding document: ", error);
           });
-      }, 10000);
-    }
+      }, 1000);
+
+  },
+  methods: {
+    twitterShare() {
+      var shareURL =
+        "https://twitter.com/intent/tweet?text=" +
+        this.city +
+        this.temp +
+        "%20%23今の温度";
+      //シェア用の画面へ移行
+      location.href = shareURL;
+    },
+
   },
   props: ["place"]
 };
