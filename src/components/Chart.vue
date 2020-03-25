@@ -8,7 +8,7 @@ export default {
   data () {
     return {
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        labels: [],
         datasets: [
           {
             label: 'Line Dataset',
@@ -56,6 +56,7 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.data.datasets[0].data.push(doc.data().temp);
+          this.data.labels.push(doc.data().Timestamp);
         });
       });
   }
