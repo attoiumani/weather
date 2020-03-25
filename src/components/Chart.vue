@@ -1,47 +1,51 @@
 <script>
-import { Bar } from 'vue-chartjs';
+import { Bar } from "vue-chartjs";
 import firebase from "firebase";
 
 export default {
   extends: Bar,
-  name: 'chart',
-  data () {
+  name: "chart",
+  data() {
     return {
       data: {
         labels: [],
         datasets: [
           {
-            label: 'Line Dataset',
+            label: "Line Dataset",
             data: [],
-            borderColor: '#CFD8DC',
+            borderColor: "#CFD8DC",
             fill: false,
-            type: 'line',
-            lineTension: 0.3,
+            type: "line",
+            lineTension: 0.3
           }
         ]
       },
       options: {
         scales: {
-          xAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: 'Month'
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Month"
+              }
             }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              stepSize: 10,
+          ],
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                stepSize: 10
+              }
             }
-          }]
+          ]
         }
       }
-    }
+    };
   },
-  mounted () {
-    this.renderChart(this.data, this.options)
+  mounted() {
+    this.renderChart(this.data, this.options);
   },
-    created() {
+  created() {
     this.db = firebase.firestore();
 
     let now = new Date();
@@ -60,5 +64,5 @@ export default {
         });
       });
   }
-}
+};
 </script>
