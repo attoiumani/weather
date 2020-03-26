@@ -97,7 +97,7 @@ export default {
       //シェア用の画面へ移行
       location.href = shareURL;
     },
-    addData: function() {
+    addData () {
       firebase
         .firestore()
         .collection(this.place) //props
