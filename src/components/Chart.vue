@@ -22,13 +22,6 @@ export default {
       },
       options: {
         scales: {
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-              }
-            }
-          ],
           yAxes: [
             {
               ticks: {
