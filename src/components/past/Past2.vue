@@ -46,12 +46,7 @@ function outPutImg(data) {
 
   created: function() {
     axios;
-    let m = moment();
-    let Year = m.format('YYYY');
-    let Month = m.format('MM');
-    let day = m.format('DD');
-    this.Timestamp = Year + "" + Month + "" + day;
-    this.Timestamp2 = Year + "/" + Month + "/" + day;
+
 
     let selectedCity = this.place; //props
     let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
@@ -72,6 +67,30 @@ function outPutImg(data) {
       }.bind(this)
     );
   },
+
+
+
+      sendItem() {
+      firebase
+        .firestore()
+        .collection(this.place) //props
+        .doc(this.Timestamp)  //tody
+        .set({
+          temp: this.temp,
+          maxtemp: this.maxtemp,
+          mintemp: this.mintemp,
+          Timestamp: this.Timestamp,
+          Timestamp2: this.Timestamp2
+        })
+        .then(function(docRef) {
+          // 正常にデータ保存できた時の処理
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          // エラー発生時の処理
+          console.error("Error adding document: ", error);
+        });
+    }
 
 
   </script>>
