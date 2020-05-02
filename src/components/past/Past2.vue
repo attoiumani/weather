@@ -1,121 +1,77 @@
-<template>
-  <v-card class="mx-auto" max-width="400">
-    <v-img class="white--text align-end" height="300px" :src="image_src">
-      <v-card-title>{{city}}</v-card-title>
-    </v-img>
-    <v-card-subtitle class="pb-0 text--primary">
-      <img v-bind:src="icon" />
-      <div v-show="loading">
-        <v-progress-circular indeterminate color="primary"></v-progress-circular>
-      </div>
-      <div v-show="!loading">{{temp}}℃</div>
-    </v-card-subtitle>
-    <v-card-text>
-      <div>Today's high temperature {{maxtemp}}℃</div>
-      <div>Lowest Temperature {{mintemp}}℃</div>
-      <div>The current weather {{condition.main }}</div>
-    </v-card-text>
-    <v-card-actions class="pt-0">
-      <v-spacer></v-spacer>
-      <v-btn icon @click="show = !show">
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-    <v-expand-transition>
-      <div v-show="show">
-        <v-btn @click="twitterShare" text>
-          Share
-          <v-icon color="blue">mdi-twitter</v-icon>
-        </v-btn>
-        <v-btn @click="sendItem" text>
-          firestore
-          <v-icon color="orange">mdi-firebase</v-icon>
-        </v-btn>
-      </div>
-    </v-expand-transition>
-  </v-card>
-</template>
+firebase functions
 
 
-<script>
-import axios from "axios";
-import firebase from "firebase";
-import moment from "moment";
 
-export default {
-  data() {
-    return {
-      image_src: require(`@/assets/images/${this.place}.png`), //props
-      city: null,
-      temp: null,
-      maxtemp: null,
-      mintemp: null,
-      condition: {
-        main: null
-      },
-      loading: true,
-      show: false,
-      Timestamp: null
-    };
-  },
-  created: function() {
-    axios;
-    let m = moment();
-    let Year = m.format('YYYY');
-    let Month = m.format('MM');
-    let Today = m.format('DD');
-    this.Timestamp = Year + "" + Month + "" + Today;
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp();
 
-    let selectedCity = this.place; //props
-    let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-    let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
-    Url = getUrl + selectedCity + getKey;
-    return axios.get(Url).then(
-      function(response) {
-        this.city = response.data.name;
-        this.temp = response.data.main.temp;
-        this.maxtemp = response.data.main.temp_max;
-        this.mintemp = response.data.main.temp_min;
-        this.condition = response.data.weather[0];
-        this.icon =
-          "https://openweathermap.org/img/w/" +
-          response.data.weather[0].icon +
-          ".png";
-        this.loading = false;
-      }.bind(this)
-    );
-  },
-  methods: {
-    twitterShare() {
-      var shareURL =
-        "https://twitter.com/intent/tweet?text=" +
-        this.city +
-        this.temp +
-        "%20%23今の温度";
-      //シェア用の画面へ移行
-      location.href = shareURL;
-    },
-    sendItem() {
-      firebase
-        .firestore()
-        .collection(this.place) //props
-        .doc(this.Timestamp)  //tody
-        .set({
-          temp: this.temp,
-          maxtemp: this.maxtemp,
-          mintemp: this.mintemp,
-          Timestamp: this.Timestamp
-        })
-        .then(function(docRef) {
-          // 正常にデータ保存できた時の処理
-          console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
-          // エラー発生時の処理
-          console.error("Error adding document: ", error);
-        });
+exports.clearoffers = functions.pubsub.schedule('30 12 * * *')
+  .timeZone('Asia/Tokyo').onRun(async (context) => {
+    const r = await admin.firestore().collection('offers').listDocuments().then(val => {
+      val.map((val) => {
+        val.delete()
+      })
+    })
+  });
+
+
+
+const http = require('http')
+const fs = require('fs')
+const querystring = require('querystring')
+const url = require('url')
+const request = require('request')
+const axios = require('axios')
+const ctype = {'Content-Type': 'text/html;charset=utf-8'}
+
+async function getData(id) {
+  const api = 'http://aikatsup.com/api/v1/search'
+  return await axios.get(api, {
+    params: {
+      id: id
     }
-  },
-  props: ["place"]
-};
-</script>
+  })
+}
+
+function outPutImg(data) {
+  request(data.image.url).pipe(fs.createWriteStream('img/' +data.id+ '_' +data.words+ '.jpg'))
+}
+
+function handler (req, res) {
+  if (req.url === '/' && req.method === 'GET') {
+    fs.readFile(__dirname + '/index.html', {
+      encoding: 'utf8'
+    },
+    function(err, html) {
+      if (err) {
+        res.statusCode = 500
+        res.end('Error!')
+      } else {
+        res.writeHead(200, ctype)
+        res.end(html)
+      }
+    });
+  } else if (req.url.indexOf('/getData?') == 0 && req.method === 'GET') {
+    res.writeHead(200, ctype)
+    const id = url.parse(req.url, true).query.id;
+
+    getData(id).then((data) => {
+      data = data.data.item
+      outPutImg(data)
+      resData = '<h1>'+ data.words +'</h1><img src=\"'+ data.image.url +'\" width=\"960\">'
+      res.end(resData);
+    }).catch(() => {
+      resData = 'api通信失敗'
+      res.end(resData)
+    })
+
+  } else {
+    res.statusCode = 404;
+    res.end('NotFound')
+  }
+}
+
+const svr = http.createServer(handler)
+console.log('http://localhost:8000')
+svr.listen(8000)
