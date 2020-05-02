@@ -40,6 +40,7 @@
 <script>
 import axios from "axios";
 import firebase from "firebase";
+import moment from "moment";
 
 export default {
   data() {
@@ -54,22 +55,24 @@ export default {
       },
       loading: true,
       show: false,
-      Timestamp: null
+      Timestamp: null,
+      Timestamp2: null
     };
   },
   created: function() {
     axios;
-    let now = new Date();
-    let Year = now.getFullYear();
-    let Month = now.getMonth() + 1;
-    let Today = now.getDate();
-    this.Timestamp = Year + "" + Month + "" + Today;
+    let m = moment();
+    let Year = m.format('YYYY');
+    let Month = m.format('MM');
+    let day = m.format('DD');
+    this.Timestamp = Year + "" + Month + "" + day;
+    this.Timestamp2 = Year + "/" + Month + "/" + day;
 
     let selectedCity = this.place; //props
     let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
     let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
-    getUrl = getUrl + selectedCity + getKey;
-    return axios.get(getUrl).then(
+    let Url = getUrl + selectedCity + getKey;
+    return axios.get(Url).then(
       function(response) {
         this.city = response.data.name;
         this.temp = response.data.main.temp;
@@ -103,7 +106,8 @@ export default {
           temp: this.temp,
           maxtemp: this.maxtemp,
           mintemp: this.mintemp,
-          Timestamp: this.Timestamp
+          Timestamp: this.Timestamp,
+          Timestamp2: this.Timestamp2
         })
         .then(function(docRef) {
           // 正常にデータ保存できた時の処理
