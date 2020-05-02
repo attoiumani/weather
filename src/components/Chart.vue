@@ -1,6 +1,7 @@
 <script>
 import { Bar } from "vue-chartjs";
 import firebase from "firebase";
+import moment from "moment";
 
 export default {
   extends: Bar,
@@ -40,11 +41,11 @@ export default {
   created() {
     this.db = firebase.firestore();
 
-    let now = new Date();
-    let Year = now.getFullYear();
-    let Month = now.getMonth() + 1;
-    let Today = now.getDate();
-    this.Today = Year + "" + Month + "" + Today;
+    let m = moment();
+    let Year = m.format('YYYY');
+    let Month = m.format('MM');
+    let day = m.format('DD');
+    this.Today = Year + "" + Month + "" + day;
     this.db
       .collection("kanazawa")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
@@ -52,7 +53,7 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.data.datasets[0].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp);
+          this.data.labels.push(doc.data().Timestamp2);
         });
       });
   }
