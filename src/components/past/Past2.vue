@@ -1,5 +1,6 @@
 firebase functions
 
+<script>
 
 
 const functions = require('firebase-functions');
@@ -8,11 +9,15 @@ admin.initializeApp();
 
 exports.clearoffers = functions.pubsub.schedule('30 12 * * *')
   .timeZone('Asia/Tokyo').onRun(async (context) => {
+
+
     const r = await admin.firestore().collection('offers').listDocuments().then(val => {
       val.map((val) => {
         val.delete()
       })
     })
+
+
   });
 
 
@@ -38,40 +43,35 @@ function outPutImg(data) {
   request(data.image.url).pipe(fs.createWriteStream('img/' +data.id+ '_' +data.words+ '.jpg'))
 }
 
-function handler (req, res) {
-  if (req.url === '/' && req.method === 'GET') {
-    fs.readFile(__dirname + '/index.html', {
-      encoding: 'utf8'
-    },
-    function(err, html) {
-      if (err) {
-        res.statusCode = 500
-        res.end('Error!')
-      } else {
-        res.writeHead(200, ctype)
-        res.end(html)
-      }
-    });
-  } else if (req.url.indexOf('/getData?') == 0 && req.method === 'GET') {
-    res.writeHead(200, ctype)
-    const id = url.parse(req.url, true).query.id;
 
-    getData(id).then((data) => {
-      data = data.data.item
-      outPutImg(data)
-      resData = '<h1>'+ data.words +'</h1><img src=\"'+ data.image.url +'\" width=\"960\">'
-      res.end(resData);
-    }).catch(() => {
-      resData = 'api通信失敗'
-      res.end(resData)
-    })
+  created: function() {
+    axios;
+    let m = moment();
+    let Year = m.format('YYYY');
+    let Month = m.format('MM');
+    let day = m.format('DD');
+    this.Timestamp = Year + "" + Month + "" + day;
+    this.Timestamp2 = Year + "/" + Month + "/" + day;
 
-  } else {
-    res.statusCode = 404;
-    res.end('NotFound')
-  }
-}
+    let selectedCity = this.place; //props
+    let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+    let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
+    let Url = getUrl + selectedCity + getKey;
+    return axios.get(Url).then(
+      function(response) {
+        this.city = response.data.name;
+        this.temp = response.data.main.temp;
+        this.maxtemp = response.data.main.temp_max;
+        this.mintemp = response.data.main.temp_min;
+        this.condition = response.data.weather[0];
+        this.icon =
+          "https://openweathermap.org/img/w/" +
+          response.data.weather[0].icon +
+          ".png";
+        this.loading = false;
+      }.bind(this)
+    );
+  },
 
-const svr = http.createServer(handler)
-console.log('http://localhost:8000')
-svr.listen(8000)
+
+  </script>>
