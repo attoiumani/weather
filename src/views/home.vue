@@ -1,5 +1,5 @@
 <template>
     <div>
-      <div class="text-center" id="nav">TOPです</div>
+      <div class="text-center" id="nav">T</div>
     </div>
 </template>
