@@ -1,6 +1,6 @@
 <template>
 
-    <chart />
+    <chart place="osaka" />
 
 </template>
 
