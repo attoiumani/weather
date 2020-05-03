@@ -21,6 +21,7 @@
         <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
     </v-card-actions>
+
     <v-expand-transition>
       <div v-show="show">
         <v-btn @click="twitterShare" text>
@@ -31,6 +32,7 @@
           firestore
           <v-icon color="orange">mdi-firebase</v-icon>
         </v-btn>
+        <router-link to="/About">Analytics</router-link>
       </div>
     </v-expand-transition>
   </v-card>
