@@ -47,7 +47,7 @@ export default {
     let day = m.format('DD');
     this.Today = Year + "" + Month + "" + day;
     this.db
-      .collection("kanazawa")
+      .collection(this.place)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
@@ -56,6 +56,7 @@ export default {
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
-  }
+  },
+  props: ["place"]
 };
 </script>
