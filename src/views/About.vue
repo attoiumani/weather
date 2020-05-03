@@ -1,15 +1,18 @@
 <template>
-
-    <chart place="osaka"/>
-
+<div id="app">
+  <linechart place="osaka" />
+  <piechart place="osaka" />
+  </div>
 </template>
 
 <script>
-import Chart from "@/components/Chart";
+import linechart from "@/components/chart/linechart";
+import piechart from "@/components/chart/piechart";
 
 export default {
   components: {
-    Chart
+    linechart,
+    piechart
   }
 };
 </script>
