@@ -31,6 +31,7 @@ const routes = [
   {
     path: "/About",
     name: "About",
+    props: true,
     component: About,
   },
   {
