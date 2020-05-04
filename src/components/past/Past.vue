@@ -11,23 +11,26 @@ export default {
     };
   },
   mounted() {
-    this.renderChart(
-      a:{
-        labels: [],
-        datasets: [
-          {
-            label: "Data One",
-            borderColor: "#FC2525",
-            pointBackgroundColor: "white",
-            borderWidth: 1,
-            pointBorderColor: "white",
-            backgroundColor: this.gradient,
-            data: []
-          },
-        ]
-      },
-      { responsive: true, maintainAspectRatio: false }
-    );
+    let chartData = {
+      labels: [],
+      datasets: [
+        {
+          label: "Data One",
+          borderColor: "#FC2525",
+          pointBackgroundColor: "white",
+          borderWidth: 1,
+          pointBorderColor: "white",
+          backgroundColor: this.gradient,
+          data: []
+        }
+      ]
+    };
+
+    this.renderChart(chartData, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+
     this.db = firebase.firestore();
 
     let m = moment();
@@ -41,8 +44,8 @@ export default {
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          this.data.datasets[0].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp2);
+          chartData.datasets[0].data.push(doc.data().temp);
+          chartData.labels.push(doc.data().Timestamp2);
         });
       });
   }
