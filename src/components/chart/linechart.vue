@@ -47,5 +47,5 @@ export default {
       });
   },
   props: ["place"]
-};
+}; 
 </script>
