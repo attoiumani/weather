@@ -18,6 +18,7 @@ export default {
             pointBackgroundColor: "rgba(255, 0,0, 0.5)",
             pointBorderColor: "white",
             backgroundColor: "rgba(255, 0,0, 0.5)",
+
           }
         ]
       },
