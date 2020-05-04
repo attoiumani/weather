@@ -1,10 +1,10 @@
 <script>
-import { Bar } from "vue-chartjs";
+import { Line } from "vue-chartjs";
 import firebase from "firebase";
 import moment from "moment";
 
 export default {
-  extends: Bar,
+  extends: Line,
   data() {
     return {
       data: {
@@ -18,7 +18,6 @@ export default {
             pointBackgroundColor: "rgba(255, 0,0, 0.5)",
             pointBorderColor: "white",
             backgroundColor: "rgba(255, 0,0, 0.5)",
-            type: "line"
           }
         ]
       },
