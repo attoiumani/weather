@@ -17,10 +17,10 @@ export default {
             borderColor: "#FC2525",
             pointBackgroundColor: "rgba(255, 0,0, 0.5)",
             pointBorderColor: "white",
-            backgroundColor: "rgba(255, 0,0, 0.5)",
+            backgroundColor: "rgba(255, 0,0, 0.5)"
           }
         ]
-      },
+      }
     };
   },
   mounted() {
