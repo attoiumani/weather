@@ -1,69 +1,53 @@
 <script>
-import { Bar } from "vue-chartjs";
+import { Line } from "vue-chartjs";
 import firebase from "firebase";
 import moment from "moment";
 
 export default {
-  extends: Bar,
-  name: "chart",
+  extends: Line,
   data() {
     return {
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: "℃",
-            data: [],
-            borderWidth: 1,
-            borderColor: "#FC2525",
-            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
-            pointBorderColor: "white",
-            backgroundColor: "rgba(255, 0,0, 0.5)",
-            type: "line"
-          }
-        ]
-      },
-      options: {
-        scales: {
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Month"
-              }
-            }
-          ],
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                stepSize: 10
-              }
-            }
-          ]
-        }
-      }
+      gradient: null
     };
   },
   mounted() {
+    let chartData = {
+      labels: [],
+      datasets: [
+        {
+          label: "Data One",
+          borderColor: "#FC2525",
+          pointBackgroundColor: "white",
+          borderWidth: 1,
+          pointBorderColor: "white",
+          backgroundColor: this.gradient,
+          data: []
+        }
+      ]
+    };
+
+    this.renderChart(chartData, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+
+    this.db = firebase.firestore();
+
     let m = moment();
     let Year = m.format("YYYY");
     let Month = m.format("MM");
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
-    this.db = firebase.firestore();
     this.db
       .collection(this.place)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          this.data.datasets[0].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp2);
+          chartData.datasets[0].data.push(doc.data().temp);
+          chartData.labels.push(doc.data().Timestamp2);
         });
       });
-    this.renderChart(this.data);
-  },
-  props: ["place"]
+  }
 };
 </script>
