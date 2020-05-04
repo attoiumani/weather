@@ -1,35 +1,51 @@
 <script>
 import { Pie } from "vue-chartjs";
+import firebase from "firebase";
+import moment from "moment";
 
 export default {
   extends: Pie,
-  mounted() {
-    this.gradient = this.$refs.canvas
-      .getContext("2d")
-      .createLinearGradient(0, 0, 0, 450);
-    this.gradient2 = this.$refs.canvas
-      .getContext("2d")
-      .createLinearGradient(0, 0, 0, 450);
-
-    this.gradient.addColorStop(0, "rgba(255, 0,0, 0.5)");
-    this.gradient.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
-    this.gradient.addColorStop(1, "rgba(255, 0, 0, 0)");
-
-    this.gradient2.addColorStop(0, "rgba(0, 231, 255, 0.9)");
-    this.gradient2.addColorStop(0.5, "rgba(0, 231, 255, 0.25)");
-    this.gradient2.addColorStop(1, "rgba(0, 231, 255, 0)");
-    this.renderChart(
-      {
-        labels: ["Books", "Magazines", "Newspapers"],
+  data() {
+    return {
+      data: {
+        labels: [],
         datasets: [
           {
-            backgroundColor: [this.gradient, this.gradient2, "#00D8FF"],
-            data: [40, 20, 10]
+            label: "℃",
+            data: [],
+            borderWidth: 1,
+            borderColor: "#FC2525",
+            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
+            pointBorderColor: "white",
+            backgroundColor: "rgba(255, 0,0, 0.5)",
           }
         ]
       },
-      { responsive: true, maintainAspectRatio: false }
-    );
-  }
+    };
+  },
+  mounted() {
+    this.renderChart(this.data, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+
+    let m = moment();
+    let Year = m.format("YYYY");
+    let Month = m.format("MM");
+    let day = m.format("DD");
+    this.Today = Year + "" + Month + "" + day;
+    this.db = firebase.firestore();
+    this.db
+      .collection(this.place)
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.data.datasets[0].data.push(doc.data().temp);
+          this.data.labels.push(doc.data().Timestamp2);
+        });
+      });
+  },
+  props: ["place"]
 };
 </script>
