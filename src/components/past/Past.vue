@@ -7,12 +7,12 @@ export default {
   extends: Line,
   data() {
     return {
-      gradient: null,
+      gradient: null
     };
   },
   mounted() {
     this.renderChart(
-      {
+      a:{
         labels: [],
         datasets: [
           {
@@ -28,7 +28,7 @@ export default {
       },
       { responsive: true, maintainAspectRatio: false }
     );
-        this.db = firebase.firestore();
+    this.db = firebase.firestore();
 
     let m = moment();
     let Year = m.format("YYYY");
