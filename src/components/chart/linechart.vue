@@ -22,7 +22,8 @@ export default {
             type: "line"
           }
         ]
-      }
+      },
+      
     };
   },
   mounted() {
