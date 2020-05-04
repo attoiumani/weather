@@ -5,7 +5,6 @@ import moment from "moment";
 
 export default {
   extends: Bar,
-  name: "chart",
   data() {
     return {
       data: {
@@ -26,6 +25,11 @@ export default {
     };
   },
   mounted() {
+    this.renderChart(this.data, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+
     let m = moment();
     let Year = m.format("YYYY");
     let Month = m.format("MM");
@@ -42,10 +46,6 @@ export default {
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
-    this.renderChart(this.data, {
-      responsive: true,
-      maintainAspectRatio: false
-    });
   },
   props: ["place"]
 };
