@@ -17,7 +17,7 @@ export default {
             borderColor: "#FC2525",
             pointBackgroundColor: "rgba(255, 0,0, 0.5)",
             pointBorderColor: "white",
-            backgroundColor: "rgba(255, 0,0, 0.5)"
+            backgroundColor: "rgba(255, 0, 0, 0.3)"
           },
           {
             label: "min",
@@ -26,7 +26,7 @@ export default {
             pointBackgroundColor: "white",
             pointBorderColor: "white",
             borderWidth: 1,
-            backgroundColor: "rgba(0, 231, 255, 0.25)"
+            backgroundColor: "rgba(0, 0, 255, 0.3)"
           }
         ]
       }
