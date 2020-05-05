@@ -40,6 +40,12 @@ export default {
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
     this.db = firebase.firestore();
+
+    /*for (let i = 0; i < this.data.length; i++) {
+      chartData.labels.push(this.data[i].date);
+      chartData.datasets[0].data.push(this.data[i].new);
+      chartData.datasets[1].data.push(this.data[i].old);
+    }*/
     this.db
       .collection(this.place)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
