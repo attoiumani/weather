@@ -5,6 +5,7 @@ import signin from "../views/signin.vue";
 import weather from "../views/weather.vue";
 import profile from "../views/profile.vue";
 import About from "../views/About.vue";
+import analytics from "../views/analytics.vue";
 import only from "../views/only.vue";
 import firebase from 'firebase'
 
@@ -40,11 +41,17 @@ const routes = [
     component: signin
   },
   {
+    path: "/analytics",
+    name: "analytics",
+    component: analytics
+  },
+  {
     path: '/only',
     name: 'only',
     component: only,
     meta: { requiresAuth: true }
   },
+  
 ];
 
 const router = new VueRouter({
