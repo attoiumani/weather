@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-  <allchart place="osaka" />
+  <allchart/>
   </div>
 </template>
 
