@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       data: {
-        labels: [],
+        labels: ["rain","sun","cloud","snow"],
         datasets: [
           {
             label: "℃",
@@ -42,7 +42,6 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.data.datasets[0].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp2);
         });
       });
   },
