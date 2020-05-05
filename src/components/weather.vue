@@ -32,7 +32,7 @@
           firestore
           <v-icon color="orange">mdi-firebase</v-icon>
         </v-btn>
-        <router-link to="/About">Analytics</router-link>
+        <router-link to="/analytics">Analytics</router-link>
       </div>
     </v-expand-transition>
   </v-card>
