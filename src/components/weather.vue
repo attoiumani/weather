@@ -109,7 +109,8 @@ export default {
           maxtemp: this.maxtemp,
           mintemp: this.mintemp,
           Timestamp: this.Timestamp,
-          Timestamp2: this.Timestamp2
+          Timestamp2: this.Timestamp2,
+          condition:this.condition.main
         })
         .then(function(docRef) {
           // 正常にデータ保存できた時の処理
