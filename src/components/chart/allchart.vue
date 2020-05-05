@@ -11,18 +11,25 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "℃",
+            label: "osaka",
             data: [],
             backgroundColor: "transparent",
             borderColor: "rgba(1, 116, 188, 0.50)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
           {
-            label: "max℃",
+            label: "tokyo",
             data: [],
             backgroundColor: "transparent",
             borderColor: "red",
             pointBackgroundColor: "red"
+          },
+          {
+            label: "kanazawa",
+            data: [],
+            backgroundColor: "transparent",
+            borderColor: "green",
+            pointBackgroundColor: "green"
           }
         ]
       }
@@ -47,17 +54,35 @@ export default {
       chartData.datasets[1].data.push(this.data[i].old);
     }*/
     this.db
-      .collection(this.place)
+      .collection("osaka")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.data.datasets[0].data.push(doc.data().temp);
-          this.data.datasets[1].data.push(doc.data().maxtemp);
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
-  },
-  props: ["place"]
+    this.db
+      .collection("tokyo")
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.data.datasets[1].data.push(doc.data().temp);
+          this.data.labels.push(doc.data().Timestamp2);
+        });
+      });
+    this.db
+      .collection("kanazawa")
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.data.datasets[2].data.push(doc.data().temp);
+          this.data.labels.push(doc.data().Timestamp2);
+        });
+      });
+  }
 };
 </script>
