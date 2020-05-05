@@ -11,13 +11,22 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "℃",
+            label: "max",
             data: [],
             borderWidth: 1,
             borderColor: "#FC2525",
             pointBackgroundColor: "rgba(255, 0,0, 0.5)",
             pointBorderColor: "white",
             backgroundColor: "rgba(255, 0,0, 0.5)"
+          },
+          {
+            label: "min",
+            data: [],
+            borderColor: "#05CBE1",
+            pointBackgroundColor: "white",
+            pointBorderColor: "white",
+            borderWidth: 1,
+            backgroundColor: "rgba(0, 231, 255, 0.25)"
           }
         ]
       }
@@ -41,11 +50,12 @@ export default {
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          this.data.datasets[0].data.push(doc.data().temp);
+          this.data.datasets[0].data.push(doc.data().maxtemp);
+          this.data.datasets[1].data.push(doc.data().mintemp);
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
   },
   props: ["place"]
-}; 
+};
 </script>
