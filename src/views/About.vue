@@ -19,7 +19,6 @@ export default {
     piechart,
     radar,
     bar,
-
   }
 };
 </script>
