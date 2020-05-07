@@ -4,7 +4,7 @@ import signup from "../views/signup.vue";
 import signin from "../views/signin.vue";
 import weather from "../views/weather.vue";
 import profile from "../views/profile.vue";
-import About from "../views/About.vue";
+import chart from "../views/chart.vue";
 import analytics from "../views/analytics.vue";
 import only from "../views/only.vue";
 import firebase from 'firebase'
@@ -30,10 +30,10 @@ const routes = [
     component: signup
   },
   {
-    path: "/About",
-    name: "About",
+    path: "/chart",
+    name: "chart",
     props: true,
-    component: About,
+    component: chart,
   },
   {
     path: "/signin",
