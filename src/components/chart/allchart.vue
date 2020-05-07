@@ -47,7 +47,9 @@ export default {
       responsive: true,
       maintainAspectRatio: false
     });
-
+  },
+  created:function(){
+    
     let m = moment();
     let Year = m.format("YYYY");
     let Month = m.format("MM");
@@ -97,6 +99,6 @@ export default {
           this.data.datasets[3].data.push(doc.data().temp);
         });
       });
-  }
+  },
 };
 </script>
