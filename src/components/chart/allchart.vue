@@ -30,6 +30,13 @@ export default {
             backgroundColor: "transparent",
             borderColor: "green",
             pointBackgroundColor: "green"
+          },
+          {
+            label: "fukuoka",
+            data: [],
+            backgroundColor: "transparent",
+            borderColor: "yellow",
+            pointBackgroundColor: "yellow"
           }
         ]
       }
@@ -70,7 +77,6 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.data.datasets[1].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp2);
         });
       });
     this.db
@@ -80,7 +86,15 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.data.datasets[2].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp2);
+        });
+      });
+    this.db
+      .collection("fukuoka")
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.data.datasets[3].data.push(doc.data().temp);
         });
       });
   }
