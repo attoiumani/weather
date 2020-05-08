@@ -57,9 +57,10 @@ export default {
     let Month = m.format("MM");
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
-    let db = firebase.firestore();
+    this.db = firebase.firestore();
 
-    db.collection("osaka")
+    this.db
+      .collection("osaka")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
