@@ -32,7 +32,6 @@ const routes = [
   {
     path: "/chart",
     name: "chart",
-    props: true,
     component: chart,
   },
   {
