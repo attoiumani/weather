@@ -17,6 +17,7 @@ export default {
             borderColor: "rgba(1, 116, 188, 0.50)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
+          /*
           {
             label: "tokyo",
             data: [],
@@ -37,7 +38,7 @@ export default {
             backgroundColor: "transparent",
             borderColor: "yellow",
             pointBackgroundColor: "yellow"
-          }
+          }*/
         ]
       }
     };
@@ -59,11 +60,6 @@ export default {
     this.Today = Year + "" + Month + "" + day;
     this.db = firebase.firestore();
 
-    /*for (let i = 0; i < this.data.length; i++) {
-      chartData.labels.push(this.data[i].date);
-      chartData.datasets[0].data.push(this.data[i].new);
-      chartData.datasets[1].data.push(this.data[i].old);
-    }*/
     this.db
       .collection("osaka")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
@@ -74,6 +70,7 @@ export default {
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
+      /*
     this.db
       .collection("tokyo")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
@@ -100,7 +97,7 @@ export default {
         snapshot.forEach(doc => {
           this.data.datasets[3].data.push(doc.data().temp);
         });
-      });
+      });*/
   },
 
 
