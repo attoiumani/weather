@@ -43,6 +43,14 @@ export default {
     };
   },
 
+
+    mounted() {
+    this.renderChart(this.data, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+  },
+
   created: function() {
     let m = moment();
     let Year = m.format("YYYY");
@@ -95,11 +103,6 @@ export default {
       });
   },
 
-  mounted() {
-    this.renderChart(this.data, {
-      responsive: true,
-      maintainAspectRatio: false
-    });
-  }
+
 };
 </script>
