@@ -7,55 +7,78 @@ export default {
   extends: Line,
   data() {
     return {
-      data: {
+      gradient: null,
+      gradient2: null
+    };
+  },
+  mounted() {
+    this.gradient = this.$refs.canvas
+      .getContext("2d")
+      .createLinearGradient(0, 0, 0, 450);
+    this.gradient2 = this.$refs.canvas
+      .getContext("2d")
+      .createLinearGradient(0, 0, 0, 450);
+
+    this.gradient.addColorStop(0, "rgba(255, 0,0, 0.5)");
+    this.gradient.addColorStop(0.5, "rgba(255, 0, 0, 0.25)");
+    this.gradient.addColorStop(1, "rgba(255, 0, 0, 0)");
+
+    this.gradient2.addColorStop(0, "rgba(0, 231, 255, 0.9)");
+    this.gradient2.addColorStop(0.5, "rgba(0, 231, 255, 0.25)");
+    this.gradient2.addColorStop(1, "rgba(0, 231, 255, 0)");
+
+    let chartData = {
         labels: [],
         datasets: [
           {
             label: "max",
-            data: [],
-            borderWidth: 1,
             borderColor: "#FC2525",
-            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
+            pointBackgroundColor: "white",
+            borderWidth: 1,
             pointBorderColor: "white",
-            backgroundColor: "rgba(255, 0, 0, 0.3)"
+            backgroundColor: this.gradient,
+            data: []
           },
           {
             label: "min",
-            data: [],
             borderColor: "#05CBE1",
             pointBackgroundColor: "white",
             pointBorderColor: "white",
             borderWidth: 1,
-            backgroundColor: "rgba(0, 0, 255, 0.3)"
+            backgroundColor: this.gradient2,
+            data: []
           }
         ]
-      }
-    };
-  },
-  mounted() {
-    this.renderChart(this.data, {
+      };
+
+    this.renderChart(chartData, {
       responsive: true,
       maintainAspectRatio: false
     });
 
-    let m = moment();
+        let m = moment();
     let Year = m.format("YYYY");
     let Month = m.format("MM");
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
     this.db = firebase.firestore();
+
     this.db
-      .collection(this.place)
+      .collection("osaka")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          this.data.datasets[0].data.push(doc.data().maxtemp);
-          this.data.datasets[1].data.push(doc.data().mintemp);
-          this.data.labels.push(doc.data().Timestamp2);
+          chartData.datasets[0].data.push(doc.data().maxtemp);
+          chartData.datasets[1].data.push(doc.data().mintemp);
+          chartData.labels.push(doc.data().Timestamp2);
         });
       });
   },
-  props: ["place"]
+
+
+
+
+
 };
 </script>
