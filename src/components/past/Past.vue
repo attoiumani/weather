@@ -25,8 +25,17 @@ export default {
     this.gradient2.addColorStop(0.5, "rgba(0, 231, 255, 0.25)");
     this.gradient2.addColorStop(1, "rgba(0, 231, 255, 0)");
 
-    let chartData = {
-        labels: [],
+    this.renderChart(
+      {
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July"
+        ],
         datasets: [
           {
             label: "Data One",
@@ -35,7 +44,7 @@ export default {
             borderWidth: 1,
             pointBorderColor: "white",
             backgroundColor: this.gradient,
-            data: []
+            data: [40, 39, 10, 40, 39, 80, 40]
           },
           {
             label: "Data Two",
@@ -48,61 +57,8 @@ export default {
           }
         ]
       },
-      db = firebase.firestore();
-    db.collection("osaka")
-      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          chartData.datasets[0].data.push(doc.data().temp);
-          chartData.labels.push(doc.data().Timestamp2);
-        });
-      });
-
-    this.renderChart(chartData, {
-      responsive: true,
-      maintainAspectRatio: false
-    });
-  }
-};
-
-
-
-
-
-
-
-import { Line } from "vue-chartjs";
-
-export default {
-  extends: Line,
-  name: "LineChart",
-  props: ["data"],
-  mounted() {
-    // reformat in the way the lib wants
-    let chartData = {
-      labels: [],
-      datasets: [
-        {
-          label: "Page Views",
-          backgroundColor: "#f87979",
-          data: []
-        }
-      ]
-    };
-
-    for (let i = 0; i < this.data.length; i++) {
-      chartData.labels.push(this.data[i].date);
-      chartData.datasets[0].data.push(this.data[i].views);
-    }
-
-    this.renderChart(chartData, {
-      responsive: true,
-      maintainAspectRatio: false
-    });
+      { responsive: true, maintainAspectRatio: false }
+    );
   }
 };
 </script>
-
-
-
