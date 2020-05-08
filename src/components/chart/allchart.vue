@@ -42,14 +42,8 @@ export default {
       }
     };
   },
-  mounted() {
-    this.renderChart(this.data, {
-      responsive: true,
-      maintainAspectRatio: false
-    });
-  },
-  created:function(){
-    
+
+  created: function() {
     let m = moment();
     let Year = m.format("YYYY");
     let Month = m.format("MM");
@@ -100,5 +94,12 @@ export default {
         });
       });
   },
+
+  mounted() {
+    this.renderChart(this.data, {
+      responsive: true,
+      maintainAspectRatio: false
+    });
+  }
 };
 </script>
