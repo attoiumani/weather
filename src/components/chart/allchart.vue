@@ -69,6 +69,7 @@ export default {
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
+      
     /*
     this.db
       .collection("tokyo")
