@@ -32,7 +32,9 @@
           firestore
           <v-icon color="orange">mdi-firebase</v-icon>
         </v-btn>
-        <router-link to="/analytics">Analytics</router-link>
+        <v-btn text>
+        <router-link :to="{ name: 'analytics', params: { value: this.place }}" >Analytics</router-link>
+        </v-btn>
       </div>
     </v-expand-transition>
   </v-card>

@@ -64,7 +64,7 @@ export default {
     this.db = firebase.firestore();
 
     this.db
-      .collection("osaka")
+      .collection(this.place)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
@@ -77,7 +77,9 @@ export default {
   },
 
 
-
+    props: {
+      place:String,
+    },
 
 
 };

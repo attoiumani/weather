@@ -46,6 +46,8 @@ export default {
         });
       });
   },
-  props: ["place"]
+    props: {
+      place:String,
+    },
 }; 
 </script>

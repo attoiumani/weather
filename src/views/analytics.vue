@@ -1,9 +1,10 @@
 <template>
-<div id="app">
-  <linechart place="osaka" />
-  <piechart place="osaka" />
-  <bar place="osaka" />
-  <radar place="osaka" />
+  <div id="app">
+    This is hoge page. value is {{ $route.params.value }}
+    <linechart :place="name" />
+    <piechart :place="name" />
+    <bar :place="name" />
+    <radar :place="name" />
   </div>
 </template>
 
@@ -18,7 +19,15 @@ export default {
     linechart,
     piechart,
     radar,
-    bar,
+    bar
+  },
+  data() {
+    return {
+      name: null
+    };
+  },
+  created: function() {
+    this.name = this.$route.params.value;
   }
 };
 </script>
