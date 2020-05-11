@@ -1,9 +1,9 @@
 <template>
-<div id="app">
-  <linechart place="osaka" />
-  <piechart place="osaka" />
-  <bar place="osaka" />
-  <radar place="osaka" />
+  <div id="app">
+    <linechart place="osaka" />
+    <piechart place="osaka" />
+    <bar place="osaka" />
+    <radar :place="name" />
   </div>
 </template>
 
@@ -18,7 +18,12 @@ export default {
     linechart,
     piechart,
     radar,
-    bar,
+    bar
+  },
+  data() {
+    return {
+      name: "osaka"
+    };
   }
 };
 </script>
