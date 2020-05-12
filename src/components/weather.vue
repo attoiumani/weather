@@ -7,7 +7,7 @@
       <div v-show="loading">
         <v-progress-circular indeterminate color="#D32F2F"></v-progress-circular>
       </div>
-      <div class="display-1 py-8">{{temp}}℃</div>
+      <div class="display-1 py-8">{{temp}}℃<img v-bind:src="icon"/></div>
     </v-card-subtitle>
     <v-card-text>
       <div class="headline">
@@ -16,7 +16,7 @@
         <span class="blue--text">{{mintemp}}℃</span>
       </div>
       <div>
-      <img v-bind:src="icon"/>
+
       <span>{{condition.main }}</span>
       </div>
     </v-card-text>
