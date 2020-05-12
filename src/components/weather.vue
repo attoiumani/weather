@@ -4,16 +4,21 @@
       <v-card-title>{{city}}</v-card-title>
     </v-img>
     <v-card-subtitle class="pb-0 text--primary">
-      <img v-bind:src="icon" />
       <div v-show="loading">
-        <v-progress-circular indeterminate color="primary"></v-progress-circular>
+        <v-progress-circular indeterminate color="#D32F2F"></v-progress-circular>
       </div>
-      <div v-show="!loading">{{temp}}℃</div>
+      <div class="display-1 py-8">{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
-      <div>Today's high temperature {{maxtemp}}℃</div>
-      <div>Lowest Temperature {{mintemp}}℃</div>
-      <div>The current weather {{condition.main }}</div>
+      <div class="headline">
+        <span class="red--text">{{maxtemp}}℃</span>
+        /
+        <span class="blue--text">{{mintemp}}℃</span>
+      </div>
+      <div>
+      <img v-bind:src="icon"/>
+      <span>{{condition.main }}</span>
+      </div>
     </v-card-text>
     <v-card-actions class="pt-0">
       <v-spacer></v-spacer>
@@ -33,7 +38,7 @@
           <v-icon color="orange">mdi-firebase</v-icon>
         </v-btn>
         <v-btn text>
-        <router-link :to="{ name: 'analytics', params: { value: this.place }}" >Analytics</router-link>
+          <router-link :to="{ name: 'analytics', params: { value: this.place }}">Analytics</router-link>
         </v-btn>
       </div>
     </v-expand-transition>
@@ -66,9 +71,9 @@ export default {
   created: function() {
     axios;
     let m = moment();
-    let Year = m.format('YYYY');
-    let Month = m.format('MM');
-    let day = m.format('DD');
+    let Year = m.format("YYYY");
+    let Month = m.format("MM");
+    let day = m.format("DD");
     this.Timestamp = Year + "" + Month + "" + day;
     this.Timestamp2 = Year + "/" + Month + "/" + day;
 
@@ -105,14 +110,14 @@ export default {
       firebase
         .firestore()
         .collection(this.place) //props
-        .doc(this.Timestamp)  //tody
+        .doc(this.Timestamp) //tody
         .set({
           temp: this.temp,
           maxtemp: this.maxtemp,
           mintemp: this.mintemp,
           Timestamp: this.Timestamp,
           Timestamp2: this.Timestamp2,
-          condition:this.condition.main
+          condition: this.condition.main
         })
         .then(function(docRef) {
           // 正常にデータ保存できた時の処理
