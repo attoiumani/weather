@@ -7,7 +7,7 @@ export default {
   extends: Line,
   data() {
     return {
-      Today:null,
+      Today: null,
       data: {
         labels: [],
         datasets: [
@@ -17,8 +17,8 @@ export default {
             backgroundColor: "transparent",
             borderColor: "rgba(1, 116, 188, 0.50)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
-          }
-          /*
+          },
+
           {
             label: "tokyo",
             data: [],
@@ -39,7 +39,7 @@ export default {
             backgroundColor: "transparent",
             borderColor: "yellow",
             pointBackgroundColor: "yellow"
-          }*/
+          }
         ]
       }
     };
@@ -69,9 +69,8 @@ export default {
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
-      
-    /*
-    this.db
+
+    db
       .collection("tokyo")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
@@ -80,7 +79,7 @@ export default {
           this.data.datasets[1].data.push(doc.data().temp);
         });
       });
-    this.db
+    db
       .collection("kanazawa")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
@@ -89,7 +88,7 @@ export default {
           this.data.datasets[2].data.push(doc.data().temp);
         });
       });
-    this.db
+    db
       .collection("fukuoka")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
@@ -97,7 +96,7 @@ export default {
         snapshot.forEach(doc => {
           this.data.datasets[3].data.push(doc.data().temp);
         });
-      });*/
+      });
   }
 };
 </script>
