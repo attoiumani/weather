@@ -18,8 +18,14 @@
         /
         <span class="blue--text">{{mintemp}}℃</span>
       </div>
-      <div>
-        <span>{{condition.main }}</span>
+      <div class="pt-8">
+        <v-btn @click="twitterShare" text>
+          <v-icon color="blue">mdi-twitter</v-icon>
+        </v-btn>
+        <v-btn @click="sendItem" text>
+          <v-icon color="orange">mdi-firebase</v-icon>
+          <router-link :to="{ name: 'analytics', params: { value: this.place }}"></router-link>
+        </v-btn>
       </div>
     </v-card-text>
     <v-card-actions class="pt-0">
@@ -42,6 +48,7 @@
         <v-btn text>
           <router-link :to="{ name: 'analytics', params: { value: this.place }}">Analytics</router-link>
         </v-btn>
+        <span>{{condition.main }}</span>
       </div>
     </v-expand-transition>
   </v-card>
