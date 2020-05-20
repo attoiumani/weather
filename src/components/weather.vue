@@ -8,7 +8,7 @@
         <v-progress-circular indeterminate color="#D32F2F"></v-progress-circular>
       </div>
       <div class="display-1 py-8">
-        {{temp}}℃
+        {{temp}}&deg;C
         <img v-bind:src="icon" />
       </div>
     </v-card-subtitle>
