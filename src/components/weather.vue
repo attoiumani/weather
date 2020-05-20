@@ -40,7 +40,6 @@
         <v-btn text>
           <router-link :to="{ name: 'analytics', params: { value: this.place }}">Analytics</router-link>
         </v-btn>
-        <span>{{condition.main }}</span>
       </div>
     </v-expand-transition>
   </v-card>
