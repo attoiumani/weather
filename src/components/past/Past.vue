@@ -7,13 +7,10 @@
     </v-img>
     <v-card-subtitle class="pb-0 text--primary">
       <img v-bind:src="icon" />
-      <div v-show="loading">
-        <v-progress-circular indeterminate color="primary"></v-progress-circular>
-      </div>
-      <div v-show="!loading">{{temp}}℃</div>
+      <div>{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
-      <div>Today's high temperature {{temp}}℃</div>
+      <div>Today's high temperature {{maxtemp}}℃</div>
       <div>Lowest Temperature {{mintemp}}℃</div>
       <div>The current weather {{condition.main }}</div>
     </v-card-text>
@@ -68,7 +65,6 @@ export default {
         function(response) {
           this.temp = response.data.list[0].main.temp;
           this.condition = response.data.weather[0];
-          this.loading = false;
         }.bind(this)
       );
     let now = new Date();
