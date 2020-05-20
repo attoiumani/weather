@@ -61,8 +61,8 @@ export default {
   },
   created: function() {
     axios
-            .get(
-        "http://api.openweathermap.org/data/2.5/forecast?q=Tokyo&APPID=4dff50a83aa2145ba555d8f59e9d3ef0"
+      .get(
+        "http://api.openweathermap.org/data/2.5/forecast?q=Tokyo&units=metric&APPID=4dff50a83aa2145ba555d8f59e9d3ef0"
       )
       .then(
         function(response) {
