@@ -7,13 +7,13 @@
       <div v-show="loading">
         <v-progress-circular indeterminate color="#D32F2F"></v-progress-circular>
       </div>
-      <div class="display-1 py-8">
+      <div class="display-1">
         {{temp}}&deg;C
         <img v-bind:src="icon" />
       </div>
     </v-card-subtitle>
     <v-card-text>
-      <div class="title">
+      <div class="title pb-8">
         <v-list-item-icon>
           <v-icon>mdi-send</v-icon>
         </v-list-item-icon>
@@ -126,6 +126,7 @@ export default {
           mintemp: this.mintemp,
           Timestamp: this.Timestamp,
           Timestamp2: this.Timestamp2,
+          wind:this.wind,
           condition: this.condition.main
         })
         .then(function(docRef) {
