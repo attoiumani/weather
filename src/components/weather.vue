@@ -13,13 +13,20 @@
       </div>
     </v-card-subtitle>
     <v-card-text>
+      <div class="title">
+        <v-list-item-icon>
+          <v-icon>mdi-send</v-icon>
+        </v-list-item-icon>
+        <span>{{wind}}km/h</span>
+      </div>
+
       <div class="headline">
         <span class="red--text">{{maxtemp}}℃</span>
         /
         <span class="blue--text">{{mintemp}}℃</span>
       </div>
       <div>
-          <router-link :to="{ name: 'analytics', params: { value: this.place }}"></router-link>
+        <router-link :to="{ name: 'analytics', params: { value: this.place }}"></router-link>
       </div>
     </v-card-text>
     <v-card-actions class="pt-0">
@@ -59,6 +66,7 @@ export default {
       temp: null,
       maxtemp: null,
       mintemp: null,
+      wind: null,
       condition: {
         main: null
       },
@@ -87,6 +95,7 @@ export default {
         this.temp = response.data.main.temp;
         this.maxtemp = response.data.main.temp_max;
         this.mintemp = response.data.main.temp_min;
+        this.wind = response.data.wind.speed;
         this.condition = response.data.weather[0];
         this.icon =
           "https://openweathermap.org/img/w/" +
