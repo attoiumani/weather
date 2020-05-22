@@ -51,6 +51,7 @@ export default {
       temp: null,
       maxtemp: null,
       mintemp: null,
+      wind: null,
       condition: {
         main: null
       },
@@ -71,6 +72,7 @@ export default {
           this.maxtemp = response.data.main.temp_max;
           this.mintemp = response.data.main.temp_min;
           this.condition = response.data.weather[0];
+          this.wind = response.data.wind.speed;
           this.icon =
             "https://openweathermap.org/img/w/" +
             response.data.weather[0].icon +
