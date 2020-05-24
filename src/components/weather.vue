@@ -13,7 +13,7 @@
       </div>
     </v-card-subtitle>
     <v-card-text>
-      <div class="title pb-8">
+      <div class="title pb-6 pr-6">
         <v-list-item-icon>
           <v-icon>mdi-send</v-icon>
         </v-list-item-icon>
