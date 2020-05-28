@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import signup from "../views/signup.vue";
 import signin from "../views/signin.vue";
 import weather from "../views/weather.vue";
-import profile from "../views/profile.vue";
+import about from "../views/about.vue";
 import chart from "../views/chart.vue";
 import analytics from "../views/analytics.vue";
 import only from "../views/only.vue";
@@ -20,9 +20,9 @@ const routes = [
     component: weather
   },
   {
-    path: "/profile",
+    path: "/about",
     name: "hoprofileme",
-    component: profile
+    component: about
   },
   {
     path: "/signup",
