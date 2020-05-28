@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
 
 export default {
   name: "App",
@@ -41,19 +41,26 @@ export default {
     return {
       drawer: false,
       items: [
+        { title: "about", path: "/about", icon: "mdi-home-variant" },
         { title: "weather", path: "/", icon: "mdi-weather-pouring" },
-        { title: "profile", path: "/profile", icon: "mdi-home-variant" },
         { title: "chart", path: "/chart", icon: "mdi-ab-testing" },
-        {title: "Sign Up", path: "/signup", icon: "mdi-lock-open-variant-outline"},
-        { title: "only", path: "/only", icon: "mdi-account-lock" },
+        {
+          title: "Sign Up",
+          path: "/signup",
+          icon: "mdi-lock-open-variant-outline"
+        },
+        { title: "only", path: "/only", icon: "mdi-account-lock" }
       ]
     };
   },
-    methods: {
-    signOut: function () {
-      firebase.auth().signOut().then(() => {
-        this.$router.push('/')
-      })
+  methods: {
+    signOut: function() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push("/");
+        });
     }
   }
 };
