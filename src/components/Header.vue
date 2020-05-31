@@ -22,7 +22,7 @@
 
     <v-app-bar color="primary" dark clipped-left app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>portfolio</v-toolbar-title>
+      <v-toolbar-title>Weather Map</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text to="/signin">Login</v-btn>
