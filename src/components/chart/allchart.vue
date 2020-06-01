@@ -1,10 +1,11 @@
 <script>
-import { Line } from "vue-chartjs";
+import { Line ,mixins } from "vue-chartjs";
 import firebase from "firebase";
 import moment from "moment";
 
 export default {
   extends: Line,
+  mixins: [mixins.reactiveProp],
   data() {
     return {
       Today: null,
