@@ -27,48 +27,47 @@ export default {
   data() {
     return {
       name: null,
-          data: {
-            labels: [],
-            datasets: [
-              {
-                label: "℃",
-                data: [],
-                borderWidth: 1,
-                borderColor: "#FC2525",
-                pointBackgroundColor: "rgba(255, 0,0, 0.5)",
-                pointBorderColor: "white",
-                backgroundColor: "rgba(255, 0,0, 0.5)"
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              xAxes: [
-                {
-                  gridLines: {
-                    display: true,
-                    color: "rgba(0, 0, 0, 0.1)"
-                  }
-                }
-              ],
-              yAxes: [
-                {
-                  gridLines: {
-                    display: true,
-                    color: "rgba(0, 0, 0, 0.1)"
-                  }
-                }
-              ]
-            }
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: "℃",
+            data: [],
+            borderWidth: 1,
+            borderColor: "#FC2525",
+            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
+            pointBorderColor: "white",
+            backgroundColor: "rgba(255, 0,0, 0.5)"
           }
-
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: true,
+                color: "rgba(0, 0, 0, 0.1)"
+              }
+            }
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: true,
+                color: "rgba(0, 0, 0, 0.1)"
+              }
+            }
+          ]
+        }
+      }
     };
   },
   created: function() {
     this.name = this.$route.params.value;
-        let m = moment();
+    let m = moment();
     let Year = m.format("YYYY");
     let Month = m.format("MM");
     let day = m.format("DD");
@@ -84,6 +83,6 @@ export default {
           this.data.labels.push(doc.data().Timestamp2);
         });
       });
-  },
+  }
 };
 </script>
