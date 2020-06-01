@@ -4,9 +4,9 @@ const MyChart = {
   extends: Line,
   props: ["data", "options"],
   mounted() {
-    this.renderChart(this.data || this.chartData, this.options);
+    this.renderChart(this.data, this.options);
   },
-  watch: {
+ /* watch: {
     data: {
       handler() {
         this.renderChart(this.data, this.options);
@@ -15,7 +15,7 @@ const MyChart = {
       },
       deep: true
     }
-  }
+  }*/
 };
 export default MyChart;
 </script>
