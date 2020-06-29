@@ -11,7 +11,7 @@ export default {
   components: {
     allchart
   },
-  data: function () {
+  data() {
     return {
       Today: null,
       data: {
@@ -25,7 +25,7 @@ export default {
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
 
-          {
+       /*   {
             label: "tokyo",
             data: [],
             backgroundColor: "transparent",
@@ -45,7 +45,7 @@ export default {
             backgroundColor: "transparent",
             borderColor: "yellow",
             pointBackgroundColor: "yellow"
-          }
+          }*/
         ]
       },
       options: {
@@ -90,7 +90,7 @@ export default {
         });
       });
 
-    db.collection("tokyo")
+ /*   db.collection("tokyo")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
@@ -113,7 +113,7 @@ export default {
         snapshot.forEach(doc => {
           this.data.datasets[3].data.push(doc.data().temp);
         });
-      });
+      });*/
   }
 };
 </script>
