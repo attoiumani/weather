@@ -6,7 +6,7 @@ const MyChart = {
   mounted() {
     this.renderChart(this.data, this.options);
   },
- /* watch: {
+ watch: {
     data: {
       handler() {
         this.renderChart(this.data, this.options);
@@ -15,7 +15,7 @@ const MyChart = {
       },
       deep: true
     }
-  }*/
+  }
 };
 export default MyChart;
 </script>
