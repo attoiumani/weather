@@ -4,25 +4,32 @@ import { Line } from "vue-chartjs";
 export default {
   extends: Line,
   props: {
-    options: Object,
-    data: Object
-  },
-  data() {
-    return {};
+    options: Number,
+    data: Number
   },
   mounted() {
-    this.renderChart(this.data, this.options);
+    this.renderLineChart();
   },
-  /*watch: {
+  computed: {
+    chartData: function() {
+      return this.data;
+    }
+  },
+  methods: {
+    renderLineChart: function() {
+      this.renderChart(this.chartData, this.options);
+    }
+  },
+  watch: {
     data: {
       handler() {
         this.renderChart(this.data, this.options);
-        // for more errors uncomment this instead:
-        // this.$data._chart.update();
+        this._chart.destroy();
+        this.renderLineChart();
       },
       deep: true,
       immediate: false
     }
-  }*/
+  }
 };
 </script>
