@@ -23,7 +23,7 @@ export default {
   watch: {
     data: {
       handler() {
-        this.renderChart(this.data, this.options);
+        //this.renderChart(this.data, this.options);
         this._chart.destroy();
         this.renderLineChart();
       },
