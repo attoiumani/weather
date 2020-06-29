@@ -4,8 +4,14 @@ import { Line } from "vue-chartjs";
 export default {
   extends: Line,
 
-  props: ["data", "options"],
-  mounted:function() {
+  props: {
+    options: Object,
+    data: Object
+  },
+  data() {
+    return {};
+  },
+  mounted: function() {
     this.renderChart(this.data, this.options);
   },
   watch: {
@@ -16,7 +22,7 @@ export default {
         // this.$data._chart.update();
       },
       deep: true,
-      immediate: false,
+      immediate: false
     }
   }
 };
