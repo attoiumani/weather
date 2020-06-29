@@ -13,7 +13,7 @@ export default {
       handler() {
         this.renderChart(this.data, this.options);
         // for more errors uncomment this instead:
-         this.$data._chart.update();
+        // this.$data._chart.update();
       },
       deep: true,
       immediate: false,
