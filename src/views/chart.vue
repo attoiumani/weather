@@ -1,5 +1,5 @@
 <template>
-  <allchart :chartData="data" :options="options" />
+  <allchart :data="data" :options="options" />
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   components: {
     allchart
   },
-  data() {
+  data: function () {
     return {
       Today: null,
       data: {
