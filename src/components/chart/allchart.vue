@@ -1,22 +1,23 @@
 <script>
-import { Line,mixins } from "vue-chartjs";
-const { reactiveProp } = mixins;
+import { Line } from "vue-chartjs";
+
 export default {
   extends: Line,
-  mixins: [reactiveProp],
-  props: ["options"],
-  mounted() {
-    this.renderChart(this.chartData, this.options);
+
+  props: ["data", "options"],
+  mounted:function() {
+    this.renderChart(this.data, this.options);
   },
-  /*watch: {
+  watch: {
     data: {
       handler() {
         this.renderChart(this.data, this.options);
         // for more errors uncomment this instead:
-        // this.$data._chart.update();
+         this.$data._chart.update();
       },
-      deep: true
+      deep: true,
+      immediate: false,
     }
-  }*/
+  }
 };
 </script>
