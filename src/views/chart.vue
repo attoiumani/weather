@@ -1,5 +1,5 @@
 <template>
-  <allchart :data="data" :options="options" />
+  <allchart :chartData="data" :options="options" />
 </template>
 
 <script>
