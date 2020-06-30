@@ -1,5 +1,8 @@
 <template>
-  <allchart :data="data" :options="options" />
+  <allchart
+  v-if="loaded" 
+  :data="data" 
+  :options="options" />
 </template>
 
 <script>
@@ -13,6 +16,7 @@ export default {
   },
   data() {
     return {
+      loaded: false,
       Today: null,
       data: {
         labels: [],
@@ -87,6 +91,7 @@ export default {
         snapshot.forEach(doc => {
           this.data.datasets[0].data.push(doc.data().temp);
           this.data.labels.push(doc.data().Timestamp2);
+          this.loaded = true
         });
       });
 
