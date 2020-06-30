@@ -28,8 +28,7 @@ export default {
             borderColor: "rgba(1, 116, 188, 0.50)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
-
-       /*   {
+   {
             label: "tokyo",
             data: [],
             backgroundColor: "transparent",
@@ -49,7 +48,7 @@ export default {
             backgroundColor: "transparent",
             borderColor: "yellow",
             pointBackgroundColor: "yellow"
-          }*/
+          }
         ]
       },
       options: {
@@ -95,7 +94,15 @@ export default {
         });
       });
 
- /*   db.collection("tokyo")
+
+
+
+
+
+
+    
+
+   db.collection("tokyo")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
@@ -118,7 +125,7 @@ export default {
         snapshot.forEach(doc => {
           this.data.datasets[3].data.push(doc.data().temp);
         });
-      });*/
+      });
   }
 };
 </script>
