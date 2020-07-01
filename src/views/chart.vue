@@ -1,8 +1,5 @@
 <template>
-  <allchart
-  v-if="loaded" 
-  :data="data" 
-  :options="options" />
+  <allchart v-if="loaded" :data="data" :options="options" />
 </template>
 
 <script>
@@ -28,8 +25,7 @@ export default {
             borderColor: "rgba(1, 116, 188, 0.50)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
-
-       /*   {
+          {
             label: "tokyo",
             data: [],
             backgroundColor: "transparent",
@@ -49,7 +45,7 @@ export default {
             backgroundColor: "transparent",
             borderColor: "yellow",
             pointBackgroundColor: "yellow"
-          }*/
+          }
         ]
       },
       options: {
@@ -83,29 +79,23 @@ export default {
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
     let db = firebase.firestore();
+    const place = ["osaka", "tokyo", "kanazawa"];
 
-    db.collection("osaka")
-      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          this.data.datasets[0].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp2);
-          this.loaded = true
+    for (let i = 0; i < place.length; ++i) {
+      db.collection(place[i])
+        .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.data.datasets[i].data.push(doc.data().temp);
+            this.data.labels.push(doc.data().Timestamp2);
+            this.loaded = true;
+          });
         });
-      });
-
-
-
-
- /*  
- 
- 
-     for (let i = 0; i < this.data.length; i++) {
-      chartData.labels.push(this.data[i].date);
-      chartData.datasets[0].data.push(this.data[i].new);
-      chartData.datasets[1].data.push(this.data[i].old);
     }
+
+    /*  
+ 
  
  
  db.collection("tokyo")
@@ -131,7 +121,10 @@ export default {
         snapshot.forEach(doc => {
           this.data.datasets[3].data.push(doc.data().temp);
         });
-      });*/
-  }
+      });
+      
+      
+      */
+  },
 };
 </script>
