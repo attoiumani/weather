@@ -79,7 +79,7 @@ export default {
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
     let db = firebase.firestore();
-    const place = ["osaka", "tokyo", "kanazawa"];
+    const place = ["osaka", "tokyo", "kanazawa","fukuoka"];
 
     for (let i = 0; i < place.length; ++i) {
       db.collection(place[i])
