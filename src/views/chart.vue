@@ -101,6 +101,27 @@ export default {
           this.loaded = true;
         });
       });
+
+    /*  
+    db.collection("kanazawa")
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.data.datasets[2].data.push(doc.data().temp);
+        });
+      });
+    db.collection("fukuoka")
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.data.datasets[3].data.push(doc.data().temp);
+        });
+      });
+      
+      
+      */
   }
 };
 </script>
