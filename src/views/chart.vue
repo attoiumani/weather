@@ -81,7 +81,7 @@ export default {
     let db = firebase.firestore();
     const place = ["osaka", "tokyo", "kanazawa", "fukuoka"];
 
-    for (let i = 0; i < place.length; i++) {
+    for (let i = 0; i < place.length; ++i) {
       db.collection(place[i])
         .where("Timestamp", "<=", this.Today) //今日までのtempを取得
         .get()
