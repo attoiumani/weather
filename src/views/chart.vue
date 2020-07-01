@@ -84,8 +84,6 @@ export default {
     this.Today = Year + "" + Month + "" + day;
     let db = firebase.firestore();
 
-    
-
     db.collection("osaka")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
