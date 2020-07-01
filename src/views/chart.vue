@@ -79,7 +79,7 @@ export default {
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
     let db = firebase.firestore();
-    const place = ["osaka", "tokyo","kanazawa","fukuoka"];
+    const place = ["osaka", "tokyo", "kanazawa", "fukuoka"];
 
     for (let i = 0; i < place.length; ++i) {
       db.collection(place[i])
@@ -92,23 +92,17 @@ export default {
         });
     }
 
- 
- 
- 
- 
- db.collection("fukuoka")
+    db.collection("fukuoka")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-            this.data.labels.push(doc.data().Timestamp2);
-            this.loaded = true;
+          this.data.labels.push(doc.data().Timestamp2);
+          this.loaded = true;
         });
       });
 
-
-
-         /*  
+    /*  
     db.collection("kanazawa")
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
@@ -128,6 +122,6 @@ export default {
       
       
       */
-  },
+  }
 };
 </script>
