@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-            loaded: false,
+      loaded: false,
       name: null,
       data: {
         labels: [],
