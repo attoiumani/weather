@@ -2,7 +2,7 @@
   <div id="app">
     This is hoge page. value is {{ $route.params.value }}
     <linechart :place="name" />
-    <piechart :data="data" :options="options" />
+    <piechart v-if="loaded" :data="data" :options="options" />
     <bar :place="name" />
     <radar :place="name" />
   </div>
@@ -26,6 +26,7 @@ export default {
   },
   data() {
     return {
+            loaded: false,
       name: null,
       data: {
         labels: [],
@@ -81,6 +82,7 @@ export default {
         snapshot.forEach(doc => {
           this.data.datasets[0].data.push(doc.data().temp);
           this.data.labels.push(doc.data().Timestamp2);
+          this.loaded = true;
         });
       });
   }
