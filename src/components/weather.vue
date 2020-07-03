@@ -121,7 +121,7 @@ export default {
         .collection(this.place) //props
         .doc(this.Timestamp) //tody
         .set({
-          temp: this.temp,
+          temp: this.$store.getters.getStateDataSetTemp,
           maxtemp: this.maxtemp,
           mintemp: this.mintemp,
           Timestamp: this.Timestamp,
@@ -139,6 +139,29 @@ export default {
         });
     }
   },
+  mounted() {
+      firebase
+        .firestore()
+        .collection(this.place) //props
+        .doc(this.Timestamp) //tody
+        .set({
+          temp: this.$store.getters.getStateDataSetTemp,
+          maxtemp: this.maxtemp,
+          mintemp: this.mintemp,
+          Timestamp: this.Timestamp,
+          Timestamp2: this.Timestamp2,
+          wind:this.wind,
+          condition: this.condition.main
+        })
+        .then(function(docRef) {
+          // 正常にデータ保存できた時の処理
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+          // エラー発生時の処理
+          console.error("Error adding document: ", error);
+        });
+},
   props: ["place"]
 };
 </script>
