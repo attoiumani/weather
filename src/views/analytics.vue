@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     This is hoge page. value is {{ $route.params.value }}
-    <linechart :place="name" />
+    <linechart v-if="loaded" :data="data" :options="options"  />
     <piechart v-if="loaded" :data="data" :options="options" />
-    <bar :place="name" />
-    <radar :place="name" />
+    <bar v-if="loaded" :data="data" :options="options" />
+    <radar v-if="loaded" :data="data" :options="options" />
   </div>
 </template>
 
