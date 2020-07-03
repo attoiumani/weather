@@ -102,7 +102,8 @@ export default {
           response.data.weather[0].icon +
           ".png";
         this.loading = false;
-      }.bind(this)
+      }.bind(this),
+      this.sendItem() 
     );
   },
   methods: {
