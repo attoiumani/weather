@@ -12,7 +12,7 @@
       <div v-show="!dataOutputLoading">{{dataOutputTemp}}℃</div> 
     </v-card-subtitle>
     <v-card-text>
-      <div>Today's high temperature {{dataOutputMaxTemp}}℃</div>
+      <div>Today'ss high temperature {{dataOutputMaxTemp}}℃</div>
       <div>Lowest Temperature {{dataOutputMinTemp}}℃</div>
       <div>The current weather {{dataOutputCondition}}</div>
     </v-card-text>
