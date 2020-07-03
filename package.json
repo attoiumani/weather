@@ -10,8 +10,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
-    "core-js": "^3.6.4",
-    "firebase": "^7.14.2",
+    "core-js": "^3.6.5",
+    "firebase": "^7.15.5",
     "moment": "^2.25.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
