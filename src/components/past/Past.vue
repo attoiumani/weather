@@ -1,21 +1,16 @@
 <!--testコンポーネントsapporo一週間とる-->
 
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="400"
-  >
+  <v-card class="mx-auto" max-width="400">
     <v-img class="white--text align-end" height="300px" :src="image_src">
       <v-card-title>{{city}}</v-card-title>
     </v-img>
 
     <v-card-text>
       <v-row align="center">
-        <v-col class="headline" cols="6">
-          {{temp}}&deg;C
-        </v-col>
+        <v-col class="headline" cols="6">{{temp}}&deg;C</v-col>
         <v-col cols="6">
-<img v-bind:src="icon" />
+          <img v-bind:src="icon" />
         </v-col>
       </v-row>
     </v-card-text>
@@ -34,19 +29,15 @@
       <v-list-item-subtitle>48%</v-list-item-subtitle>
     </v-list-item>
 
-
     <v-list class="transparent">
-      <v-list-item
-      >
+      <v-list-item>
         <v-list-item-title>月曜日</v-list-item-title>
 
         <v-list-item-icon>
           <img v-bind:src="icon" />
         </v-list-item-icon>
 
-        <v-list-item-subtitle class="text-right">
-          ああ
-        </v-list-item-subtitle>
+        <v-list-item-subtitle class="text-right">ああ</v-list-item-subtitle>
       </v-list-item>
     </v-list>
 
@@ -90,7 +81,7 @@ export default {
       .then(
         function(response) {
           this.temp = response.data.list[0].main.temp;
-                    this.icon =
+          this.icon =
             "https://openweathermap.org/img/w/" +
             response.data.list[0].weather[0].icon +
             ".png";
