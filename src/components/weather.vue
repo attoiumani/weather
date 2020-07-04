@@ -8,8 +8,7 @@
       <div v-show="loading">
         <v-progress-circular indeterminate color="#D32F2F"></v-progress-circular>
       </div>
-
-      <div v-show="!loading" class="display-1">{{temp}}℃</div>
+      <div v-show="!loading" class="display-1 pb-7">{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
       <div class="headline">
