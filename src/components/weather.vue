@@ -4,22 +4,14 @@
       <v-card-title>{{city}}</v-card-title>
     </v-img>
     <v-card-subtitle class="pb-0 text--primary">
+      <img v-bind:src="icon" />
       <div v-show="loading">
         <v-progress-circular indeterminate color="#D32F2F"></v-progress-circular>
       </div>
-      <div class="display-1">
-        {{temp}}&deg;C
-        <img v-bind:src="icon" />
-      </div>
+
+      <div v-show="!loading" class="display-1">{{temp}}℃</div>
     </v-card-subtitle>
     <v-card-text>
-      <div class="title text-center py-6">
-        <v-list-item-icon>
-          <v-icon>mdi-send</v-icon>
-        </v-list-item-icon>
-        <span>{{wind}}km/h</span>
-      </div>
-
       <div class="headline">
         <span class="red--text">{{maxtemp}}℃</span>
         /
@@ -111,31 +103,31 @@ export default {
         "%20%23今の温度";
       //シェア用の画面へ移行
       location.href = shareURL;
-    },
+    }
   },
   updated() {
-      firebase
-        .firestore()
-        .collection(this.place) //props
-        .doc(this.Timestamp) //tody
-        .set({
-          temp: this.$store.getters.getStateDataSetTemp,
-          maxtemp: this.maxtemp,
-          mintemp: this.mintemp,
-          Timestamp: this.Timestamp,
-          Timestamp2: this.Timestamp2,
-          wind:this.wind,
-          condition: this.condition.main
-        })
-        .then(function(docRef) {
-          // 正常にデータ保存できた時の処理
-          console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
-          // エラー発生時の処理
-          console.error("Error adding document: ", error);
-        });
-},
+    firebase
+      .firestore()
+      .collection(this.place) //props
+      .doc(this.Timestamp) //tody
+      .set({
+        temp: this.$store.getters.getStateDataSetTemp,
+        maxtemp: this.maxtemp,
+        mintemp: this.mintemp,
+        Timestamp: this.Timestamp,
+        Timestamp2: this.Timestamp2,
+        wind: this.wind,
+        condition: this.condition.main
+      })
+      .then(function(docRef) {
+        // 正常にデータ保存できた時の処理
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+        // エラー発生時の処理
+        console.error("Error adding document: ", error);
+      });
+  },
   props: ["place"]
 };
 </script>
