@@ -110,7 +110,7 @@ export default {
       .collection(this.place) //props
       .doc(this.Timestamp) //tody
       .set({
-        temp: this.$store.getters.getStateDataSetTemp,
+        temp: this.maxtemp,
         maxtemp: this.maxtemp,
         mintemp: this.mintemp,
         Timestamp: this.Timestamp,
