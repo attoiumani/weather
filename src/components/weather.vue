@@ -42,9 +42,6 @@
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
         <v-btn text>
-          <v-icon color="orange">mdi-firebase</v-icon>
-        </v-btn>
-        <v-btn text>
           <router-link :to="{ name: 'analytics', params: { value: this.place }}">Analytics</router-link>
         </v-btn>
       </div>
