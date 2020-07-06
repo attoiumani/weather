@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     This is hoge page. value is {{ $route.params.value }}
-    <linechart v-if="loaded" :data="data" :options="options"  />
-    <piechart v-if="loaded" :data="data" :options="options" />
-    <bar v-if="loaded" :data="data" :options="options" />
-    <radar v-if="loaded" :data="data" :options="options" />
+    <linechart v-if="loaded" :data="data1" :options="options" />
+    <piechart v-if="loaded" :data="data2" :options="options" />
+    <bar v-if="loaded" :data="data1" :options="options" />
+    <radar v-if="loaded" :data="data1" :options="options" />
   </div>
 </template>
 
@@ -28,7 +28,7 @@ export default {
     return {
       loaded: false,
       name: null,
-      data: {
+      data1: {
         labels: [],
         datasets: [
           {
@@ -42,6 +42,22 @@ export default {
           }
         ]
       },
+      data2: {
+        labels: [],
+        datasets: [
+          {
+            label: "℃",
+            data: [100],
+            data2: [],
+            borderWidth: 1,
+            borderColor: "#FC2525",
+            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
+            pointBorderColor: "white",
+            backgroundColor: "rgba(255, 0,0, 0.5)"
+          }
+        ]
+      },
+
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -80,8 +96,10 @@ export default {
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
-          this.data.datasets[0].data.push(doc.data().temp);
-          this.data.labels.push(doc.data().Timestamp2);
+          this.data1.datasets[0].data.push(doc.data().temp);
+          this.data1.labels.push(doc.data().Timestamp2);
+          this.data2.labels.push(doc.data().condition);
+          this.data2.datasets[0].data2.push(doc.data().condition);
           this.loaded = true;
         });
       });
