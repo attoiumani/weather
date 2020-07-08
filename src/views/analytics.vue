@@ -6,11 +6,11 @@
     <span>temp</span>
     <linechart v-if="loaded" :data="data1" :options="options" />
     <span>Days</span>
-    <piechart v-if="loaded" :data="data2" :options="options" />
+    <piechart v-if="loaded" :data="data2" :options="options2" />
     <!--<span>temp</span>
     <bar v-if="loaded" :data="data3" :options="options" />-->
     <span>Precipitation amount</span>
-    <radar v-if="loaded" :data="data4" :options="options" />
+    <radar v-if="loaded" :data="data4" :options="options2" />
   </div>
 </template>
 
