@@ -44,6 +44,8 @@ export default {
           }
         ]
       },
+
+      
       data2: {
         labels: [],
         datasets: [
