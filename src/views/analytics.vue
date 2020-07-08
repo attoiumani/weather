@@ -1,16 +1,26 @@
 <template>
   <div id="app">
-    <div>
+    <h1>
       <span>This page is {{ $route.params.value }} analytics</span>
+    </h1>
+    <div>
+      <span>temp</span>
+      <linechart v-if="loaded" :data="data1" :options="options" />
     </div>
-    <span>temp</span>
-    <linechart v-if="loaded" :data="data1" :options="options" />
-    <span>Days</span>
-    <piechart v-if="loaded" :data="data2" :options="options2" />
+    <v-row>
+      <v-col cols="12" sm="6" md="6" lg="6" xl="6">
+        <span>Days</span>
+        <piechart v-if="loaded" :data="data2" :options="options2" />
+      </v-col>
+
+      <v-col cols="12" sm="6" md="6" lg="6" xl="6">
+        <span>Precipitation amount</span>
+        <radar v-if="loaded" :data="data4" :options="options2" />
+      </v-col>
+    </v-row>
+
     <!--<span>temp</span>
     <bar v-if="loaded" :data="data3" :options="options" />-->
-    <span>Precipitation amount</span>
-    <radar v-if="loaded" :data="data4" :options="options2" />
   </div>
 </template>
 
@@ -133,12 +143,12 @@ export default {
         scales: {
           xAxes: [
             {
-              display: false, 
+              display: false
             }
           ],
           yAxes: [
             {
-              display: false, 
+              display: false
             }
           ]
         }
