@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <span>
-    This page is {{ $route.params.value }} analytics
-    </span>
+    <span>This page is {{ $route.params.value }} analytics</span>
     <linechart v-if="loaded" :data="data1" :options="options" />
     <piechart v-if="loaded" :data="data2" :options="options" />
     <bar v-if="loaded" :data="data3" :options="options" />
-    <radar v-if="loaded" :data="data1" :options="options" />
+    <radar v-if="loaded" :data="data4" :options="options" />
   </div>
 </template>
 
@@ -45,13 +43,12 @@ export default {
         ]
       },
 
-
       data2: {
-        labels: ["rain","cloud","sun"],
+        labels: ["rain", "cloud", "sun"],
         datasets: [
           {
             label: "℃",
-            data: [20,10,40],
+            data: [20, 10, 40],
             data2: [],
             borderWidth: 1,
             borderColor: "#FC2525",
@@ -62,16 +59,32 @@ export default {
         ]
       },
 
-            data3: {
-        labels: ["1月","2月","3月"],
+      data3: {
+        labels: ["1月", "2月", "3月"],
         datasets: [
           {
             label: "mm",
-            data: [80,80,80],
+            data: [80, 80, 80],
             data2: [],
             borderWidth: 1,
             borderColor: "#FC2525",
             pointBackgroundColor: "rgba(255, 0,0, 0.5)",
+            pointBorderColor: "white",
+            backgroundColor: "rgba(255, 0,0, 0.5)"
+          }
+        ]
+      },
+
+      data4: {
+        labels: ["1月", "2月", "3月"],
+        datasets: [
+          {
+            label: "mm",
+            data: [80, 80, 80],
+            data2: [],
+            borderWidth: 1,
+            borderColor: "#FC2525",
+            pointBackgroundColor: "rgba(255,a 0,0, 0.5)",
             pointBorderColor: "white",
             backgroundColor: "rgba(255, 0,0, 0.5)"
           }
@@ -110,7 +123,6 @@ export default {
     this.Today = Year + "" + Month + "" + day;
     this.db = firebase.firestore();
 
-
     this.db
       .collection(this.$route.params.value)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
@@ -122,7 +134,7 @@ export default {
           this.loaded = true;
         });
       });
-        /*  this.db
+    /*  this.db
       .collection(this.$route.params.value)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
