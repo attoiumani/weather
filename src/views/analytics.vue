@@ -133,18 +133,12 @@ export default {
         scales: {
           xAxes: [
             {
-              gridLines: {
-                display: false,
-                color: "rgba(0, 0, 0, 0.1)"
-              }
+              display: false, 
             }
           ],
           yAxes: [
             {
-              gridLines: {
-                display: false,
-                color: "rgba(0, 0, 0, 0.1)"
-              }
+              display: false, 
             }
           ]
         }
