@@ -5,7 +5,7 @@
     </span>
     <linechart v-if="loaded" :data="data1" :options="options" />
     <piechart v-if="loaded" :data="data2" :options="options" />
-    <bar v-if="loaded" :data="data1" :options="options" />
+    <bar v-if="loaded" :data="data3" :options="options" />
     <radar v-if="loaded" :data="data1" :options="options" />
   </div>
 </template>
@@ -45,13 +45,29 @@ export default {
         ]
       },
 
-      
+
       data2: {
-        labels: [],
+        labels: ["rain","cloud","sun"],
         datasets: [
           {
             label: "℃",
-            data: [100],
+            data: [20,10,40],
+            data2: [],
+            borderWidth: 1,
+            borderColor: "#FC2525",
+            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
+            pointBorderColor: "white",
+            backgroundColor: "rgba(255, 0,0, 0.5)"
+          }
+        ]
+      },
+
+            data3: {
+        labels: ["1月","2月","3月"],
+        datasets: [
+          {
+            label: "mm",
+            data: [80,80,80],
             data2: [],
             borderWidth: 1,
             borderColor: "#FC2525",
@@ -93,6 +109,8 @@ export default {
     let day = m.format("DD");
     this.Today = Year + "" + Month + "" + day;
     this.db = firebase.firestore();
+
+
     this.db
       .collection(this.$route.params.value)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
@@ -101,11 +119,20 @@ export default {
         snapshot.forEach(doc => {
           this.data1.datasets[0].data.push(doc.data().temp);
           this.data1.labels.push(doc.data().Timestamp2);
+          this.loaded = true;
+        });
+      });
+        /*  this.db
+      .collection(this.$route.params.value)
+      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
           this.data2.labels.push(doc.data().condition);
           this.data2.datasets[0].data2.push(doc.data().condition);
           this.loaded = true;
         });
-      });
+      });*/
   }
 };
 </script>
