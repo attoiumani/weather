@@ -66,11 +66,11 @@ export default {
             label: "mm",
             data: [80, 80, 80],
             data2: [],
-            borderWidth: 1,
-            borderColor: "#FC2525",
-            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
-            pointBorderColor: "white",
-            backgroundColor: "rgba(255, 0,0, 0.5)"
+          backgroundColor: [
+            "#0074D9",
+            "#FF4136",
+            "rgba(179,181,198,0.2)",
+          ]
           }
         ]
       },
