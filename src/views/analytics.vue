@@ -76,7 +76,7 @@ export default {
       },
 
       data4: {
-                labels: [
+        labels: [
           "Eating",
           "Drinking",
           "Sleeping",
