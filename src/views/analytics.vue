@@ -1,9 +1,15 @@
 <template>
   <div id="app">
-    <span>This page is {{ $route.params.value }} analytics</span>
+    <div>
+      <span>This page is {{ $route.params.value }} analytics</span>
+    </div>
+    <span>temp</span>
     <linechart v-if="loaded" :data="data1" :options="options" />
+    <span>Days</span>
     <piechart v-if="loaded" :data="data2" :options="options" />
-    <bar v-if="loaded" :data="data3" :options="options" />
+    <!--<span>temp</span>
+    <bar v-if="loaded" :data="data3" :options="options" />-->
+    <span>Precipitation amount</span>
     <radar v-if="loaded" :data="data4" :options="options" />
   </div>
 </template>
@@ -15,14 +21,14 @@ import moment from "moment";
 import linechart from "@/components/chart/linechart";
 import piechart from "@/components/chart/piechart";
 import radar from "@/components/chart/radar";
-import bar from "@/components/chart/bar";
+//import bar from "@/components/chart/bar";
 
 export default {
   components: {
     linechart,
     piechart,
-    radar,
-    bar
+    radar
+    //bar
   },
   data() {
     return {
@@ -34,11 +40,9 @@ export default {
           {
             label: "℃",
             data: [],
-            borderWidth: 1,
-            borderColor: "#FC2525",
-            pointBackgroundColor: "rgba(255, 0,0, 0.5)",
-            pointBorderColor: "white",
-            backgroundColor: "rgba(255, 0,0, 0.5)"
+            backgroundColor: "transparent",
+            borderColor: "rgba(1, 116, 188, 0.50)",
+            pointBackgroundColor: "rgba(171, 71, 188, 1)"
           }
         ]
       },
@@ -59,7 +63,7 @@ export default {
         ]
       },
 
-      data3: {
+      /*data3: {
         labels: ["1月", "2月", "3月"],
         datasets: [
           {
@@ -73,18 +77,10 @@ export default {
           ]
           }
         ]
-      },
+      },*/
 
       data4: {
-        labels: [
-          "Eating",
-          "Drinking",
-          "Sleeping",
-          "Designing",
-          "Coding",
-          "Cycling",
-          "Running"
-        ],
+        labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月"],
         datasets: [
           {
             label: "My First dataset",
