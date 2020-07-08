@@ -126,6 +126,28 @@ export default {
             }
           ]
         }
+      },
+      options2: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: false,
+                color: "rgba(0, 0, 0, 0.1)"
+              }
+            }
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: false,
+                color: "rgba(0, 0, 0, 0.1)"
+              }
+            }
+          ]
+        }
       }
     };
   },
