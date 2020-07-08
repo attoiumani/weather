@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    This is hoge page. value is {{ $route.params.value }}
+    <span>
+    This page is {{ $route.params.value }} analytics
+    </span>
     <linechart v-if="loaded" :data="data1" :options="options" />
     <piechart v-if="loaded" :data="data2" :options="options" />
     <bar v-if="loaded" :data="data1" :options="options" />
@@ -83,7 +85,6 @@ export default {
     };
   },
   created: function() {
-    this.name = this.$route.params.value;
     let m = moment();
     let Year = m.format("YYYY");
     let Month = m.format("MM");
@@ -91,7 +92,7 @@ export default {
     this.Today = Year + "" + Month + "" + day;
     this.db = firebase.firestore();
     this.db
-      .collection(this.name)
+      .collection(this.$route.params.value)
       .where("Timestamp", "<=", this.Today) //今日までのtempを取得
       .get()
       .then(snapshot => {
