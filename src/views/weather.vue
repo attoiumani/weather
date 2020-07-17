@@ -28,7 +28,6 @@ import weather from "@/components/weather";
 
 export default {
   components: {
-
     weather
   }
 };
