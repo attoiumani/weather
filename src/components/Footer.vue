@@ -1,9 +1,8 @@
 <template>
   <div>
-    <v-footer color="primary" dark>
+    <v-footer  color="primary" dark>
       <v-col class="text-center">
-        {{YMT}} —
-        <strong>Vuetify</strong>
+        {{YMT}} 
       </v-col>
     </v-footer>
   </div>
