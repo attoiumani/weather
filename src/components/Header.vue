@@ -4,7 +4,6 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">Application</v-list-item-title>
-          <v-list-item-subtitle>subtext</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <v-divider></v-divider>
@@ -20,7 +19,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar color="primary" dark clipped-left app>
+    <v-app-bar color="#f0ffff" flat clipped-left hide-on-scroll app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Weather Map</v-toolbar-title>
       <v-spacer></v-spacer>
