@@ -17,7 +17,8 @@ const routes = [
   {
     path: "/",
     name: "weather",
-    component: weather
+    component: weather,
+    meta: { title: 'weatherMap' }
   },
   {
     path: "/about",
