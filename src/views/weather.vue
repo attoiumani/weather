@@ -29,7 +29,7 @@ export default {
       ],
       dropdown: [
         {
-          text: "0℃→1℃",
+          text: "N→S",
           callback: () =>
             this.Items.sort(function(a, b) {
               if (a.id < b.id) return -1;
@@ -46,7 +46,7 @@ export default {
               return 0;
             })
         },
-        { text: "N→S" }
+        { text: "0℃→1℃" }
       ]
     };
   },
