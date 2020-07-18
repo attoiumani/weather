@@ -1,12 +1,13 @@
 <template>
   <v-row>
-  <v-container id="dropdown-example-2">
+  <v-container id="dropdown-example-3">
     <v-overflow-btn
       class="my-2"
-      :items="dropdown_icon"
-      label="Overflow Btn w/ segmented"
-      segmented
-      target="#dropdown-example-2"
+      :items="dropdown_edit"
+      label="Overflow Btn w/ counter"
+      counter
+      item-text="text"
+      tem-value="text"
     ></v-overflow-btn>
   </v-container>
     <div>
@@ -46,7 +47,7 @@ export default {
         { id: 5, place: "osaka" },
         { id: 6, place: "fukuoka" }
       ],
-      dropdown_icon: [
+      dropdown_edit: [
         { text: "0℃→1℃" },
         { text: "A→Z" },
         { text: "N→S" },
