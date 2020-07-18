@@ -1,5 +1,14 @@
 <template>
   <v-row>
+    <v-container id="dropdown-example-3">
+      <v-overflow-btn
+        class="my-2"
+        :items="dropdown_edit"
+        label="Overflow Btn w/ counter"
+        counter
+        item-value="text"
+      ></v-overflow-btn>
+    </v-container>
     <div>
       <ul>
         <li>
@@ -36,6 +45,13 @@ export default {
         { id: 4, place: "kanazawa" },
         { id: 5, place: "osaka" },
         { id: 6, place: "fukuoka" }
+      ],
+      dropdown_edit: [
+        { text: "100%" },
+        { text: "75%" },
+        { text: "50%" },
+        { text: "25%" },
+        { text: "0%" }
       ]
     };
   },
