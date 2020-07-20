@@ -6,7 +6,7 @@
     <v-col :key="item.id" v-for="item in Items" cols="12" sm="12" md="6" lg="4" xl="4">
       <weather :place="item.place" @emit="parentMethod" />
     </v-col>
-    <div>{{Items.temp}}</div>
+    <div>llllll{{Items[0].temp}}</div>
   </v-row>
 </template>
 
@@ -20,7 +20,6 @@ export default {
   },
   data() {
     return {
-      message: null,
       Items: [
         { id: 1, place: "sapporo", temp: null },
         { id: 2, place: "sendai", temp: null },
@@ -48,13 +47,26 @@ export default {
               return 0;
             })
         },
-        { text: "0℃→1℃" }
+        {
+          text: "0℃→1℃",
+          callback: () =>
+            this.Items.sort(function(a, b) {
+              if (a.temp < b.temp) return -1;
+              if (a.temp > b.temp) return 1;
+              return 0;
+            })
+        }
       ]
     };
   },
   methods: {
     parentMethod(payload) {
-      this.Items.temp = payload;
+      this.Items[0].temp = payload;
+      this.Items[1].temp = payload;
+      this.Items[2].temp = payload;
+      this.Items[3].temp = payload;
+      this.Items[4].temp = payload;
+      this.Items[5].temp = payload;
     }
   }
 };
