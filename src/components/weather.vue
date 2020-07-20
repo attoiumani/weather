@@ -52,6 +52,7 @@ export default {
       image_src: require(`@/assets/images/${this.place}.png`), //props
       city: null,
       temp: null,
+      test: 200,
       maxtemp: null,
       mintemp: null,
       wind: null,
@@ -102,6 +103,9 @@ export default {
         "%20%23今の温度";
       //シェア用の画面へ移行
       location.href = shareURL;
+    },
+    emitEvent() {
+      this.$emit("emit", this.temp);
     }
   },
   updated() {
@@ -126,6 +130,8 @@ export default {
         // エラー発生時の処理
         console.error("Error adding document: ", error);
       });
+      
+    this.emitEvent();
   },
   props: ["place"]
 };
