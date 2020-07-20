@@ -52,7 +52,6 @@ export default {
       image_src: require(`@/assets/images/${this.place}.png`), //props
       city: null,
       temp: null,
-      test: 200,
       maxtemp: null,
       mintemp: null,
       wind: null,
