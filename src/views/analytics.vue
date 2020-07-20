@@ -182,6 +182,10 @@ export default {
         snapshot.forEach(doc => {
           this.data2.labels.push(doc.data().condition);
           this.data2.datasets[0].data2.push(doc.data().condition);
+          if(data2[0]=sun){
+            data[1]=data[1]+1
+            data2[0]=null
+          }
           this.loaded = true;
         });
       });*/
