@@ -29,8 +29,7 @@
         <v-btn @click="twitterShare" text>
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
-        <v-btn text>
-          <router-link :to="{ name: 'analytics', params: { value: this.place }}">Analytics</router-link>
+        <v-btn text :to="{ name: 'analytics', params: { value: this.place }}">
         </v-btn>
       </div>
     </v-expand-transition>
