@@ -6,7 +6,6 @@
     <v-col :key="item.id" v-for="item in Items" cols="12" sm="12" md="6" lg="4" xl="4">
       <weather :place="item.place" @emit="parentMethod" />
     </v-col>
-    <div>llllll{{Items[0].temp}}</div>
   </v-row>
 </template>
 
@@ -61,23 +60,10 @@ export default {
   },
   methods: {
     parentMethod(temp, place) {
-      if (this.Items[0].place == place) {
-        this.Items[0].temp = temp;
-      }
-      if (this.Items[1].place == place) {
-        this.Items[1].temp = temp;
-      }
-      if (this.Items[2].place == place) {
-        this.Items[2].temp = temp;
-      }
-      if (this.Items[3].place == place) {
-        this.Items[3].temp = temp;
-      }
-      if (this.Items[4].place == place) {
-        this.Items[4].temp = temp;
-      }
-      if (this.Items[5].place == place) {
-        this.Items[5].temp = temp;
+      for (let i = 0; i < this.Items.length; i++) {
+        if (this.Items[i].place == place) {
+          this.Items[i].temp = temp;
+        }
       }
     }
   }
