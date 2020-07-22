@@ -20,12 +20,13 @@ export default {
   data() {
     return {
       Items: [
-        { id: 1, place: "sapporo", temp: null },
-        { id: 2, place: "sendai", temp: null },
-        { id: 3, place: "tokyo", temp: null },
-        { id: 4, place: "kanazawa", temp: null },
-        { id: 5, place: "osaka", temp: null },
-        { id: 6, place: "fukuoka", temp: null }
+        { id: 1, place: "hokkaido", temp: null },
+        { id: 2, place: "aomori", temp: null },
+        { id: 3, place: "sendai", temp: null },
+        { id: 4, place: "tokyo", temp: null },
+        { id: 5, place: "kanazawa", temp: null },
+        { id: 6, place: "osaka", temp: null },
+        { id: 7, place: "fukuoka", temp: null }
       ],
       dropdown: [
         {
