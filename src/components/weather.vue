@@ -104,7 +104,7 @@ export default {
       location.href = shareURL;
     },
     emitEvent() {
-      this.$emit("emit", this.temp);
+      this.$emit("emit", this.temp,this.place);
     }
   },
   updated() {
