@@ -113,7 +113,7 @@ export default {
       .collection(this.place) //props
       .doc(this.Timestamp) //tody
       .set({
-        temp: this.maxtemp,
+        temp: this.temp,
         maxtemp: this.maxtemp,
         mintemp: this.mintemp,
         Timestamp: this.Timestamp,
