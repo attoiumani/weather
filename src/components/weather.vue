@@ -30,6 +30,7 @@
           <v-icon color="blue">mdi-twitter</v-icon>
         </v-btn>
         <v-btn text :to="{ name: 'analytics', params: { value: this.place }}">
+          analytics
         </v-btn>
       </div>
     </v-expand-transition>
