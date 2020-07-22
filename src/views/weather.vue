@@ -60,13 +60,25 @@ export default {
     };
   },
   methods: {
-    parentMethod(payload) {
-      this.Items[0].temp = payload;
-      this.Items[1].temp = payload;
-      this.Items[2].temp = payload;
-      this.Items[3].temp = payload;
-      this.Items[4].temp = payload;
-      this.Items[5].temp = payload;
+    parentMethod(temp, place) {
+      if (this.Items[0].place == place) {
+        this.Items[0].temp = temp;
+      }
+      if (this.Items[1].place == place) {
+        this.Items[1].temp = temp;
+      }
+      if (this.Items[2].place == place) {
+        this.Items[2].temp = temp;
+      }
+      if (this.Items[3].place == place) {
+        this.Items[3].temp = temp;
+      }
+      if (this.Items[4].place == place) {
+        this.Items[4].temp = temp;
+      }
+      if (this.Items[5].place == place) {
+        this.Items[5].temp = temp;
+      }
     }
   }
 };
