@@ -1,8 +1,21 @@
 <template>
   <v-card class="mx-auto" max-width="400">
-    <v-img class="white--text align-end" height="300px" :src="image_src">
-      <v-card-title>{{city}}</v-card-title>
-    </v-img>
+    <v-hover v-slot:default="{ hover }">
+      <v-img class="white--text align-end" height="300px" :src="image_src">
+        <v-card-title>{{city}}</v-card-title>
+        <v-expand-transition>
+          <div
+            v-if="hover"
+            class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
+            style="height: 100%;"
+          >
+            <v-btn @click="twitterShare" text>
+              <v-icon color="indigo">mdi-twitter</v-icon>
+            </v-btn>
+          </div>
+        </v-expand-transition>
+      </v-img>
+    </v-hover>
     <v-card-subtitle class="pb-0 text--primary">
       <img v-bind:src="icon" />
       <div v-show="loading">
@@ -17,23 +30,20 @@
         <span class="blue--text">{{mintemp}}℃</span>
       </div>
     </v-card-text>
+
+
+
     <v-card-actions class="pt-0">
       <v-spacer></v-spacer>
       <v-btn icon @click="show = !show">
         <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
     </v-card-actions>
+    <div v-show="show">
+      <v-btn text :to="{ name: 'analytics', params: { value: this.place }}">analytics</v-btn>
+    </div>
 
-    <v-expand-transition>
-      <div v-show="show">
-        <v-btn @click="twitterShare" text>
-          <v-icon color="blue">mdi-twitter</v-icon>
-        </v-btn>
-        <v-btn text :to="{ name: 'analytics', params: { value: this.place }}">
-          analytics
-        </v-btn>
-      </div>
-    </v-expand-transition>
+    
   </v-card>
 </template>
 
@@ -132,3 +142,14 @@ export default {
   props: ["place"]
 };
 </script>
+
+<style>
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+}
+</style>
