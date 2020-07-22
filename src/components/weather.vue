@@ -16,9 +16,6 @@
         /
         <span class="blue--text">{{mintemp}}℃</span>
       </div>
-      <div>
-        <router-link :to="{ name: 'analytics', params: { value: this.place }}"></router-link>
-      </div>
     </v-card-text>
     <v-card-actions class="pt-0">
       <v-spacer></v-spacer>
@@ -104,7 +101,7 @@ export default {
       location.href = shareURL;
     },
     emitEvent() {
-      this.$emit("emit", this.temp,this.place);
+      this.$emit("emit", this.temp, this.place);
     }
   },
   updated() {
@@ -129,7 +126,7 @@ export default {
         // エラー発生時の処理
         console.error("Error adding document: ", error);
       });
-      
+
     this.emitEvent();
   },
   props: ["place"]
