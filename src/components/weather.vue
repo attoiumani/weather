@@ -99,7 +99,6 @@ export default {
         this.city +
         this.temp +
         "%20%23今の温度";
-      //シェア用の画面へ移行
       location.href = shareURL;
     },
     emitEvent() {
