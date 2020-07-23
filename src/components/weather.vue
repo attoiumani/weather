@@ -3,17 +3,13 @@
     <v-hover v-slot:default="{ hover }">
       <v-img class="white--text align-end" height="300px" :src="image_src">
         <v-card-title>{{city}}</v-card-title>
-        <v-expand-transition>
-          <div
-            v-if="hover"
-            class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
-            style="height: 100%;"
-          >
+        <v-fade-transition>
+          <div v-if="hover" class="d-flex white v-card--reveal">
             <v-btn @click="twitterShare" text>
               <v-icon color="indigo">mdi-twitter</v-icon>
             </v-btn>
           </div>
-        </v-expand-transition>
+        </v-fade-transition>
       </v-img>
     </v-hover>
     <v-card-subtitle class="pb-0 text--primary">
@@ -31,8 +27,6 @@
       </div>
     </v-card-text>
 
-
-
     <v-card-actions class="pt-0">
       <v-spacer></v-spacer>
       <v-btn icon @click="show = !show">
@@ -42,8 +36,6 @@
     <div v-show="show">
       <v-btn text :to="{ name: 'analytics', params: { value: this.place }}">analytics</v-btn>
     </div>
-
-    
   </v-card>
 </template>
 
@@ -63,15 +55,15 @@ export default {
       mintemp: null,
       wind: null,
       condition: {
-        main: null
+        main: null,
       },
       loading: true,
       show: false,
       Timestamp: null,
-      Timestamp2: null
+      Timestamp2: null,
     };
   },
-  created: function() {
+  created: function () {
     axios;
     let m = moment();
     let Year = m.format("YYYY");
@@ -85,7 +77,7 @@ export default {
     let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
     let Url = getUrl + selectedCity + getKey;
     return axios.get(Url).then(
-      function(response) {
+      function (response) {
         this.city = response.data.name;
         this.temp = response.data.main.temp;
         this.maxtemp = response.data.main.temp_max;
@@ -112,7 +104,7 @@ export default {
     },
     emitEvent() {
       this.$emit("emit", this.temp, this.place);
-    }
+    },
   },
   updated() {
     firebase
@@ -126,20 +118,20 @@ export default {
         Timestamp: this.Timestamp,
         Timestamp2: this.Timestamp2,
         wind: this.wind,
-        condition: this.condition.main
+        condition: this.condition.main,
       })
-      .then(function(docRef) {
+      .then(function (docRef) {
         // 正常にデータ保存できた時の処理
         console.log("Document written with ID: ", docRef.id);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // エラー発生時の処理
         console.error("Error adding document: ", error);
       });
 
     this.emitEvent();
   },
-  props: ["place"]
+  props: ["place"],
 };
 </script>
 
@@ -148,8 +140,9 @@ export default {
   align-items: center;
   bottom: 0;
   justify-content: center;
-  opacity: 0.5;
+  opacity: 0.8;
   position: absolute;
   width: 100%;
+  height: 100%;
 }
 </style>
