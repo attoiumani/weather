@@ -23,10 +23,10 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Weather Map</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
+      <!--<v-toolbar-items>
         <v-btn text to="/signin">Login</v-btn>
         <v-btn @click="signOut" text>Logout</v-btn>
-      </v-toolbar-items>
+      </v-toolbar-items>-->
     </v-app-bar>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
         { title: "about", path: "/about", icon: "mdi-home-variant" },
         { title: "weather", path: "/", icon: "mdi-weather-pouring" },
         { title: "chart", path: "/chart", icon: "mdi-ab-testing" },
-        { title: "only", path: "/only", icon: "mdi-account-lock" }
+        //{ title: "only", path: "/only", icon: "mdi-account-lock" }
       ]
     };
   },
