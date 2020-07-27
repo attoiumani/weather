@@ -15,48 +15,49 @@ import weather from "@/components/weather";
 
 export default {
   components: {
-    weather
+    weather,
   },
   data() {
     return {
       Items: [
         { id: 1, place: "hokkaido", temp: null },
         { id: 2, place: "aomori", temp: null },
-        { id: 3, place: "yamagata", temp: null },
-        { id: 4, place: "tokyo", temp: null },
-        { id: 5, place: "kanazawa", temp: null },
-        { id: 6, place: "osaka", temp: null },
-        { id: 7, place: "fukuoka", temp: null }
+        { id: 3, place: "akita", temp: null },
+        { id: 4, place: "yamagata", temp: null },
+        { id: 5, place: "tokyo", temp: null },
+        { id: 6, place: "kanazawa", temp: null },
+        { id: 7, place: "osaka", temp: null },
+        { id: 8, place: "fukuoka", temp: null },
       ],
       dropdown: [
         {
           text: "N→S",
           callback: () =>
-            this.Items.sort(function(a, b) {
+            this.Items.sort(function (a, b) {
               if (a.id < b.id) return -1;
               if (a.id > b.id) return 1;
               return 0;
-            })
+            }),
         },
         {
           text: "A→Z",
           callback: () =>
-            this.Items.sort(function(a, b) {
+            this.Items.sort(function (a, b) {
               if (a.place < b.place) return -1;
               if (a.place > b.place) return 1;
               return 0;
-            })
+            }),
         },
         {
           text: "0℃→1℃",
           callback: () =>
-            this.Items.sort(function(a, b) {
+            this.Items.sort(function (a, b) {
               if (a.temp < b.temp) return -1;
               if (a.temp > b.temp) return 1;
               return 0;
-            })
-        }
-      ]
+            }),
+        },
+      ],
     };
   },
   methods: {
@@ -66,7 +67,7 @@ export default {
           this.Items[i].temp = temp;
         }
       }
-    }
-  }
+    },
+  },
 };
 </script>
