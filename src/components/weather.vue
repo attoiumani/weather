@@ -94,14 +94,11 @@ export default {
   },
   methods: {
     twitterShare() {
-      var shareURL =
-        "https://twitter.com/intent/tweet?text=" +
-        this.city +
-        this.temp +
-        "%20%23今の温度";
-      location.href = shareURL;
+      const url = `https://twitter.com/intent/tweet?text=${this.city}+${this.temp}+%20%23今の温度` 
+      const option = 'status=1,width=818,height=400,top=100,left=100'
+      window.open(url, 'twitter', option)    
     },
-    emitEvent() {
+   emitEvent() {
       this.$emit("emit", this.temp, this.place);
     },
   },
