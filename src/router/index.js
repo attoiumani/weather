@@ -1,12 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import signup from "../views/signup.vue";
-import signin from "../views/signin.vue";
 import weather from "../views/weather.vue";
 import about from "../views/about.vue";
 import chart from "../views/chart.vue";
 import analytics from "../views/analytics.vue";
-import only from "../views/only.vue";
 import firebase from 'firebase'
 
 
@@ -26,31 +23,21 @@ const routes = [
     component: about
   },
   {
-    path: "/signup",
-    name: "signup",
-    component: signup
-  },
-  {
     path: "/chart",
     name: "chart",
     component: chart,
-  },
-  {
-    path: "/signin",
-    name: "signin",
-    component: signin
   },
   {
     path: "/analytics",
     name: "analytics",
     component: analytics
   },
-  {
+  /*{
     path: '/only',
     name: 'only',
     component: only,
     meta: { requiresAuth: true }
-  },
+  },*/
   
 ];
 
