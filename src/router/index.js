@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import weather from "../views/weather.vue";
 import about from "../views/about.vue";
-import chart from "../views/chart.vue";
 import analytics from "../views/analytics.vue";
 import week from "../views/week.vue";
 import firebase from 'firebase'
@@ -22,11 +21,6 @@ const routes = [
     path: "/about",
     name: "hoprofileme",
     component: about
-  },
-  {
-    path: "/chart",
-    name: "chart",
-    component: chart,
   },
   {
     path: "/analytics",
