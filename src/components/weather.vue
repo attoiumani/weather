@@ -84,10 +84,7 @@ export default {
         this.mintemp = response.data.main.temp_min;
         this.wind = response.data.wind.speed;
         this.condition = response.data.weather[0];
-        this.icon =
-          "https://openweathermap.org/img/w/" +
-          response.data.weather[0].icon +
-          ".png";
+        this.icon ="https://openweathermap.org/img/w/" +response.data.weather[0].icon +".png";
         this.loading = false;
       }.bind(this)
     );
