@@ -2,8 +2,8 @@
   <div>
     {{date}}
     {{date3}}
-    {{temp}}
     <img v-bind:src="icon" />
+    {{temp}}
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
         this.dt = response.data.current.dt;
         this.date = new Date(this.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.dt3 = response.data.hourly[3].dt;
-        this.date3 = new Date(this.dt3 * 1000).toLocaleTimeString().slice(0,3);
+        this.date3 = new Date(this.dt3 * 1000).toLocaleTimeString().slice(0,4);
         this.temp = response.data.current.temp;
         this.icon ="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
       }.bind(this)
