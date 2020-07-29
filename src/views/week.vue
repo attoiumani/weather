@@ -2,11 +2,15 @@
   <div>
     {{date}}
     {{date3}}
-    <img v-bind:src="icon" />
     {{temp}}
     <img v-bind:src="icon" />
-    {{ftemp}}
+    <img v-bind:src="icon" />
+    {{fmonth}}
     {{fdate}}
+    {{ftemp}}
+    {{fdate3}}
+    {{ftemp3}}
+
   </div>
 </template>
 
@@ -26,10 +30,13 @@ export default {
       temp: null,
       icon: null,
 
-
+      fmonth:null,
       ftemp:null,
+      ftemp3:null,
       fdt:null,
-      fdte:null
+      fdt3:null,
+      fdate:null,
+      fdate3:null
     };
   },
   created: function () {
@@ -51,9 +58,15 @@ export default {
 
       axios.get(getUrl2 + getKey).then(
       function (response) {
-        this.ftemp = response.data.list[0].main.temp;
         this.fdt = response.data.list[0].dt_txt;
         this.fdate=this.fdt.slice(11,16);
+        this.ftemp = response.data.list[0].main.temp;
+
+        this.fdt3 = response.data.list[1].dt_txt;
+        this.fdate3=this.fdt3.slice(11,16);
+        this.ftemp3 = response.data.list[1].main.temp;
+
+        this.fmonth=this.fdt.slice(5,10);
       }.bind(this)
     );
 
