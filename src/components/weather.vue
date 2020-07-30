@@ -76,7 +76,7 @@ export default {
     let getUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
     let getKey = ",jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0";
     let Url = getUrl + selectedCity + getKey;
-    return axios.get(Url).then(
+     axios.get(Url).then(
       function (response) {
         this.city = response.data.name;
         this.temp = response.data.main.temp;
