@@ -9,16 +9,26 @@
       <WeatherCard :place="item.place" :lon="item.lon" :lat="item.lat" @emit="parentMethod" />
     </v-col>
 
+    <GChart
+      :settings="{ packages: ['geochart']}"
+      type="GeoChart"
+      :data="chartData"
+      :options="chartOptions"
+    />
+    {{chartData[0][1]}}
+
   </v-row>
 </template>
 
 
 <script>
 import WeatherCard from "@/components/WeatherCard";
+import { GChart } from "vue-google-charts";
 
 export default {
   components: {
     WeatherCard,
+    GChart 
   },
   data() {
     return {
@@ -33,6 +43,7 @@ export default {
         { id: 8, place: "fukuoka",lat:33.60639, lon:130.41806 , temp: null },
         
       ],
+      
       dropdown: [
         {
           text: "N→S",
@@ -62,13 +73,33 @@ export default {
             }),
         },
       ],
+
+        chartData: [
+        ["States", "temp"],
+        ["北海道", null],
+        ["青森", null],
+        ["秋田", null],
+      ],
+      chartOptions: {
+        colorAxis: {
+          colors: ["f4e0d6", "ca6633"]
+        },
+        backgroundColor: "transparent",
+        datalessRegionColor: "white",
+        defaultColor: "white",
+        region: "JP",
+        displayMode: "region",
+        resolution: "provinces",
+        width: 500
+      }
     };
   },
   methods: {
     parentMethod(temp, place) {
-      for (let i = 0; i < this.Items.length; i++) {
+      for (let i = 0 ,j=1; i < this.Items.length; i++,j++) {
         if (this.Items[i].place == place) {
           this.Items[i].temp = temp;
+          this.chartData[j][1]=temp;
         }
       }
     },
