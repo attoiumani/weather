@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-footer  color="primary" dark>
-      <v-col class="text-center"> {{unix}} 
+      <v-col class="text-center"> {{YMT}} 
       </v-col>
     </v-footer>
   </div>
