@@ -30,19 +30,13 @@ export default {
   data() {
     return {
 
-      hour3date: null,
-      hour3temp: null,
-
-
       today: [
-        {id:0,icon: null,date: null,temp: null},
+        {icon: null,date: null,temp: null},
       ],
-
 
       hour: [
          {id:0,icon: null,date: null,temp: null},
       ],
-
 
       weeks: [
         {},
@@ -50,10 +44,10 @@ export default {
         {id:2,icon: null,date: null,temp: null},
         {id:3,icon: null,date: null,temp: null},
         {id:4,icon: null,date: null,temp: null},
+        {id:5,icon: null,date: null,temp: null},
+        {id:6,icon: null,date: null,temp: null},
+        {id:7,icon: null,date: null,temp: null},
       ],
-
-
-
 
     };
   },
