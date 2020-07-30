@@ -7,9 +7,9 @@
       <img v-bind:src="today[0].icon" />
     </div>
 
-    <div>
-      {{hour[0].temp}}
-      {{hour[0].date}}
+    <div :key="hour.id" v-for="hour in hours">
+      {{hour.temp}}
+      {{hour.date}}
     </div>
 
     <div :key="week.id" v-for="week in weeks">
@@ -34,8 +34,11 @@ export default {
         {icon: null,date: null,temp: null},
       ],
 
-      hour: [
-         {id:0,icon: null,date: null,temp: null},
+      hours: [
+         {id:0,date: null,temp: null},
+         {id:1,date: null,temp: null}, 
+         {id:2,date: null,temp: null}, 
+         {id:3,date: null,temp: null}, 
       ],
 
       weeks: [
@@ -46,7 +49,6 @@ export default {
         {id:4,icon: null,date: null,temp: null},
         {id:5,icon: null,date: null,temp: null},
         {id:6,icon: null,date: null,temp: null},
-        {id:7,icon: null,date: null,temp: null},
       ],
 
     };
@@ -63,13 +65,16 @@ export default {
         this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.today[0].temp = response.data.current.temp;
 
-        this.hour[0].temp = new Date(response.data.hourly[3].dt * 1000).toLocaleTimeString().slice(0,5);
-        this.hour[0].date = response.data.hourly[3].temp;
+      for (let i = 0, j = 3 ; i < this.hours.length; i++,j=j+3) {
+        this.hours[i].temp = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.hours[i].date = response.data.hourly[j].temp;
+      }
 
-      for (let i = 1, j = 0 ; j < this.weeks.length; i++,j++) {
-        this.weeks[j].icon = "https://openweathermap.org/img/w/" +response.data.daily[i].weather[0].icon +".png";
-        this.weeks[j].date = new Date(response.data.daily[i].dt * 1000).toLocaleDateString("ja-JP").slice(5);
-        this.weeks[j].temp = response.data.daily[i].temp.day;
+
+      for (let i = 0, j = 1 ; i < this.weeks.length; i++,j++) {
+        this.weeks[i].icon = "https://openweathermap.org/img/w/" +response.data.daily[j].weather[0].icon +".png";
+        this.weeks[i].date = new Date(response.data.daily[j].dt * 1000).toLocaleDateString("ja-JP").slice(5);
+        this.weeks[i].temp = response.data.daily[j].temp.day;
       }
 
       }.bind(this)
