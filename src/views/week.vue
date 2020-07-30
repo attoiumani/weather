@@ -1,16 +1,29 @@
 <template>
   <div>
-    {{date}}
-    {{date3}}
-    {{temp}}
-    <img v-bind:src="icon" />
-    <img v-bind:src="icon" />
-    {{fmonth}}
-    {{fdate}}
-    {{ftemp}}
-    {{fdate3}}
-    {{ftemp3}}
-
+    <div>
+      {{date}}
+      {{temp}}
+      <img v-bind:src="icon" />
+    </div>
+    <div>
+      {{date3}}
+      {{temp3}}
+    </div>
+    <div>
+      {{day1date}}
+      {{day1temp}}
+      <img v-bind:src="day1icon" />
+    </div>
+    <div>
+      {{twodate}}
+      {{twotemp}}
+      <img v-bind:src="twoicon" />
+    </div>
+    <div>
+      {{threedate}}
+      {{threetemp}}
+      <img v-bind:src="threeicon" />
+    </div>
   </div>
 </template>
 
@@ -23,50 +36,54 @@ import axios from "axios";
 export default {
   data() {
     return {
-      dt: null,
-      dt3: null,
       date: null,
-      date3: null,
       temp: null,
       icon: null,
+      
+      date3: null,
+      temp3:null,
 
-      fmonth:null,
-      ftemp:null,
-      ftemp3:null,
-      fdt:null,
-      fdt3:null,
-      fdate:null,
-      fdate3:null
+      day1date:null,
+      day1temp:null,
+      day1icon:null,
+
+      twodate:null,
+      twotemp:null,
+      twoicon:null,
+
+      threedate:null,
+      threetemp:null,
+      threeicon:null,
     };
   },
   created: function () {
     axios;
 
     let getUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=35.681236&lon=139.767125&units=metric&";
-    let getUrl2 ="http://api.openweathermap.org/data/2.5/forecast?lat=35.681236&lon=139.767125&units=metric&lang=ja&";
     let getKey = "appid=4dff50a83aa2145ba555d8f59e9d3ef0";
       axios.get(getUrl + getKey).then(
       function (response) {
-        this.dt = response.data.current.dt;
-        this.date = new Date(this.dt * 1000).toLocaleDateString("ja-JP").slice(5);
-        this.dt3 = response.data.hourly[3].dt;
-        this.date3 = new Date(this.dt3 * 1000).toLocaleTimeString().slice(0,4);
-        this.temp = response.data.current.temp;
         this.icon ="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
-      }.bind(this)
-    );
+        this.date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
+        this.temp = response.data.current.temp;
 
-      axios.get(getUrl2 + getKey).then(
-      function (response) {
-        this.fdt = response.data.list[0].dt_txt;
-        this.fdate=this.fdt.slice(11,16);
-        this.ftemp = response.data.list[0].main.temp;
+        this.date3 = new Date(response.data.hourly[3].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.temp3 = response.data.hourly[3].temp;
 
-        this.fdt3 = response.data.list[1].dt_txt;
-        this.fdate3=this.fdt3.slice(11,16);
-        this.ftemp3 = response.data.list[1].main.temp;
+        this.day1icon ="https://openweathermap.org/img/w/" +response.data.daily[1].weather[0].icon +".png";
+        this.day1date = new Date(response.data.daily[1].dt * 1000).toLocaleDateString("ja-JP").slice(5);
+        this.day1temp = response.data.daily[1].temp.day;
 
-        this.fmonth=this.fdt.slice(5,10);
+        this.twoicon ="https://openweathermap.org/img/w/" +response.data.daily[2].weather[0].icon +".png";
+        this.twodate = new Date(response.data.daily[2].dt * 1000).toLocaleDateString("ja-JP").slice(5);
+        this.twotemp = response.data.daily[2].temp.day;
+
+        this.threeicon ="https://openweathermap.org/img/w/" +response.data.daily[3].weather[0].icon +".png";
+        this.threedate = new Date(response.data.daily[3].dt * 1000).toLocaleDateString("ja-JP").slice(5);
+        this.threetemp = response.data.daily[3].temp.day;
+
+
+
       }.bind(this)
     );
 
