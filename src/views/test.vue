@@ -39,7 +39,6 @@ function drawRegionsMap() {
     downloadLink.click();
   });
   google.visualization.events.addListener(chart, "regionClick", selectHandler);
-
   function selectHandler(reg) {
     console.log(reg);
     alert(reg.region);
