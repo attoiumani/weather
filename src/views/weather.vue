@@ -6,9 +6,9 @@
     </v-container>
 
     <v-col :key="item.id" v-for="item in Items" cols="12" sm="12" md="6" lg="4" xl="4">
-      <WeatherCard :place="item.place" @emit="parentMethod" />
+      <WeatherCard :place="item.place" :lon="item.lon" :lat="item.lat" @emit="parentMethod" />
     </v-col>
-    
+
   </v-row>
 </template>
 
@@ -23,14 +23,15 @@ export default {
   data() {
     return {
       Items: [
-        { id: 1, place: "hokkaido", temp: null },
-        { id: 2, place: "aomori", temp: null },
-        { id: 3, place: "akita", temp: null },
-        { id: 4, place: "yamagata", temp: null },
-        { id: 5, place: "tokyo", temp: null },
-        { id: 6, place: "kanazawa", temp: null },
-        { id: 7, place: "osaka", temp: null },
-        { id: 8, place: "fukuoka", temp: null },
+        { id: 1, place: "hokkaido", lat:43.06417, lon:141.34694 , temp: null },
+        { id: 2, place: "aomori", lat:40.82444, lon:140.74 ,temp: null },
+        { id: 3, place: "akita",lat:39.71861, lon:140.1025 , temp: null },
+        { id: 4, place: "yamagata",lat:38.24056, lon:140.36333 , temp: null },
+        { id: 5, place: "tokyo", lat:35.68944, lon:139.69167 ,temp: null },
+        { id: 6, place: "kanazawa", lat:36.59444, lon:136.62556 ,temp: null },
+        { id: 7, place: "osaka", lat:34.68639, lon:135.52 ,temp: null },
+        { id: 8, place: "fukuoka",lat:33.60639, lon:130.41806 , temp: null },
+        
       ],
       dropdown: [
         {
