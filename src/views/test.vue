@@ -1,44 +1,51 @@
 <template>
-  <div id="app">
-    <GChart
-      :settings="{ packages: ['geochart']}"
-      type="GeoChart"
-      :data="chartData"
-      :options="chartOptions"
-    />
+  <div class="map">
+    <h1>This is a map</h1>
+    <div id="png"></div>
+
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
   </div>
 </template>
 
 <script>
-import { GChart } from "vue-google-charts";
-export default {
-  name: "App",
-  components: {
-    GChart
-  },
-  data() {
-    return {
-      // Array will be automatically processed with visualization.arrayToDataTable function
-      chartData: [
-        ["States", "temp"],
-        ["北海道", 59406],
-        ["青森", 42103],
-        ["秋田", 40671],
-      ],
-      chartOptions: {
-        colorAxis: {
-          colors: ["f4e0d6", "ca6633"]
-        },
-        backgroundColor: "transparent",
-        datalessRegionColor: "white",
-        defaultColor: "white",
-        region: "JP",
-        displayMode: "region",
-        resolution: "provinces",
-        width: 500
-      }
-    };
-  },
+google.charts.load("current", {
+  packages: ["geochart"],
+});
+google.charts.setOnLoadCallback(drawRegionsMap);
 
-};
+function drawRegionsMap() {
+  var data = google.visualization.arrayToDataTable([
+    ["Country", "Popularity"],
+    ["Colombia", 700],
+    ["Venezuela", 150],
+    ["Brazil", 900],
+  ]);
+
+  var options = {
+    region: "JP",
+    resolution: "provinces",
+  };
+
+  var chart_div = document.getElementById("regions_div");
+  var chart = new google.visualization.GeoChart(chart_div);
+
+  var downloadLink = null;
+  // Wait for the chart to finish drawing before calling the getImageURI() method.
+  google.visualization.events.addListener(chart, "ready", function () {
+    downloadLink = document.createElement("a");
+    downloadLink.href = chart.getImageURI();
+    downloadLink.download = "chart.png";
+    downloadLink.click();
+  });
+  google.visualization.events.addListener(chart, "regionClick", selectHandler);
+
+  function selectHandler(reg) {
+    console.log(reg);
+    alert(reg.region);
+  }
+  chart.draw(data, options);
+
+  document.getElementById("png").outerHTML =
+    '<a href="' + chart.getImageURI() + '" download>Printable version</a>';
+}
 </script>
