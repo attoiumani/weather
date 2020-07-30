@@ -4,14 +4,14 @@
       <v-overflow-btn :items="dropdown" label="select & click!" segmented></v-overflow-btn>
     </v-container>
     <v-col :key="item.id" v-for="item in Items" cols="12" sm="12" md="6" lg="4" xl="4">
-      <weather :place="item.place" @emit="parentMethod" />
+      <WeatherCard :place="item.place" @emit="parentMethod" />
     </v-col>
   </v-row>
 </template>
 
 
 <script>
-import weather from "@/components/weather";
+import weather from "@/components/WeatherCard";
 
 export default {
   components: {
