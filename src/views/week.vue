@@ -66,7 +66,6 @@ export default {
         this.hour[0].temp = new Date(response.data.hourly[3].dt * 1000).toLocaleTimeString().slice(0,5);
         this.hour[0].date = response.data.hourly[3].temp;
 
-
       for (let i = 1, j = 0 ; j < this.weeks.length; i++,j++) {
         this.weeks[j].icon = "https://openweathermap.org/img/w/" +response.data.daily[i].weather[0].icon +".png";
         this.weeks[j].date = new Date(response.data.daily[i].dt * 1000).toLocaleDateString("ja-JP").slice(5);
