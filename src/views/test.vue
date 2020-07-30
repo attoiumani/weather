@@ -6,8 +6,8 @@
     <div id="regions_div" style="width: 900px; height: 500px;"></div>
   </div>
 </template>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 
-<script>
 google.charts.load("current", {
   packages: ["geochart"],
   mapsApiKey: "AIzaSyBq9xk_1U7dtPUKeCxDUfMyCgYWMqGV-p0" 
@@ -15,7 +15,7 @@ google.charts.load("current", {
 google.charts.setOnLoadCallback(drawRegionsMap);
 
 function drawRegionsMap() {
-  var data = google.visualization.arrayToDataTable([
+  var data =new google.visualization.arrayToDataTable([
     ["Country", "Popularity"],
     ["Colombia", 700],
     ["Venezuela", 150],
@@ -23,7 +23,7 @@ function drawRegionsMap() {
   ]);
 
   var options = {
-    region: "JP",
+    region: "JP", 
     resolution: "provinces",
   };
 
