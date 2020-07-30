@@ -11,11 +11,11 @@
 
 
 <script>
-import weather from "@/components/WeatherCard";
+import WeatherCard from "@/components/WeatherCard";
 
 export default {
   components: {
-    weather,
+    WeatherCard,
   },
   data() {
     return {
