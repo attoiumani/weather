@@ -10,6 +10,7 @@
 <script>
 google.charts.load("current", {
   packages: ["geochart"],
+  mapsApiKey: "AIzaSyBq9xk_1U7dtPUKeCxDUfMyCgYWMqGV-p0" 
 });
 google.charts.setOnLoadCallback(drawRegionsMap);
 
