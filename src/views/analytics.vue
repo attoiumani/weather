@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>
-      <span>This page is {{ $route.params.place }} analytics</span>
+      <span>{{ $route.params.place }}</span>
     </h1>
 
     <div>
