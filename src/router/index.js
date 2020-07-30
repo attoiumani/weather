@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import weather from "../views/weather.vue";
 import about from "../views/about.vue";
 import analytics from "../views/analytics.vue";
-import week from "../views/week.vue";
 import firebase from 'firebase'
 
 
@@ -26,11 +25,6 @@ const routes = [
     path: "/analytics",
     name: "analytics",
     component: analytics
-  },
-  {
-    path: "/week",
-    name: "week",
-    component: week
   },
   /*{
     path: '/only',
