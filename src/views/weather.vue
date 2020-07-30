@@ -28,7 +28,7 @@ export default {
         { id: 3, place: "akita",lat:39.71861, lon:140.1025 , temp: null },
         { id: 4, place: "yamagata",lat:38.24056, lon:140.36333 , temp: null },
         { id: 5, place: "tokyo", lat:35.68944, lon:139.69167 ,temp: null },
-        { id: 6, place: "kanazawa", lat:36.59444, lon:136.62556 ,temp: null },
+        { id: 6, place: "ishikawa", lat:36.59444, lon:136.62556 ,temp: null },
         { id: 7, place: "osaka", lat:34.68639, lon:135.52 ,temp: null },
         { id: 8, place: "fukuoka",lat:33.60639, lon:130.41806 , temp: null },
         
