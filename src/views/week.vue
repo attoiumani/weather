@@ -1,28 +1,21 @@
 <template>
   <div>
+    
     <div>
-      {{date}}
-      {{temp}}
-      <img v-bind:src="icon" />
+      {{today[0].date}}
+      {{today[0].temp}}
+      <img v-bind:src="today[0].icon" />
     </div>
+
     <div>
-      {{date3}}
-      {{temp3}}
+      {{hour[0].temp}}
+      {{hour[0].date}}
     </div>
-    <div>
-      {{day1date}}
-      {{day1temp}}
-      <img v-bind:src="day1icon" />
-    </div>
-    <div>
-      {{twodate}}
-      {{twotemp}}
-      <img v-bind:src="twoicon" />
-    </div>
-    <div>
-      {{threedate}}
-      {{threetemp}}
-      <img v-bind:src="threeicon" />
+
+    <div :key="week.id" v-for="week in weeks">
+      {{week.date}}
+      {{week.temp}}
+      <img v-bind:src="week.icon" />
     </div>
   </div>
 </template>
@@ -36,26 +29,35 @@ import axios from "axios";
 export default {
   data() {
     return {
-      date: null,
-      temp: null,
-      icon: null,
-      
-      date3: null,
-      temp3:null,
 
-      day1date:null,
-      day1temp:null,
-      day1icon:null,
+      hour3date: null,
+      hour3temp: null,
 
-      twodate:null,
-      twotemp:null,
-      twoicon:null,
 
-      threedate:null,
-      threetemp:null,
-      threeicon:null,
+      today: [
+        {id:0,icon: null,date: null,temp: null},
+      ],
+
+
+      hour: [
+         {id:0,icon: null,date: null,temp: null},
+      ],
+
+
+      weeks: [
+        {},
+        {id:1,icon: null,date: null,temp: null},
+        {id:2,icon: null,date: null,temp: null},
+        {id:3,icon: null,date: null,temp: null},
+        {id:4,icon: null,date: null,temp: null},
+      ],
+
+
+
+
     };
   },
+
   created: function () {
     axios;
 
@@ -63,26 +65,19 @@ export default {
     let getKey = "appid=4dff50a83aa2145ba555d8f59e9d3ef0";
       axios.get(getUrl + getKey).then(
       function (response) {
-        this.icon ="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
-        this.date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
-        this.temp = response.data.current.temp;
+        this.today[0].icon ="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
+        this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
+        this.today[0].temp = response.data.current.temp;
 
-        this.date3 = new Date(response.data.hourly[3].dt * 1000).toLocaleTimeString().slice(0,5);
-        this.temp3 = response.data.hourly[3].temp;
-
-        this.day1icon ="https://openweathermap.org/img/w/" +response.data.daily[1].weather[0].icon +".png";
-        this.day1date = new Date(response.data.daily[1].dt * 1000).toLocaleDateString("ja-JP").slice(5);
-        this.day1temp = response.data.daily[1].temp.day;
-
-        this.twoicon ="https://openweathermap.org/img/w/" +response.data.daily[2].weather[0].icon +".png";
-        this.twodate = new Date(response.data.daily[2].dt * 1000).toLocaleDateString("ja-JP").slice(5);
-        this.twotemp = response.data.daily[2].temp.day;
-
-        this.threeicon ="https://openweathermap.org/img/w/" +response.data.daily[3].weather[0].icon +".png";
-        this.threedate = new Date(response.data.daily[3].dt * 1000).toLocaleDateString("ja-JP").slice(5);
-        this.threetemp = response.data.daily[3].temp.day;
+        this.hour[0].temp = new Date(response.data.hourly[3].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.hour[0].date = response.data.hourly[3].temp;
 
 
+      for (let i = 1; i < this.weeks.length; i++) {
+        this.weeks[i].icon = "https://openweathermap.org/img/w/" +response.data.daily[i].weather[0].icon +".png";
+        this.weeks[i].date = new Date(response.data.daily[i].dt * 1000).toLocaleDateString("ja-JP").slice(5);
+        this.weeks[i].temp = response.data.daily[i].temp.day;
+      }
 
       }.bind(this)
     );
