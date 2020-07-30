@@ -49,7 +49,7 @@ export default {
         {id:4,icon: null,date: null,temp: null},
         {id:5,icon: null,date: null,temp: null},
         {id:6,icon: null,date: null,temp: null},
-      ],
+      ],  
 
     };
   },
@@ -57,7 +57,7 @@ export default {
   created: function () {
     axios;
 
-    let getUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=35.681236&lon=139.767125&units=metric&";
+    let getUrl ="https://api.openweathermap.org/data/2.5/onecall?lat=43.06417&lon=141.34694&units=metric&";
     let getKey = "appid=4dff50a83aa2145ba555d8f59e9d3ef0";
       axios.get(getUrl + getKey).then(
       function (response) {
@@ -84,6 +84,4 @@ export default {
   methods: {},
 };
 
-//https://api.openweathermap.org/data/2.5/onecall?lat=35.681236&lon=139.767125&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0
-//http://api.openweathermap.org/data/2.5/forecast?lat=35.681236&lon=139.767125&units=metric&lang=ja&APPID=4dff50a83aa2145ba555d8f59e9d3ef0
 </script>
