@@ -15,8 +15,6 @@
       :data="chartData"
       :options="chartOptions"
     />
-    {{chartData[0][1]}}
-
   </v-row>
 </template>
 
@@ -41,9 +39,19 @@ export default {
         { id: 6, place: "ishikawa", lat:36.59444, lon:136.62556 ,temp: null },
         { id: 7, place: "osaka", lat:34.68639, lon:135.52 ,temp: null },
         { id: 8, place: "fukuoka",lat:33.60639, lon:130.41806 , temp: null },
-        
       ],
-      
+      chartData: [
+        ["States", "temp"],
+        ["北海道", null],
+        ["青森", null],
+        ["秋田", null],
+        ["山形", null],
+        ["東京", null],
+        ["石川", null],
+        ["大阪", null],
+        ["福岡", null],
+      ],
+
       dropdown: [
         {
           text: "N→S",
@@ -74,12 +82,6 @@ export default {
         },
       ],
 
-        chartData: [
-        ["States", "temp"],
-        ["北海道", null],
-        ["青森", null],
-        ["秋田", null],
-      ],
       chartOptions: {
         colorAxis: {
           colors: ["f4e0d6", "ca6633"]
@@ -94,6 +96,7 @@ export default {
       }
     };
   },
+  
   methods: {
     parentMethod(temp, place) {
       for (let i = 0 ,j=1; i < this.Items.length; i++,j++) {
@@ -102,6 +105,10 @@ export default {
           this.chartData[j][1]=temp;
         }
       }
+    },
+    selectHandler(reg) {
+      console.log(reg);
+      alert(reg.region);
     },
   },
 };
