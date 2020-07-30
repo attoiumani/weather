@@ -1,11 +1,14 @@
 <template>
   <v-row>
+
     <v-container>
       <v-overflow-btn :items="dropdown" label="select & click!" segmented></v-overflow-btn>
     </v-container>
+
     <v-col :key="item.id" v-for="item in Items" cols="12" sm="12" md="6" lg="4" xl="4">
       <WeatherCard :place="item.place" @emit="parentMethod" />
     </v-col>
+    
   </v-row>
 </template>
 
