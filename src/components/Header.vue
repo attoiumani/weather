@@ -38,7 +38,6 @@ export default {
       items: [
         { title: "about", path: "/about", icon: "mdi-home-variant" },
         { title: "weather", path: "/", icon: "mdi-weather-pouring" },
-        { title: "week", path: "/week", icon: "mdi-ab-testing" },
       ]
     };
   },
