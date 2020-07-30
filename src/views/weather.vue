@@ -42,14 +42,14 @@ export default {
       ],
       chartData: [
         ["States", "temp"],
-        ["北海道", null],
-        ["青森", null],
-        ["秋田", null],
-        ["山形", null],
-        ["東京", null],
-        ["石川", null],
-        ["大阪", null],
-        ["福岡", null],
+        ["hokkaido", null],
+        ["aomori", null],
+        ["akita", null],
+        ["yamagata", null],
+        ["tokyo", null],
+        ["ishikawa", null],
+        ["osaka", null],
+        ["fukuoka", null],
       ],
 
       dropdown: [
