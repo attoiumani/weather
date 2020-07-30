@@ -34,7 +34,7 @@
       </v-btn>
     </v-card-actions>
     <div v-show="show">
-      <v-btn text :to="{ name: 'analytics', params: { value: this.place }}">analytics</v-btn>
+      <v-btn text :to="{ name: 'analytics', params: { place: this.place, lon : this.lon, lat : this.lat }}">analytics</v-btn>
     </div>
   </v-card>
 </template>
@@ -124,8 +124,15 @@ export default {
 
     this.emitEvent();
   },
-  props: ["place"],
+  props: {
+    place: null,
+    lon:null,
+    lat:null
+  }
 };
+//https://api.openweathermap.org/data/2.5/onecall?lat=35.681236&lon=139.767125&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0
+//http://api.openweathermap.org/data/2.5/forecast?lat=35.681236&lon=139.767125&units=metric&lang=ja&APPID=4dff50a83aa2145ba555d8f59e9d3ef0
+//https://api.openweathermap.org/data/2.5/weather?q=aomori,jp&units=metric&appid=4dff50a83aa2145ba555d8f59e9d3ef0
 </script>
 
 <style>
