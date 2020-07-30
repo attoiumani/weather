@@ -21,8 +21,6 @@
       </v-col>
     </v-row>
 
-    <!--<span>temp</span>
-    <bar v-if="loaded" :data="data3" :options="options" />-->
   </div>
 </template>
 
@@ -33,7 +31,6 @@ import moment from "moment";
 import linechart from "@/components/chart/linechart";
 import piechart from "@/components/chart/piechart";
 import radar from "@/components/chart/radar";
-//import bar from "@/components/chart/bar";
 
 export default {
   components: {
@@ -75,21 +72,6 @@ export default {
         ]
       },
 
-      /*data3: {
-        labels: ["1月", "2月", "3月"],
-        datasets: [
-          {
-            label: "mm",
-            data: [80, 80, 80],
-            data2: [],
-          backgroundColor: [
-            "#0074D9",
-            "#FF4136",
-            "rgba(179,181,198,0.2)",
-          ]
-          }
-        ]
-      },*/
 
       data4: {
         labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月"],
@@ -176,21 +158,7 @@ export default {
           this.loaded = true;
         });
       });
-    /*  this.db
-      .collection(this.$route.params.value)
-      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          this.data2.labels.push(doc.data().condition);
-          this.data2.datasets[0].data2.push(doc.data().condition);
-          if(data2[0]=sun){
-            data[1]=data[1]+1
-            data2[0]=null
-          }
-          this.loaded = true;
-        });
-      });*/
+
   }
 };
 </script>
