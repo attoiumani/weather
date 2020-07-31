@@ -4,6 +4,21 @@
       <span>{{ $route.params.place }}</span>
     </h1>
 
+
+    <v-row class="mb-4" justify="space-between">
+      <v-col class="text-left">
+        <span class="display-3 font-weight-light" v-text="hours[0].temp"></span>
+      </v-col>
+    </v-row>
+    <v-slider
+      :tick-labels="slider"
+      :max="4"
+      step="1"
+      ticks="always"
+      tick-size="4"
+    >
+    </v-slider>
+
     <div>
       <div>
         {{today[0].date}}
@@ -12,8 +27,8 @@
       </div>
 
       <div :key="hour.id" v-for="hour in hours">
-        {{hour.temp}}
         {{hour.date}}
+        {{hour.temp}}
       </div>
 
       <div :key="week.id" v-for="week in weeks">
@@ -58,8 +73,39 @@ export default {
   },
   data() {
     return {
-      loaded: false,
-      name: null,
+    fruits: 45,
+    loaded: false,
+
+      today: [
+        {icon: null,date: null,temp: null},
+      ],
+
+      hours: [
+         {id:0,date: null,temp: null},
+         {id:1,date: null,temp: null},
+         {id:2,date: null,temp: null},
+         {id:3,date: null,temp: null},
+         {id:4,date: null,temp: null},
+      ],
+
+      weeks: [
+        {id:0,icon: null,date: null,temp: null},
+        {id:1,icon: null,date: null,temp: null},
+        {id:2,icon: null,date: null,temp: null},
+        {id:3,icon: null,date: null,temp: null},
+        {id:4,icon: null,date: null,temp: null},
+        {id:5,icon: null,date: null,temp: null},
+        {id:6,icon: null,date: null,temp: null},
+      ],
+
+      slider: [null],
+      slider2: [     "😭",
+      "😢",
+      "☹️",
+      "🙁",
+      "😐",],
+
+
       data1: {
         labels: [],
         datasets: [
@@ -155,28 +201,6 @@ export default {
         }
       },
 
-
-      today: [
-        {icon: null,date: null,temp: null},
-      ],
-
-      hours: [
-         {id:0,date: null,temp: null},
-         {id:1,date: null,temp: null},
-         {id:2,date: null,temp: null},
-         {id:3,date: null,temp: null},
-      ],
-
-      weeks: [
-        {id:0,icon: null,date: null,temp: null},
-        {id:1,icon: null,date: null,temp: null},
-        {id:2,icon: null,date: null,temp: null},
-        {id:3,icon: null,date: null,temp: null},
-        {id:4,icon: null,date: null,temp: null},
-        {id:5,icon: null,date: null,temp: null},
-        {id:6,icon: null,date: null,temp: null},
-      ],
-
     };
   },
   created: function() {
@@ -209,9 +233,10 @@ export default {
         this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.today[0].temp = response.data.current.temp;
 
-      for (let i = 0, j = 3 ; i < this.hours.length; i++,j=j+3) {
-        this.hours[i].temp = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
-        this.hours[i].date = response.data.hourly[j].temp;
+      for (let i = 0, j = 2 ; i < this.hours.length; i++,j=j+2) {
+        this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.slider[i] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.hours[i].temp = response.data.hourly[j].temp;
       }
 
       for (let i = 0, j = 1 ; i < this.weeks.length; i++,j++) {
