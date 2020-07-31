@@ -9,7 +9,7 @@
         <span class="display-3 font-weight-light">{{sliderTemp}}</span>
       </v-col>
     </v-row>
-    <v-slider v-model="sliderNum" v-bind:tick-labels="slider" v-bind:max="4" @click="test" step="1" ticks="always"></v-slider>
+    <v-slider v-model="sliderNum" v-bind:tick-labels="slider" v-bind:max="5" @click="test" step="1" ticks="always"></v-slider>
 
     <div>
       <div>
@@ -72,11 +72,11 @@ export default {
       ],
 
       hours: [
-         {id:0,date: null,temp: null},
-         {id:1,date: null,temp: null},
-         {id:2,date: null,temp: null},
-         {id:3,date: null,temp: null},
-         {id:4,date: null,temp: null},
+         {id:0,slidekey:1,date: null,temp: null},
+         {id:1,slidekey:2,date: null,temp: null},
+         {id:2,slidekey:3,date: null,temp: null},
+         {id:3,slidekey:4,date: null,temp: null},
+         {id:4,slidekey:5,date: null,temp: null},
       ],
 
       weeks: [
@@ -222,10 +222,11 @@ export default {
         this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.today[0].temp = response.data.current.temp;
 
-      for (let i = 0, j = 1 ; i < this.hours.length; i++,j=j+2) {
+      for (let i = 0, j = 1 ,k=1; i < this.hours.length; k++,i++,j=j+2) {
         this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
         this.hours[i].temp = response.data.hourly[j].temp;
-        this.slider[i] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.slider[k] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.slider[0]="now"
       }
 
       for (let i = 0, j = 1 ; i < this.weeks.length; i++,j++) {
@@ -240,9 +241,12 @@ export default {
   methods: {
     test() {
     for(let i=0;i<this.hours.length;i++){
-      if(this.sliderNum==this.hours[i].id){
+      if(this.sliderNum==this.hours[i].slidekey){
       this.sliderTemp=this.hours[i].temp;
       }
+     }
+     if(this.sliderNum==0){
+       this.sliderTemp=this.today[0].temp
      }
     }
   },
