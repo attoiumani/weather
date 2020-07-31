@@ -1,4 +1,4 @@
-prepend や append の slots を使用すれば、v-slider をどんな場所にも合うように簡単にカスタマイズできます。
+
 
 <template>
   <div>
@@ -26,6 +26,7 @@ prepend や append の slots を使用すれば、v-slider をどんな場所に
       v-model="fruits"
       :tick-labels="ticksLabels"
       :max="20"
+      @click="test"
       step="1"
       ticks="always"
     ></v-slider>
@@ -45,6 +46,11 @@ export default {
     fruits: 5,
   }
   },
+    methods: {
+    test() {
+      alert(this.fruits);
+    }
+  }
 
 };
 </script>
