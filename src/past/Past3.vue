@@ -1,78 +1,57 @@
-//vuetify チャートへの妥協
+<!--<template>
+  <div class="map">
+    <h1>This is a map</h1>
+    <div id="png"></div>
 
-
-<template>
-  <div>
-    <v-sparkline
-      :labels="labels"
-      :value="value"
-      :gradient="gradient"
-      :smooth="radius || false"
-      :padding="padding"
-      :line-width="width"
-      :stroke-linecap="lineCap"
-      :gradient-direction="gradientDirection"
-      :fill="fill"
-      :type="type"
-      :auto-line-width="autoLineWidth"
-      auto-draw
-      :label-size="labelSize"
-    ></v-sparkline>
-    <div>{{ value }}</div>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
   </div>
 </template>
 
-
-
-
 <script>
-import firebase from "firebase";
 
-const gradients = [
-  ["#222"],
-  ["#42b3f4"],
-  ["red", "orange", "yellow"],
-  ["purple", "violet"],
-  ["#00c6ff", "#F0F", "#FF0"],
-  ["#f72047", "#ffd200", "#1feaea"]
-];
+google.charts.load("current", {
+  packages: ["geochart"],
+  // Note: you will need to get a mapsApiKey for your project.
+  // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+  mapsApiKey: "AIzaSyBq9xk_1U7dtPUKeCxDUfMyCgYWMqGV-p0",
+});
+google.charts.setOnLoadCallback(drawRegionsMap);
 
-export default {
-  data: () => {
-    return {
-      width: 2,
-      radius: 10,
-      padding: 8,
-      lineCap: "round",
-      gradient: gradients[5],
-      value: [],
-      labels: [],
-      gradientDirection: "top",
-      gradients,
-      fill: false,
-      type: "trend",
-      autoLineWidth: false,
-      labelSize: 2,
-    };
-  },
-  created() {
-    this.db = firebase.firestore();
+function drawRegionsMap() {
+  var data = google.visualization.arrayToDataTable([
+    ["Country", "Popularity"],
+    ["Colombia", 700],
+    ["Venezuela", 150],
+    ["Brazil", 900],
+  ]);
 
-    let now = new Date();
-    let Year = now.getFullYear();
-    let Month = now.getMonth() + 1;
-    let Today = now.getDate();
-    this.Today = Year + "" + Month + "" + Today;
-    this.db
-      .collection("kanazawa")
-      .where("Timestamp", "<=", this.Today) //今日までのtempを取得
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          this.value.push(doc.data().temp);
-          this.labels.push(doc.data().Timestamp);
-        });
-      });
+  var options = {
+    region: "JP",
+    resolution: "provinces",
+  };
+
+  var chart_div = document.getElementById("regions_div");
+  var chart = new google.visualization.GeoChart(chart_div);
+
+  var downloadLink = null;
+  // Wait for the chart to finish drawing before calling the getImageURI() method.
+  google.visualization.events.addListener(chart, "ready", function () {
+    downloadLink = document.createElement("a");
+    downloadLink.href = chart.getImageURI();
+    downloadLink.download = "chart.png";
+    downloadLink.click();
+  });
+
+  google.visualization.events.addListener(chart, "regionClick", selectHandler);
+
+  function selectHandler(reg) {
+    console.log(reg);
+    alert(reg.region);
   }
-};
+
+  chart.draw(data, options);
+
+  document.getElementById("png").outerHTML =
+    '<a href="' + chart.getImageURI() + '" download>Printable version</a>';
+}
 </script>
