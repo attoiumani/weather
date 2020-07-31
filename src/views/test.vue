@@ -1,67 +1,57 @@
-<template >
-  <div class="container">
-    <div id="tree">
-      <GChart
-        :settings="{ packages: ['orgchart'], callback: ()=>{this.drawChart()} }"
-        type="OrgChart"
-        :data="chartData"
-      />
-    </div>
+<!--<template>
+  <div class="map">
+    <h1>This is a map</h1>
+    <div id="png"></div>
+
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
   </div>
 </template>
 
 <script>
-import { GChart } from "vue-google-charts";
 
-export default {
-  components: {
-    GChart
-  },
-  data() {
-    return {
-      // Array will be automatically processed with visualization.arrayToDataTable function
-      chartData: null
-    };
-  },
-  methods: {
-    drawChart() {
-      this.chartData = new google.visualization.DataTable();
-      this.chartData.addColumn("string", "Name");
-      this.chartData.addColumn("string", "Manager");
-      this.chartData.addColumn("string", "ToolTip");
+google.charts.load("current", {
+  packages: ["geochart"],
+  // Note: you will need to get a mapsApiKey for your project.
+  // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+  mapsApiKey: "AIzaSyBq9xk_1U7dtPUKeCxDUfMyCgYWMqGV-p0",
+});
+google.charts.setOnLoadCallback(drawRegionsMap);
 
-      // For each orgchart box, provide the name, manager, and tooltip to show.
-      this.chartData.addRows([
-        [
-          {
-            v: "Mike",
-            f: 'Mike<div style="color:red; font-style:italic">President</div>'
-          },
-          "",
-          "The President"
-        ],
-        [
-          {
-            v: "Jim",
-            f:
-              'Jim<div style="color:red; font-style:italic">Vice President</div>'
-          },
-          "Mike",
-          "VP"
-        ],
-        ["Alice", "Mike", ""],
-        ["Bob", "Jim", "Bob Sponge"],
-        ["Carol", "Bob", ""]
-      ]);
+function drawRegionsMap() {
+  var data = google.visualization.arrayToDataTable([
+    ["Country", "Popularity"],
+    ["Colombia", 700],
+    ["Venezuela", 150],
+    ["Brazil", 900],
+  ]);
 
-      // Create the chart.
-      var chart = new google.visualization.OrgChart(
-        document.getElementById("tree")
-      );
-      // Draw the chart, setting the allowHtml option to true for the tooltips.
+  var options = {
+    region: "JP",
+    resolution: "provinces",
+  };
 
-      chart.draw(this.chartData, { allowHtml: true });
-    }
+  var chart_div = document.getElementById("regions_div");
+  var chart = new google.visualization.GeoChart(chart_div);
+
+  var downloadLink = null;
+  // Wait for the chart to finish drawing before calling the getImageURI() method.
+  google.visualization.events.addListener(chart, "ready", function () {
+    downloadLink = document.createElement("a");
+    downloadLink.href = chart.getImageURI();
+    downloadLink.download = "chart.png";
+    downloadLink.click();
+  });
+
+  google.visualization.events.addListener(chart, "regionClick", selectHandler);
+
+  function selectHandler(reg) {
+    console.log(reg);
+    alert(reg.region);
   }
-};
+
+  chart.draw(data, options);
+
+  document.getElementById("png").outerHTML =
+    '<a href="' + chart.getImageURI() + '" download>Printable version</a>';
+}
 </script>
