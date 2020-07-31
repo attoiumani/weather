@@ -235,8 +235,8 @@ export default {
 
       for (let i = 0, j = 2 ; i < this.hours.length; i++,j=j+2) {
         this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
-        this.slider[i] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
         this.hours[i].temp = response.data.hourly[j].temp;
+        this.slider[i] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
       }
 
       for (let i = 0, j = 1 ; i < this.weeks.length; i++,j++) {
