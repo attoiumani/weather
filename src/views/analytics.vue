@@ -7,15 +7,15 @@
 
     <v-row class="mb-4" justify="space-between">
       <v-col class="text-left">
-        <span class="display-3 font-weight-light" v-text="hours[0].temp"></span>
+        <span class="display-3 font-weight-light">{{fruits}}</span>
       </v-col>
     </v-row>
     <v-slider
-      :tick-labels="slider"
-      :max="4"
+      v-model="fruits"
+      v-bind:tick-labels="slider"
+      v-bind:max="20"
       step="1"
       ticks="always"
-      tick-size="4"
     >
     </v-slider>
 
@@ -73,7 +73,7 @@ export default {
   },
   data() {
     return {
-    fruits: 45,
+    fruits: 5,
     loaded: false,
 
       today: [
