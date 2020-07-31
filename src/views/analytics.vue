@@ -231,7 +231,7 @@ export default {
         this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.today[0].temp = response.data.current.temp;
 
-      for (let i = 0, j = 2 ; i < this.hours.length; i++,j=j+2) {
+      for (let i = 0, j = 1 ; i < this.hours.length; i++,j=j+2) {
         this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
         this.hours[i].temp = response.data.hourly[j].temp;
         this.slider[i] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
