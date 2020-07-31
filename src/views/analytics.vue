@@ -162,9 +162,9 @@ export default {
 
       hours: [
          {id:0,date: null,temp: null},
-         {id:1,date: null,temp: null}, 
-         {id:2,date: null,temp: null}, 
-         {id:3,date: null,temp: null}, 
+         {id:1,date: null,temp: null},
+         {id:2,date: null,temp: null},
+         {id:3,date: null,temp: null},
       ],
 
       weeks: [
@@ -175,7 +175,7 @@ export default {
         {id:4,icon: null,date: null,temp: null},
         {id:5,icon: null,date: null,temp: null},
         {id:6,icon: null,date: null,temp: null},
-      ],  
+      ],
 
     };
   },
