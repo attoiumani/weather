@@ -9,7 +9,7 @@
         <span class="display-3 font-weight-light">{{sliderTemp}}</span>
       </v-col>
     </v-row>
-    <v-slider v-model="sliderNum" v-bind:tick-labels="slider" v-bind:max="5" @click="test" step="1" ticks="always"></v-slider>
+    <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="slider" v-bind:max="5"  step="1" ticks="always"></v-slider>
 
     <div>
       <div>
@@ -49,6 +49,9 @@ analyticsChart
   data() {
     return {
 
+      slider: [null],
+      sliderNum: 0,
+      sliderTemp: 0,
 
       today: [
         {icon: null,date: null,temp: null},
@@ -71,12 +74,6 @@ analyticsChart
         {id:5,icon: null,date: null,temp: null},
         {id:6,icon: null,date: null,temp: null},
       ],
-
-      slider: [null],
-      sliderNum: 0,
-      sliderTemp: 0,
-
-
 
 
 
