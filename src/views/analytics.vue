@@ -4,21 +4,12 @@
       <span>{{ $route.params.place }}</span>
     </h1>
 
-
     <v-row class="mb-4" justify="space-between">
       <v-col class="text-left">
         <span class="display-3 font-weight-light">{{sliderTemp}}</span>
       </v-col>
     </v-row>
-    <v-slider
-      v-model="sliderNum"
-      v-bind:tick-labels="slider"
-      v-bind:max="4"
-      @click="test"
-      step="1"
-      ticks="always"
-    >
-    </v-slider>
+    <v-slider v-model="sliderNum" v-bind:tick-labels="slider" v-bind:max="4" @click="test" step="1" ticks="always"></v-slider>
 
     <div>
       <div>
@@ -51,7 +42,7 @@
       </v-col>
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
         <span>Precipitation amount</span>
-        <radar v-if="loaded" :data="data4" :options="options2" />
+        <radar v-if="loaded" :data="data3" :options="options2" />
       </v-col>
     </v-row>
   </div>
@@ -134,7 +125,7 @@ export default {
       },
 
 
-      data4: {
+      data3: {
         labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月"],
         datasets: [
           {
@@ -245,13 +236,14 @@ export default {
       }.bind(this)
     );
   },
+
   methods: {
     test() {
     for(let i=0;i<this.hours.length;i++){
       if(this.sliderNum==this.hours[i].id){
       this.sliderTemp=this.hours[i].temp;
       }
-    }
+     }
     }
   },
 };
