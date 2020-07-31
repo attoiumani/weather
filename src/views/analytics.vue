@@ -7,11 +7,11 @@
 
     <v-row class="mb-4" justify="space-between">
       <v-col class="text-left">
-        <span class="display-3 font-weight-light">{{fruits2}}</span>
+        <span class="display-3 font-weight-light">{{sliderTemp}}</span>
       </v-col>
     </v-row>
     <v-slider
-      v-model="fruits"
+      v-model="sliderNum"
       v-bind:tick-labels="slider"
       v-bind:max="4"
       @click="test"
@@ -74,9 +74,6 @@ export default {
   },
   data() {
     return {
-    fruits: 0,
-    fruits2: 0,
-    fruits3: 0,
     loaded: false,
 
       today: [
@@ -102,6 +99,8 @@ export default {
       ],
 
       slider: [null],
+      sliderNum: 0,
+      sliderTemp: 0,
 
 
 
@@ -248,21 +247,11 @@ export default {
   },
   methods: {
     test() {
-      if(this.fruits==this.hours[0].id){
-      this.fruits2=this.hours[0].temp;
+    for(let i=0;i<this.hours.length;i++){
+      if(this.sliderNum==this.hours[i].id){
+      this.sliderTemp=this.hours[i].temp;
       }
-      if(this.fruits==this.hours[1].id){
-      this.fruits2=this.hours[1].temp;
-      }
-      if(this.fruits==this.hours[2].id){
-      this.fruits2=this.hours[2].temp;
-      }
-      if(this.fruits==this.hours[3].id){
-      this.fruits2=this.hours[3].temp;
-      }
-      if(this.fruits==this.hours[4].id){
-      this.fruits2=this.hours[4].temp;
-      }
+    }
     }
   },
 };
