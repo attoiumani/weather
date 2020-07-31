@@ -13,7 +13,7 @@
     <v-slider
       v-model="fruits"
       v-bind:tick-labels="slider"
-      v-bind:max="20"
+      v-bind:max="4"
       step="1"
       ticks="always"
     >
@@ -73,7 +73,7 @@ export default {
   },
   data() {
     return {
-    fruits: 5,
+    fruits: 0,
     loaded: false,
 
       today: [
