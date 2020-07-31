@@ -1,4 +1,4 @@
-<!--<template>
+<template>
   <div class="map">
     <h1>This is a map</h1>
     <div id="png"></div>
