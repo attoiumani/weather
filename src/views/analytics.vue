@@ -9,7 +9,7 @@
         <span class="display-3 font-weight-light">{{defaulttemp}}</span>
       </v-col>
     </v-row>
-    <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="slider" v-bind:max="5"  step="1" ticks="always"></v-slider>
+    <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="sliderlabel" v-bind:max="5"  step="1" ticks="always"></v-slider>
 
     <div>
       <div>
@@ -49,7 +49,7 @@ analyticsChart
   data() {
     return {
 
-      slider: [null],
+      sliderlabel: [null],
       sliderNum: 0,
       sliderTemp: 0,
       defaulttemp:0,
@@ -97,8 +97,8 @@ analyticsChart
       for (let i = 0, j = 1 ,k=1; i < this.hours.length; k++,i++,j=j+2) {
         this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
         this.hours[i].temp = response.data.hourly[j].temp;
-        this.slider[k] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
-        this.slider[0]="now"
+        this.sliderlabel[k] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.sliderlabel[0]="now"
       }
 
       for (let i = 0, j = 1 ; i < this.weeks.length; i++,j++) {
