@@ -92,7 +92,7 @@ export default {
       slider: [null],
       sliderNum: 0,
       sliderTemp: 0,
-
+  
 
 
       data1: {
