@@ -6,7 +6,7 @@
 
     <v-row class="mb-4" justify="space-between">
       <v-col class="text-left">
-        <span class="display-3 font-weight-light">{{sliderTemp}}</span>
+        <span class="display-3 font-weight-light">{{defaulttemp}}</span>
       </v-col>
     </v-row>
     <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="slider" v-bind:max="5"  step="1" ticks="always"></v-slider>
@@ -52,6 +52,7 @@ analyticsChart
       slider: [null],
       sliderNum: 0,
       sliderTemp: 0,
+      defaulttemp:0,
 
       today: [
         {icon: null,date: null,temp: null},
@@ -91,6 +92,7 @@ analyticsChart
         this.today[0].icon ="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
         this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.today[0].temp = response.data.current.temp;
+        this.defaulttemp=response.data.current.temp;
 
       for (let i = 0, j = 1 ,k=1; i < this.hours.length; k++,i++,j=j+2) {
         this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
@@ -118,6 +120,7 @@ analyticsChart
      if(this.sliderNum==0){
        this.sliderTemp=this.today[0].temp
      }
+     this.defaulttemp=this.sliderTemp
     }
   },
 };
