@@ -1,57 +1,82 @@
-<!--<template>
-  <div class="map">
-    <h1>This is a map</h1>
-    <div id="png"></div>
+prepend や append の slots を使用すれば、v-slider をどんな場所にも合うように簡単にカスタマイズできます。
 
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
-  </div>
+<template>
+  <v-card
+    class="mx-auto"
+    max-width="600"
+  >
+    <v-toolbar
+      flat
+      dense
+    >
+      <v-toolbar-title>
+        <span class="subheading">METRONOME</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+
+    <v-card-text>
+      <v-row
+        class="mb-4"
+        justify="space-between"
+      >
+        <v-col class="text-left">
+          <span
+            class="display-3 font-weight-light"
+            v-text="bpm"
+          ></span>
+          <span class="subheading font-weight-light mr-1">BPM</span>
+        </v-col>
+
+      </v-row>
+
+      <v-slider
+        v-model="bpm"
+        :color="color"
+        track-color="grey"
+        always-dirty
+        min="40"
+        max="218"
+      >
+
+      </v-slider>
+    </v-card-text>
+  </v-card>
 </template>
 
+
+
 <script>
+  export default {
+    data: () => ({
+      bpm: 40,
+      interval: null,
+      isPlaying: false,
+    }),
 
-google.charts.load("current", {
-  packages: ["geochart"],
-  // Note: you will need to get a mapsApiKey for your project.
-  // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-  mapsApiKey: "AIzaSyBq9xk_1U7dtPUKeCxDUfMyCgYWMqGV-p0",
-});
-google.charts.setOnLoadCallback(drawRegionsMap);
+    computed: {
+      color () {
+        if (this.bpm < 100) return 'indigo'
+        if (this.bpm < 125) return 'teal'
+        if (this.bpm < 140) return 'green'
+        if (this.bpm < 175) return 'orange'
+        return 'red'
+      },
+      animationDuration () {
+        return `${60 / this.bpm}s`
+      },
+    },
 
-function drawRegionsMap() {
-  var data = google.visualization.arrayToDataTable([
-    ["Country", "Popularity"],
-    ["Colombia", 700],
-    ["Venezuela", 150],
-    ["Brazil", 900],
-  ]);
-
-  var options = {
-    region: "JP",
-    resolution: "provinces",
-  };
-
-  var chart_div = document.getElementById("regions_div");
-  var chart = new google.visualization.GeoChart(chart_div);
-
-  var downloadLink = null;
-  // Wait for the chart to finish drawing before calling the getImageURI() method.
-  google.visualization.events.addListener(chart, "ready", function () {
-    downloadLink = document.createElement("a");
-    downloadLink.href = chart.getImageURI();
-    downloadLink.download = "chart.png";
-    downloadLink.click();
-  });
-
-  google.visualization.events.addListener(chart, "regionClick", selectHandler);
-
-  function selectHandler(reg) {
-    console.log(reg);
-    alert(reg.region);
+    methods: {
+      decrement () {
+        this.bpm--
+      },
+      increment () {
+        this.bpm++
+      },
+      toggle () {
+        this.isPlaying = !this.isPlaying
+      },
+    },
   }
-
-  chart.draw(data, options);
-
-  document.getElementById("png").outerHTML =
-    '<a href="' + chart.getImageURI() + '" download>Printable version</a>';
-}
 </script>
