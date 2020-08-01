@@ -14,16 +14,19 @@
 
 
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
-        {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
+
         <div  :key="week.id" v-for="week in weeks">
         {{week.date}} {{week.temp}}<img v-bind:src="week.icon" />
         </div>
       </v-col>
 
-      <!--<div :key="hour.id" v-for="hour in hours">
+      <!--
+        {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
+        <div :key="hour.id" v-for="hour in hours">
         {{hour.date}}
         {{hour.temp}}
-      </div>-->
+        </div>
+      -->
   </v-row>
 
       <analyticsChart/>
