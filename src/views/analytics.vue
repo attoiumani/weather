@@ -6,7 +6,8 @@
 
     <v-row class="mb-4 text-left">
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
-        <span class="display-3 font-weight-light">{{display[0].date}}  {{display[0].temp}}℃ <img v-bind:src="display[0].icon" /></span>
+        <span class="display-2 font-weight-light">{{display[0].date}} </span><br>
+        <span class="display-3 font-weight-light">{{display[0].temp}}℃ <img v-bind:src="display[0].icon" /></span>
         <v-slider @click="test" v-model="slider[0].sliderNum" v-bind:tick-labels="slider[0].sliderlabel" v-bind:max="5"></v-slider>
       </v-col>
  
