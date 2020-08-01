@@ -6,15 +6,11 @@
 
     <v-row class="mb-4 text-left">
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
-        <span class="display-3 font-weight-light">{{defaulttemp}}℃</span>
-        <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="sliderlabel" v-bind:max="5"></v-slider>
+        <span class="display-3 font-weight-light">{{display[0].temp}}℃ <img v-bind:src="display[0].icon" /></span>
+        <v-slider @click="test" v-model="slider[0].sliderNum" v-bind:tick-labels="slider[0].sliderlabel" v-bind:max="5"></v-slider>
       </v-col>
  
-
-
-
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
-
         <div  :key="week.id" v-for="week in weeks">
         {{week.date}} {{week.temp}}<img v-bind:src="week.icon" />
         </div>
@@ -49,21 +45,24 @@ analyticsChart
   data() {
     return {
 
-      sliderlabel: [null],
-      sliderNum: 0,
-      sliderTemp: 0,
-      defaulttemp:0,
+     display:[
+      {temp:0,icon:null}
+     ],
+
+     slider:[
+      {sliderlabel: [null],sliderNum: 0,sliderTemp: 0,sliderIcon:null}
+     ],
 
       today: [
         {icon: null,date: null,temp: null},
       ],
 
       hours: [
-         {id:0,slidekey:1,date: null,temp: null},
-         {id:1,slidekey:2,date: null,temp: null},
-         {id:2,slidekey:3,date: null,temp: null},
-         {id:3,slidekey:4,date: null,temp: null},
-         {id:4,slidekey:5,date: null,temp: null},
+         {id:0,slidekey:1,icon: null,date: null,temp: null},
+         {id:1,slidekey:2,icon: null,date: null,temp: null},
+         {id:2,slidekey:3,icon: null,date: null,temp: null},
+         {id:3,slidekey:4,icon: null,date: null,temp: null},
+         {id:4,slidekey:5,icon: null,date: null,temp: null},
       ],
 
       weeks: [
@@ -75,8 +74,6 @@ analyticsChart
         {id:5,icon: null,date: null,temp: null},
         {id:6,icon: null,date: null,temp: null},
       ],
-
-
 
     };
   },
@@ -92,13 +89,15 @@ analyticsChart
         this.today[0].icon ="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
         this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.today[0].temp = response.data.current.temp;
-        this.defaulttemp=response.data.current.temp;
+        this.display[0].temp=response.data.current.temp;
+        this.display[0].icon="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
 
-      for (let i = 0, j = 1 ,k=1; i < this.hours.length; k++,i++,j=j+2) {
+      for (let i = 0, k=1,j = 1 ; i < this.hours.length; i++,k++,j=j+2) {
+        this.hours[i].icon = "https://openweathermap.org/img/w/" +response.data.hourly[j].weather[0].icon +".png";
         this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
         this.hours[i].temp = response.data.hourly[j].temp;
-        this.sliderlabel[k] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
-        this.sliderlabel[0]="now"
+        this.slider[0].sliderlabel[k] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.slider[0].sliderlabel[0]="now"
       }
 
       for (let i = 0, j = 1 ; i < this.weeks.length; i++,j++) {
@@ -113,14 +112,17 @@ analyticsChart
   methods: {
     test() {
     for(let i=0;i<this.hours.length;i++){
-      if(this.sliderNum==this.hours[i].slidekey){
-      this.sliderTemp=this.hours[i].temp;
+      if(this.slider[0].sliderNum==this.hours[i].slidekey){
+      this.slider[0].sliderTemp=this.hours[i].temp;
+      this.slider[0].sliderIcon=this.hours[i].icon;
       }
      }
-     if(this.sliderNum==0){
-       this.sliderTemp=this.today[0].temp
+     if(this.slider[0].sliderNum==0){
+       this.slider[0].sliderTemp=this.today[0].temp
+       this.slider[0].sliderIcon=this.today[0].icon
      }
-     this.defaulttemp=this.sliderTemp
+     this.display[0].temp=this.slider[0].sliderTemp
+     this.display[0].icon=this.slider[0].sliderIcon
     }
   },
 };
