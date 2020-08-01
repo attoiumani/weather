@@ -2,55 +2,56 @@
 
 <template>
   <div>
-    <v-toolbar flat dense>
-      <v-toolbar-title>
-        <span class="subheading">作成中</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
-
-    <v-row class="mb-4" justify="space-between">
-      <v-col class="text-left">
-        <span class="display-3 font-weight-light" v-text="bpm"></span>
-        <span class="subheading font-weight-light mr-1">BPM</span>
-      </v-col>
-    </v-row>
-    <v-slider v-model="bpm" :color="color" track-color="grey" always-dirty min="40" :max="100"></v-slider>
-
-    <v-row class="mb-4" justify="space-between">
-      <v-col class="text-left">
-        <span class="display-3 font-weight-light">{{fruits}}</span>
-      </v-col>
-    </v-row>
-    <v-slider
-      v-model="fruits"
-      :tick-labels="ticksLabels"
-      :max="20"
-      @click="test"
-      step="1"
-      ticks="always"
-    ></v-slider>
-
+    <GChart
+      :settings="{ packages: ['geochart']}"
+      type="GeoChart"
+      :data="chartData"
+      :options="chartOptions"
+    />
   </div>
 </template>
 
 
 
 <script>
+import { GChart } from "vue-google-charts";
+
 export default {
+    components: {
+    GChart 
+  },
   data() {
     return {
-    slider: 45,
-    ticksLabels: ["Figs", "Lemon", "Pear", "Apple", "test"],
-    bpm: 40,
-    fruits: 5,
-  }
+      chartData: [
+        ["States", "temp"],
+        ["hokkaido", 100],
+        ["aomori", 200],
+        ["akita", 300],
+        ["yamagata", 300],
+        ["tokyo", 300],
+        ["ishikawa", 300],
+        ["osaka", 300],
+        ["fukuoka", 300],
+      ],
+      chartOptions: {
+        colorAxis: {
+          colors: ["f4e0d6", "ca6633"],
+        },
+        backgroundColor: "transparent",
+        datalessRegionColor: "white",
+        defaultColor: "white",
+        region: "JP",
+        displayMode: "region",
+        resolution: "provinces",
+        width: 500,
+      },
+    };
   },
-    methods: {
-    test() {
-      alert(this.fruits);
-    }
-  }
-
+  methods: {
+    selectHandler(reg) {
+      console.log(reg);
+      alert(reg.region);
+    },
+  },
 };
 </script>
