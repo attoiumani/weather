@@ -113,7 +113,7 @@ analyticsChart
       if(this.slider[0].sliderNum==this.hours[i].slidekey){
       this.slider[0].sliderTemp=this.hours[i].temp;
       this.slider[0].sliderIcon=this.hours[i].icon;
-      this.slider[0].sliderDate=this.hours[i].data;
+      this.slider[0].sliderDate=this.hours[i].date;
       }
      }
      if(this.slider[0].sliderNum==0){
