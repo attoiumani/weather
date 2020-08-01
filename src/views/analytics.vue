@@ -19,9 +19,9 @@
       <!--チェック用
         {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
         <div :key="hour.id" v-for="hour in hours">
-        {{hour.date}}{{hour.temp}}<img v-bind:src="hour.icon" />
+        {{hour.hourtime}}{{hour.temp}}<img v-bind:src="hour.icon" />
         </div>-->
-        
+
   </v-row>
 
       <analyticsChart/>
@@ -57,11 +57,11 @@ analyticsChart
       ],
 
       hours: [
-         {id:0,slidekey:1,icon: null,date: null,temp: null},
-         {id:1,slidekey:2,icon: null,date: null,temp: null},
-         {id:2,slidekey:3,icon: null,date: null,temp: null},
-         {id:3,slidekey:4,icon: null,date: null,temp: null},
-         {id:4,slidekey:5,icon: null,date: null,temp: null},
+         {id:0,slidekey:1,icon: null,hourtime: null,temp: null},
+         {id:1,slidekey:2,icon: null,hourtime: null,temp: null},
+         {id:2,slidekey:3,icon: null,hourtime: null,temp: null},
+         {id:3,slidekey:4,icon: null,hourtime: null,temp: null},
+         {id:4,slidekey:5,icon: null,hourtime: null,temp: null},
       ],
 
       weeks: [
@@ -88,12 +88,12 @@ analyticsChart
         this.today[0].icon ="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
         this.today[0].date = new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.today[0].temp = response.data.current.temp;
-        this.display[0].temp=response.data.current.temp;
         this.display[0].icon="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
+        this.display[0].temp=response.data.current.temp;
 
       for (let i = 0, k=1,j = 1 ; i < this.hours.length; i++,k++,j=j+2) {
         this.hours[i].icon = "https://openweathermap.org/img/w/" +response.data.hourly[j].weather[0].icon +".png";
-        this.hours[i].date = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
+        this.hours[i].hourtime = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
         this.hours[i].temp = response.data.hourly[j].temp;
         this.slider[0].sliderlabel[k] = new Date(response.data.hourly[j].dt * 1000).toLocaleTimeString().slice(0,5);
         this.slider[0].sliderlabel[0]="now"
