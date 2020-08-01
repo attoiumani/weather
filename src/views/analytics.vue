@@ -6,13 +6,13 @@
 
     <v-row>
       <v-col sm="6" md="6" lg="6" xl="6">
-        <div class="mb-4 text-left">
+        <div class="mb-4">
         <span class="display-2 font-weight-light">{{display[0].date}} </span><br>
         <span class="display-3 font-weight-light">{{display[0].temp}}℃ <img v-bind:src="display[0].icon" /></span>
         <v-slider @click="clickmethod" v-model="slider[0].sliderNum" v-bind:tick-labels="slider[0].sliderlabel" v-bind:max="5"></v-slider>
         </div>
         <div>
-          <v-row class="mb-4 text-left">
+          <v-row class="mb-4">
             <v-col sm="6" md="6" lg="6" xl="6" :key="other.id" v-for="other in display[0].others">
               <span>{{other.type}}</span>：<span>{{other.data}}</span>
            </v-col>
