@@ -4,15 +4,15 @@
       <span>{{ $route.params.place }}</span>
     </h1>
 
-    <v-row class="mb-4">
-      <v-col class="text-left">
+    <v-row class="mb-4 text-left">
+      <v-col cols="12" sm="6" md="6" lg="6" xl="6">
         <span class="display-3 font-weight-light">{{defaulttemp}}℃</span>
+        <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="sliderlabel" v-bind:max="5"></v-slider>
       </v-col>
-    </v-row>
+ 
 
-    <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="sliderlabel" v-bind:max="5"></v-slider>
 
-    <v-row class="text-left">
+
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
         {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
         <div  :key="week.id" v-for="week in weeks">
