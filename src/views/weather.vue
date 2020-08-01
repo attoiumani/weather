@@ -9,24 +9,24 @@
       <WeatherCard :place="item.place" :lon="item.lon" :lat="item.lat" @emit="parentMethod" />
     </v-col>
 
-    <GChart
+    <!--<GChart
       :settings="{ packages: ['geochart']}"
       type="GeoChart"
       :data="chartData"
       :options="chartOptions"
-    />
+    />-->
   </v-row>
 </template>
 
 
 <script>
 import WeatherCard from "@/components/WeatherCard";
-import { GChart } from "vue-google-charts";
+//import { GChart } from "vue-google-charts";
 
 export default {
   components: {
     WeatherCard,
-    GChart 
+    //GChart 
   },
   data() {
     return {
