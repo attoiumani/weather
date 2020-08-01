@@ -16,13 +16,12 @@
         </div>
       </v-col>
 
-      <!--
+      <!--チェック用
         {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
         <div :key="hour.id" v-for="hour in hours">
-        {{hour.date}}
-        {{hour.temp}}
-        </div>
-      -->
+        {{hour.date}}{{hour.temp}}<img v-bind:src="hour.icon" />
+        </div>-->
+        
   </v-row>
 
       <analyticsChart/>
