@@ -6,9 +6,18 @@
 
     <v-row class="mb-4 text-left">
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
+        <div>
         <span class="display-2 font-weight-light">{{display[0].date}} </span><br>
         <span class="display-3 font-weight-light">{{display[0].temp}}℃ <img v-bind:src="display[0].icon" /></span>
         <v-slider @click="clickmethod" v-model="slider[0].sliderNum" v-bind:tick-labels="slider[0].sliderlabel" v-bind:max="5"></v-slider>
+        </div>
+        <div>
+          <v-row class="mb-4 text-left">
+            <v-col cols="12" sm="6" md="6" lg="6" xl="6" :key="other.id" v-for="other in display[0].others">
+              <span>{{other.type}}：{{other.data}}</span>
+           </v-col>
+         </v-row>
+        </div>
       </v-col>
  
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
@@ -18,9 +27,11 @@
       </v-col>
 
     <!--チェック用
-        {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
+       <div>
+          {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
+       </div>
         <div :key="hour.id" v-for="hour in hours">
-        {{hour.date}}{{hour.hourtime}}{{hour.temp}}<img v-bind:src="hour.icon" />
+          {{hour.date}}  {{hour.hourtime}}  {{hour.temp}}<img v-bind:src="hour.icon" />
         </div>-->
   </v-row>
 
@@ -45,7 +56,17 @@ analyticsChart
     return {
 
      display:[
-      {temp:0,icon:null,date:null}
+      {temp:0,icon:null,date:null,
+      others:[
+        {id:0,type:"湿度",data:null},
+        {id:1,type:"風速",data:null},
+        {id:2,type:"UV指数",data:null},
+        {id:3,type:"体感温度",data:null},
+        {id:4,type:"日の入り",data:null},
+        {id:5,type:"日の出",data:null},
+        {id:5,type:"気圧",data:null},
+        ]
+        },
      ],
 
      slider:[
@@ -89,6 +110,13 @@ analyticsChart
         this.display[0].icon="https://openweathermap.org/img/w/" +response.data.current.weather[0].icon +".png";
         this.display[0].date=new Date(response.data.current.dt * 1000).toLocaleDateString("ja-JP").slice(5);
         this.display[0].temp=response.data.current.temp;
+        this.display[0].others[0].data=response.data.current.humidity;
+        this.display[0].others[1].data=response.data.current.wind_speed;
+        this.display[0].others[2].data=response.data.current.uvi;
+        this.display[0].others[3].data=response.data.current.feels_like;
+        this.display[0].others[4].data=new Date(response.data.current.sunrise * 1000).toLocaleTimeString().slice(0,4);
+        this.display[0].others[5].data=new Date(response.data.current.sunset * 1000).toLocaleTimeString().slice(0,5);
+        this.display[0].others[6].data=response.data.current.pressure;
 
       for (let i = 0, k=1,j = 1 ; i < this.hours.length; i++,k++,j=j+2) {
         this.hours[i].icon = "https://openweathermap.org/img/w/" +response.data.hourly[j].weather[0].icon +".png";
