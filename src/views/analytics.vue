@@ -4,33 +4,29 @@
       <span>{{ $route.params.place }}</span>
     </h1>
 
-    <v-row class="mb-4" justify="space-between">
+    <v-row class="mb-4">
       <v-col class="text-left">
         <span class="display-3 font-weight-light">{{defaulttemp}}</span>
       </v-col>
     </v-row>
-    <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="sliderlabel" v-bind:max="5"  step="1" ticks="always"></v-slider>
+    <v-slider @click="test" v-model="sliderNum" v-bind:tick-labels="sliderlabel" v-bind:max="5"></v-slider>
 
-    <div>
-      <div>
-        {{today[0].date}}
-        {{today[0].temp}}
-        <img v-bind:src="today[0].icon" />
-      </div>
+    <v-row class="text-left">
+      <v-col cols="12">
+        {{today[0].date}} {{today[0].temp}}<img v-bind:src="today[0].icon" />
+      </v-col>
+      <v-col :key="week.id" v-for="week in weeks" cols="12">
+        {{week.date}} {{week.temp}}<img v-bind:src="week.icon" />
+      </v-col>
+    </v-row>
 
-      <div :key="hour.id" v-for="hour in hours">
+      <!--<div :key="hour.id" v-for="hour in hours">
         {{hour.date}}
         {{hour.temp}}
-      </div>
+      </div>-->
 
-      <div :key="week.id" v-for="week in weeks">
-        {{week.date}}
-        {{week.temp}}
-        <img v-bind:src="week.icon" />
-      </div>
-    </div>
 
-<analyticsChart/>
+      <analyticsChart/>
 
   </div>
 </template>
