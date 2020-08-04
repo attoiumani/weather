@@ -6,13 +6,14 @@
 
     <v-row>
       <v-col sm="6" md="6" lg="6" xl="6">
-        <div class="mb-4">
-        <span class="display-2 font-weight-light">{{display[0].date}} </span><br>
-        <span class="display-3 font-weight-light">{{display[0].temp}}℃ <img v-bind:src="display[0].icon" /></span>
-        <v-slider @click="clickmethod" v-model="slider[0].sliderNum" v-bind:tick-labels="slider[0].sliderlabel" v-bind:max="5"></v-slider>
+        <div class="mb-7">
+        <p class="display-2 font-weight-light text-left ml-10">{{display[0].date}} </p><br>
+        <p class="display-3 font-weight-light">{{display[0].temp}}℃ <img v-bind:src="display[0].icon" /></p>
         </div>
+        <v-slider @click="clickmethod" v-model="slider[0].sliderNum" v-bind:tick-labels="slider[0].sliderlabel" v-bind:max="5"></v-slider>
+
         <div>
-          <v-row class="mb-4">
+          <v-row class="pt-10">
             <v-col sm="6" md="6" lg="6" xl="6" :key="other.id" v-for="other in display[0].others">
               <span>{{other.type}}</span>：<span>{{other.data}}</span>
            </v-col>
@@ -21,7 +22,7 @@
       </v-col>
  
       <v-col sm="6" md="6" lg="6" xl="6">
-        <div :key="week.id" v-for="week in weeks">
+        <div :key="week.id" v-for="week in weeks" class="text-left ml-15">
         {{week.date}} {{week.temp}}<img v-bind:src="week.icon" />
         </div>
       </v-col>
