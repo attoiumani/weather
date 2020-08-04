@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <div class="mb-10">
     <div>
       <span>temp</span>
       <linechart v-if="loaded" :data="data1" :options="options" />
     </div>
 
+<!--
     <v-row>
       <v-col cols="12" sm="6" md="6" lg="6" xl="6">
         <span>Days</span>
@@ -15,6 +16,7 @@
         <radar v-if="loaded" :data="data3" :options="options2" />
       </v-col>
     </v-row>
+    -->
   </div>
 </template>
 
@@ -23,14 +25,14 @@
 import firebase from "firebase";
 import moment from "moment";
 import linechart from "@/components/chart/linechart";
-import piechart from "@/components/chart/piechart";
-import radar from "@/components/chart/radar";
+//import piechart from "@/components/chart/piechart";
+//import radar from "@/components/chart/radar";
 
 export default {
   components: {
     linechart,
-    piechart,
-    radar,
+    //piechart,
+    //radar,
   },
   data() {
     return {
