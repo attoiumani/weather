@@ -23,7 +23,7 @@
  
       <v-col sm="6" md="6" lg="6" xl="6">
         <div :key="week.id" v-for="week in weeks" class="text-left ml-15">
-        {{week.date}} {{week.temp}}<img v-bind:src="week.icon" />
+        {{week.date}}<span class="red--text pl-5">{{week.maxtemp}}</span><span class="blue--text pl-3">{{week.mintemp}}</span><img v-bind:src="week.icon" class="pl-3" />
         </div>
       </v-col>
 
@@ -87,13 +87,13 @@ analyticsChart
       ],
 
       weeks: [
-        {id:0,icon: null,date: null,temp: null},
-        {id:1,icon: null,date: null,temp: null},
-        {id:2,icon: null,date: null,temp: null},
-        {id:3,icon: null,date: null,temp: null},
-        {id:4,icon: null,date: null,temp: null},
-        {id:5,icon: null,date: null,temp: null},
-        {id:6,icon: null,date: null,temp: null},
+        {id:0,icon: null,date: null,maxtemp: null,mintemp: null},
+        {id:1,icon: null,date: null,maxtemp: null,mintemp: null},
+        {id:2,icon: null,date: null,maxtemp: null,mintemp: null},
+        {id:3,icon: null,date: null,maxtemp: null,mintemp: null},
+        {id:4,icon: null,date: null,maxtemp: null,mintemp: null},
+        {id:5,icon: null,date: null,maxtemp: null,mintemp: null},
+        {id:6,icon: null,date: null,maxtemp: null,mintemp: null},
       ],
 
     };
@@ -131,7 +131,8 @@ analyticsChart
       for (let i = 0, j = 1 ; i < this.weeks.length; i++,j++) {
         this.weeks[i].icon = "https://openweathermap.org/img/w/" +response.data.daily[j].weather[0].icon +".png";
         this.weeks[i].date = new Date(response.data.daily[j].dt * 1000).toLocaleDateString("ja-JP").slice(5);
-        this.weeks[i].temp = response.data.daily[j].temp.day;
+        this.weeks[i].maxtemp = response.data.daily[j].temp.max;
+        this.weeks[i].mintemp = response.data.daily[j].temp.min;
       }
       }.bind(this)
     );
