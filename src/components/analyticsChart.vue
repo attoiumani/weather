@@ -1,7 +1,6 @@
 <template>
   <div class="mb-10">
     <div>
-      <span>temp</span>
       <linechart v-if="loaded" :data="data1" :options="options" />
     </div>
 
