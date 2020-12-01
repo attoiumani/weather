@@ -2944,7 +2944,7 @@ core-js-compat@^3.6.2, core-js-compat@^3.6.4:
     browserslist "^4.8.3"
     semver "7.0.0"
 
-core-js@3.6.5, core-js@^3.6.5:
+core-js@3.6.5:
   version "3.6.5"
   resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
   integrity sha1-c5XcJzrzf7LlDpvT2f6EEoUjHRo=
@@ -2953,6 +2953,11 @@ core-js@^3.6.4:
   version "3.6.4"
   resolved "https://registry.npm.taobao.org/core-js/download/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
   integrity sha1-RAqDU2tFgRS5yyrBWAujd9xHBkc=
+
+core-js@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.0.tgz#0fc2d4941cadf80538b030648bb64d230b4da0ce"
+  integrity sha512-W2VYNB0nwQQE7tKS7HzXd7r2y/y2SVJl4ga6oH/dnaLFzM0o2lB2P3zCkWj5Wc/zyMYjtgd5Hmhk0ObkQFZOIA==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3231,6 +3236,11 @@ de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/de-indent/download/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
   integrity sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0=
+
+debounce@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.0.tgz#44a540abc0ea9943018dc0eaa95cce87f65cd131"
+  integrity sha512-mYtLl1xfZLi1m4RtQYlZgJUNQjl4ZxVnHzIR8nLLgi4q1YT8o/WM+MK/f8yfcc9s5Ir5zRaPZyZU6xs1Syoocg==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
@@ -8786,6 +8796,13 @@ vue-eslint-parser@^7.0.0:
     espree "^6.1.2"
     esquery "^1.0.1"
     lodash "^4.17.15"
+
+vue-google-charts@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/vue-google-charts/-/vue-google-charts-0.3.3.tgz#cb9662d07c662afbba1411177c09f7e17ac5e097"
+  integrity sha512-dvp5C0m3uAfB7PbAWPOqnYGJLUKyK0NPmnjOE8FDUhVySeErojOPZVd5zNOq4m9RhhwmNFP31bsxVYNb+0+f9w==
+  dependencies:
+    debounce "^1.1.0"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
