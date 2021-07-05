@@ -34,6 +34,7 @@ export default {
         { title: "about", path: "/about", icon: "mdi-home-variant" },
         { title: "weather", path: "/", icon: "mdi-weather-pouring" },
         //{ title: "test", path: "/test", icon: "mdi-weather-pouring" },
+      //kk
       ]
     };
   },
